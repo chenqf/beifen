@@ -146,9 +146,9 @@ console.log(arr);
 ----
 *如果您觉得此文有帮助，可以打赏一个红包，以资鼓励~*
 
-<figure class="half">
+<div>
     <img width="180px" src="https://raw.githubusercontent.com/chenqf/blog/master/images/wc.png">
     <img width="180px" src="https://raw.githubusercontent.com/chenqf/blog/master/images/zhi.png">
-</figure>
+</div>
 
 
