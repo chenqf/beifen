@@ -1,37 +1,35 @@
-// @flow Created by 陈其丰 on 2019/3/21.
-
 const config = require('./config');
 const fs = require('fs');
+const util = require('files-tree');
 const path = require('path');
 const resolve = path.resolve;
-let  {baseUrl,path:basePath,publish = []} = config;
-baseUrl = `${baseUrl}/${basePath}`;
-basePath = resolve(__dirname,`../${basePath}`);
-
-let str = '# 个人博客\n';
+const template = require('art-template');
 let mainPath = resolve(__dirname,'../README.md');
 
-publish.forEach(function (item) {
-    let {
-        name,//分类主标题
-        path,//分类路径
-        children = [] //分类下文章
-    } = item;
-    //每个分类的路径
-    let p = `${basePath}/${path}`;
-    str = `${str}## ${name}\n`;
-    children.forEach(function (i,index) {
-        //每篇文章的标题
-        let name = i.name;
-        //每篇文章的具体内容
-        let content = fs.readFileSync(`${p}/${name}.md`,'utf-8');
-        //文章的url地址
-        let url = i.issues || `${baseUrl}/${path}/${name}.md`;
-        str = `${str}+ [${index + 1}.${name}](${url})\n`;
-    });
+let payTemplate = template(__dirname + '/pay.template.html', {
+    data:config.pay
+});
+let mainTemplate = template(__dirname + '/main.template.html', {
+    data:config
 });
 
-fs.writeFileSync(mainPath, str);
+//批量生成首页目录
+fs.writeFileSync(mainPath, mainTemplate);
+
+//对每篇文章增加打赏
+let list = util.allFile(resolve(__dirname,'../articles'));
+list.forEach(function (item) {
+   let path = item.path;
+   let content = fs.readFileSync(path,'utf-8');
+   if(content.indexOf(config.pay.title) < 0){
+       content = `${content.replace(/(.*?)\s*$/,'$1')}\n\n${payTemplate}`;
+       fs.writeFileSync(path, content);
+   }
+});
+
+
+
+
 
 
 
