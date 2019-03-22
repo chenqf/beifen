@@ -18,7 +18,17 @@ module.exports = {
                     issues:''
                 }
             ]
-        }
+        },
+        {
+            name:'javascript 基础',//分类的标题
+            path:'javascript进阶',//分类的路径
+            children:[
+                {
+                    name:'如何中断forEach循环',
+                    issues:''
+                }
+            ]
+        },
     ],
     pay:{
         title:'如果您觉得此文有帮助，可以打赏一个红包，以资鼓励~'
