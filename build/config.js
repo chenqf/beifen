@@ -5,6 +5,7 @@ module.exports = {
         '防抖和节流',
         'css 剪切',
         'http 缓存',
+        'bind 的模拟实现',
     ],
     logTitle:'个人博客',
     baseUrl:'https://github.com/chenqf/blog/blob/master/articles',
@@ -20,11 +21,11 @@ module.exports = {
             ]
         },
         {
-            name:'javascript 基础',//分类的标题
+            name:'javascript 进阶',//分类的标题
             path:'javascript进阶',//分类的路径
             children:[
                 {
-                    name:'如何中断forEach循环',
+                    name:'防抖函数',
                     issues:''
                 }
             ]
