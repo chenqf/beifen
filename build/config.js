@@ -6,6 +6,13 @@ module.exports = {
         'css 剪切',
         'http 缓存',
     ],
+    pay:{
+        title:'',
+        images:[
+            'https://raw.githubusercontent.com/chenqf/blog/master/images/wc.png',
+            'https://raw.githubusercontent.com/chenqf/blog/master/images/zhi.png'
+        ]
+    },
     baseUrl:'https://github.com/chenqf/blog/blob/master',
     path:'articles',
     publish:[
