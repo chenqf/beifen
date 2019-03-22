@@ -6,11 +6,12 @@ module.exports = {
         'css 剪切',
         'http 缓存',
     ],
+    baseUrl:'https://github.com/chenqf/blog/blob/master',
     path:'articles',
     publish:[
         {
-            name:'javascript 基础',
-            path:'javascript基础',
+            name:'javascript 基础',//分类的标题
+            path:'javascript基础',//分类的路径
             children:[
                 {
                     name:'如何中断forEach循环',
