@@ -140,15 +140,14 @@ console.log(arr);
 ```
 注意：这种方式虽然可以实现打破forEach循环，并且不改变原数组中的内容，但实际上原数组的指针引用已发生了变化
 
-所以：如果实际工作中，真的遇到需要打破forEach循环的需求，最好还是按照MDN的官方推荐，使用其他函数来模拟。
-
+所以：如果实际工作中，真的遇到需要打破forEach循环的需求，最好还是按照MDN的官方推荐，使用其他函数来模拟。----
 
 ----
 *如果您觉得此文有帮助，可以打赏一个红包，以资鼓励~*
-
 <div>
-    <img width="180px" src="https://raw.githubusercontent.com/chenqf/blog/master/images/wc.png">
-    <img width="180px" src="https://raw.githubusercontent.com/chenqf/blog/master/images/zhi.png">
+    
+        <img width="180px" src="https://raw.githubusercontent.com/chenqf/blog/master/images/wc.png">
+    
+        <img width="180px" src="https://raw.githubusercontent.com/chenqf/blog/master/images/zhi.png">
+    
 </div>
-
-
