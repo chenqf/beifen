@@ -234,3 +234,8 @@ button.addEventListener('click',action.cancel);
 ![avatar](4.gif)
  
 至此我们已经完成时限了一个 debounce 函数
+
+
++ [博客首页](https://github.com/chenqf/blog)
++ [javascript 基础](https://github.com/chenqf/blog/blob/master/articles/javascript基础)
++ [javascript 进阶](https://github.com/chenqf/blog/blob/master/articles/javascript进阶)

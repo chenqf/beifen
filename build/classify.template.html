@@ -1,0 +1,3 @@
+## <%=data.name%>
+<%for(let i = 0; i<data.list.length; i++){%>
++ [<%= data.list[i].name %>](<%= `${data.baseUrl}/${data.path}/${data.list[i].name}/README.md` %>)<%}%>
