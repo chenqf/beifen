@@ -33,6 +33,7 @@ container.addEventListener('mousemove',updateCount);
 ```
 我们来看一下效果：
 ![avatar](./1.gif)
+
 我们可以看到，鼠标从左侧滑到右侧，我们绑定的事件执行了119多次
 
 这个例子很简单，浏览器完全反应的过来，但如果在频繁的事件回调中做复杂计算，很有可能导致页面卡顿，不如将多次计算合并为一次计算，只在一个精确点做操作。
@@ -76,6 +77,7 @@ const debounce = function (func,wait = 50) {
 container.addEventListener('mousemove',debounce(updateCount,100));
 ```
 ![avatar](./2.gif)
+
 我们可以看到，不管我们怎么移动，我们绑定的回调事件都是在鼠标停止后100ms后才会触发。
 
 
