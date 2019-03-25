@@ -219,7 +219,7 @@ div{
 <button id="cancel">点击取消防抖</button>
 ```
 ```javascript 1.8
-
+ 
 let count = 1;
 let container = document.getElementsByTagName('div')[0];
 let button = document.getElementById('cancel');
@@ -231,6 +231,6 @@ let action = debounce(updateCount,10000,true);
 container.addEventListener('mousemove',action);
 button.addEventListener('click',action.cancel);
 ```
-![avatar](./4.gif)
-
+![avatar](4.gif)
+ 
 至此我们已经完成时限了一个 debounce 函数

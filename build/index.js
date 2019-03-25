@@ -12,7 +12,6 @@ let payTemplate = template(__dirname + '/pay.template.html', {
 let mainTemplate = template(__dirname + '/main.template.html', {
     data:config
 });
-
 //批量生成首页目录
 fs.writeFileSync(mainPath, mainTemplate);
 
