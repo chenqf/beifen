@@ -31,7 +31,7 @@ function updateCount() {
 }
 container.addEventListener('mousemove',updateCount);
 ```
-我们来看一下效果：
+我们来看一下效果：           
 
 ![avatar](./1.gif)
 
