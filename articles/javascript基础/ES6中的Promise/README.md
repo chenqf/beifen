@@ -276,7 +276,6 @@ fn2(); // print: undefined
 #### then方法的返回值
 
 
-
 ```javascript 1.8
 // onFulfilled 是用来接收 promise 对象的终值
 // onRejected 是用来接收 promise 对象的拒因
