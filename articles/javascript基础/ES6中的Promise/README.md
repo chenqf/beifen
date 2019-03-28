@@ -144,10 +144,9 @@ let p1 = new Promise((resolve,reject)=>{
 });
 // p1 的状态一直为 pending
 ```
-+ 当异步操作执行成功，调用resolve函数
-    + resolve的参数为非promise对象、非thenable对象
-        + resolve函数的参数，作为promise对象的终值
-        + promise对象的状态变为 fulfilled
++ 当调用 resolve 函数, resolve 的参数为非 promise 对象、非 thenable 对象
+    + resolve 函数的参数，作为promise对象的终值
+    + promise 对象的状态变为 fulfilled
 ```javascript
 let p2 = new Promise((resolve,reject)=>{
     setTimeout(()=>{
@@ -159,23 +158,8 @@ let p2 = new Promise((resolve,reject)=>{
 // 代码执行，1000ms后，p2 的状态为 fulfilled
 // 代码执行，1000ms后，p2 的终值为 '我是p2的终值'
 ```
-+ 当异步操作执行失败，调用reject函数
-    + reject函数的参数，作为promise对象的拒因
-    + promise对象的状态变为 rejected
-```javascript
-let p3 = new Promise((resolve,reject)=>{
-    setTimeout(()=>{
-        console.log('p3');
-        reject('我是p3的拒因')
-    },1000);
-});
-// 代码执行，1000ms内，p3 的状态为 pending
-// 代码执行，1000ms后，p3 的状态为 rejected
-// 代码执行，1000ms后，p3 的拒因为 '我是p3的拒因'
-```
-+ 当异步操作执行成功，调用resolve函数
-    + resolve的参数为promise对象
-        + promise对象的状态、终值、拒因与传入的promise对象同步
++ 当调用 resolve 函数, resolve 的参数为 promise 对象
+    + promise 对象的状态、终值、拒因与传入的 promise 对象同步
 ```javascript
 let p = new Promise((resolve,reject)=>{
 	reject('error')
@@ -185,9 +169,8 @@ let p1 = new Promise((resolve,reject)=>{
 })
 // p1 的状态为 rejected ，拒因为 error
 ```
-+ 当异步操作执行成功，调用resolve函数
-    + resolve的参数为thenable对象
-        + 会对thenable对象进行展开操作，promise对象的状态、终值、拒因取决于thenable对象的then方法调用结果
++ 当调用 resolve 函数, resolve的参数为 thenable 对象
+    + 会对 thenable 对象进行展开操作，promise 对象的状态、终值、拒因取决于 thenable 对象的 then 方法调用结果
 ```javascript
 let thenable1 = {
 	then:function(resolve,reject){
@@ -226,6 +209,20 @@ let p4 = new Promise((resolve,reject)=>{
 // p3 的状态为 rejected  拒因为 Error：3
 // p4 的状态为 pending
 ```   
++ 当调用 reject 函数, reject 函数的参数，作为 promise 对象的拒因
++ promise 对象的状态变为 rejected
+```javascript
+let p3 = new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+        console.log('p3');
+        reject('我是p3的拒因')
+    },1000);
+});
+// 代码执行，1000ms内，p3 的状态为 pending
+// 代码执行，1000ms后，p3 的状态为 rejected
+// 代码执行，1000ms后，p3 的拒因为 '我是p3的拒因'
+```
+
 ### promise对象上的方法
 
 #### **then方法：**
