@@ -162,10 +162,10 @@ let p2 = new Promise((resolve,reject)=>{
     + promise 对象的状态、终值、拒因与传入的 promise 对象同步
 ```javascript
 let p = new Promise((resolve,reject)=>{
-	reject('error')
+    reject('error')
 })
 let p1 = new Promise((resolve,reject)=>{
-	resolve(p)
+    resolve(p)
 })
 // p1 的状态为 rejected ，拒因为 error
 ```
@@ -173,36 +173,36 @@ let p1 = new Promise((resolve,reject)=>{
     + 会对 thenable 对象进行展开操作，promise 对象的状态、终值、拒因取决于 thenable 对象的 then 方法调用结果
 ```javascript
 let thenable1 = {
-	then:function(resolve,reject){
-		resolve(1)
-	}
+    then:function(resolve,reject){
+        resolve(1)
+    }
 }
 let thenable2 = {
-	then:function(resolve,reject){
-		reject(2)
-	}
+    then:function(resolve,reject){
+        reject(2)
+    }
 }
 let thenable3 = {
-	then:function(resolve,reject){
-		throw new Error(3)
-	}
+    then:function(resolve,reject){
+        throw new Error(3)
+    }
 }
 let thenable4 = {
-	then:function(fn1,fn2){
-		//不调用 fn1 fn2
-	}
+    then:function(fn1,fn2){
+        //不调用 fn1 fn2
+    }
 }
 let p1 = new Promise((resolve,reject)=>{
-	resolve(thenable1);
+    resolve(thenable1);
 })
 let p2 = new Promise((resolve,reject)=>{
-	resolve(thenable2);
+    resolve(thenable2);
 })
 let p3 = new Promise((resolve,reject)=>{
-	resolve(thenable3);
+    resolve(thenable3);
 })
 let p4 = new Promise((resolve,reject)=>{
-	resolve(thenable4);
+    resolve(thenable4);
 })
 // p1 的状态为 fulfilled 终值为 1
 // p2 的状态为 rejected  终值为 2
@@ -237,29 +237,29 @@ promise.then(onFulfilled, onRejected);
 + onRejected 函数用于当promise状态变为 rejected 时，接收拒因
 ```javascript
 new Promise((resolve,reject)=>{
-	setTimeout(()=>{
-		resolve('异步任务获取的数据')
-	},50)
+    setTimeout(()=>{
+        resolve('异步任务获取的数据')
+    },50)
 }).then((data)=>{
-	console.log(data)
+    console.log(data)
 })
 // 异步任务获取的数据
 ```
 ```javascript
 new Promise((resolve,reject)=>{
-	setTimeout(()=>{
-		reject(new Error('异步任务异常'))
-	},50)
+    setTimeout(()=>{
+        reject(new Error('异步任务异常'))
+    },50)
 }).then(null,(error)=>{
-	console.log(error)
+    console.log(error)
 })
 // Error: 异步任务异常
 ```
 ```javascript
 new Promise((resolve,reject)=>{
-	throw new Error('抛出一个异常');
+    throw new Error('抛出一个异常');
 }).then(null,(error)=>{
-	console.log(error)
+    console.log(error)
 })
 // Error: 抛出一个异常
 ```
@@ -284,12 +284,12 @@ new Promise((resolve,reject)=>{
 ```javascript
 console.log(1);
 setTimeout(function(){
-	console.log(2)
+    console.log(2)
 },0)
 new Promise((resolve,reject)=>{
-	resolve(3);
+    resolve(3);
 }).then((data)=>{
-	console.log(data);
+    console.log(data);
 })
 console.log(4)
 // print: 1 4 3 2
@@ -300,19 +300,19 @@ onFulfilled 和 onRejected 必须被作为函数调用
 严格模式下，this为undefined    
 ```javascript
 function fn1(){
-	new Promise((resolve)=>{
-		resolve();
-	}).then(function(){
-		console.log(this)
-	})
+    new Promise((resolve)=>{
+        resolve();
+    }).then(function(){
+        console.log(this)
+    })
 }
 function fn2(){
-	"use strict";
-	new Promise((resolve)=>{
-		resolve();
-	}).then(function(){
-		console.log(this)
-	})
+    "use strict";
+    new Promise((resolve)=>{
+        resolve();
+    }).then(function(){
+        console.log(this)
+    })
 }
 fn1(); // print: window
 fn2(); // print: undefined
@@ -324,13 +324,13 @@ fn2(); // print: undefined
 + 当 promise 被拒绝执行时，所有的 onRejected 需按照其注册顺序依次回调
 ```javascript
 let p = new Promise((resolve)=>{
-	resolve()
+    resolve()
 });
 let p1 = p.then(()=>{
-	console.log('异步执行，第一个onFulfilled');
+    console.log('异步执行，第一个onFulfilled');
 });
 let p2 = p.then(()=>{
-	console.log('异步执行，第二个onFulfilled');
+    console.log('异步执行，第二个onFulfilled');
 });
 console.log(p1.constructor === Promise);
 console.log(p === p1);
@@ -351,32 +351,32 @@ promise2 = promise1.then(onFulfilled, onRejected);
 + 若 onFulfilled 、onRejected 返回一个非promise对象、非thenable对象的值 x ，则 promise2 的状态为 fulfilled ，终值为 x
 ```javascript
 let p = new Promise((resolve,reject)=>{
-	throw new Error();
+    throw new Error();
 });
 let p1 = p.then(null,(data)=>{
-	return '我是p2的终值'
+    return '我是p2的终值'
 });
 p1.then((data)=>{
-	console.log(data)
+    console.log(data)
 });
 // print: 我是p2的终值
 ```
 + 若 onFulfilled 、onRejected 返回一个promise对象的值 x ，promise2 的状态、终值、拒因与 x 同步
 ```javascript
 let p1 = new Promise((resolve,reject)=>{
-	resolve(1)
+    resolve(1)
 })
 let p2 = new Promise((resolve,reject)=>{
-	reject(2)
+    reject(2)
 })
 let p3 = new Promise((resolve)=>{
-	resolve()
+    resolve()
 })
 let p4 = p3.then(()=>{
-	return p1;
+    return p1;
 })
 let p5 = p3.then(()=>{
-	return p2;
+    return p2;
 })
 // p4 的状态为 fulfilled 终值为 1
 // p5 的状态为 rejected  拒因为 2
@@ -384,23 +384,23 @@ let p5 = p3.then(()=>{
 + 若 onFulfilled 、onRejected 返回一个thenable对象 ，会对thenable对象进行展开操作，promise2 的状态、终值、拒因取决于thenable对象的then方法调用结果
 ```javascript
 let thenable1 = {
-	then:function(resolve,reject){
-		resolve(1)
-	}
+    then:function(resolve,reject){
+        resolve(1)
+    }
 }
 let thenable2 = {
-	then:function(resolve,reject){
-		reject(2)
-	}
+    then:function(resolve,reject){
+        reject(2)
+    }
 }
 let p1 = new Promise((resolve,reject)=>{
-	resolve()
+    resolve()
 })
 let p2 = p1.then(()=>{
-	return thenable1;
+    return thenable1;
 })
 let p3 = p1.then(()=>{
-	return thenable2;
+    return thenable2;
 })
 // p2 的状态为 fulfilled 终值为 1
 // p3 的状态为 rejected  拒因为 2
@@ -408,48 +408,48 @@ let p3 = p1.then(()=>{
 + 若 onFulfilled 或者 onRejected 抛出一个异常 e ，则 promise2 的状态为 resolved，拒因为 e
 ```javascript
 let p = new Promise((resolve,reject)=>{
-	resolve();
+    resolve();
 });
 let p1 = p.then((data)=>{
-	throw new Error('error')
+    throw new Error('error')
 });
 p1.then(null,(err)=>{
-	console.log(err);
+    console.log(err);
 });
 // print:　Error: error
 ```
 + 若 onFulfilled 不是函数且 promise1 成功执行， promise2 的状态为 fulfilled 终值为 promise1 的终值
 ```javascript
 let p = new Promise((resolve,reject)=>{
-	resolve('我是p1的终值');
+    resolve('我是p1的终值');
 });
 let p1 = p.then(null,null);
 p1.then((data)=>{
-	console.log(data);
+    console.log(data);
 });
 // print:　我是p1的终值
 ```
 + 若 onRejected 不是函数且 promise1 拒绝执行， promise2 的状态为 rejected 拒因为 promise1 的拒因
 ```javascript
 let p = new Promise((resolve,reject)=>{
-	reject('我是p1的拒因');
+    reject('我是p1的拒因');
 });
 let p1 = p.then(null,null);
 p1.then(null,(err)=>{
-	console.log(err);
+    console.log(err);
 });
 // print:我是p1的拒因
 ```
 + 若 onFulfilled、onRejected 执行过程中抛出异常，则 promise2 的状态为 rejected 拒因为抛出的异常
 ```javascript
 let p = new Promise((resolve,reject)=>{
-	resolve('我是p的终值');
+    resolve('我是p的终值');
 });
 let p1 = p.then((data)=>{
-	throw new Error('异常')
+    throw new Error('异常')
 });
 p1.then(null,(err)=>{
-	console.log(err);
+    console.log(err);
 });
 // print:Error: 异常
 ```
@@ -462,10 +462,10 @@ p1.then(null,(err)=>{
     + then方法返回的 promise 对象的拒因与原 promise 对象的拒因相同
 ```javascript
 let p1 = new Promise((resolve,reject)=>{
-	resolve(1)
+    resolve(1)
 })
 let p2 = new Promise((resolve,reject)=>{
-	reject(2)
+    reject(2)
 })
 
 let p3 = p1.then(null,null);
@@ -488,9 +488,9 @@ let fn4 = function(){}
 let fn5 = function(){}
 let onError = function(){};
 new Promise((resolve,reject)=>{
-	setTimeout(function(){
-		reject()
-	})
+    setTimeout(function(){
+        reject()
+    })
 })
 .then(fn1)
 .then(fn2)
@@ -503,13 +503,13 @@ new Promise((resolve,reject)=>{
 catch(fn) 方法实际上是 then(null,fn) 方法的别名
 ```javascript
 new Promise((resolve,reject)=>{
-	reject()
+    reject()
 }).then(null,function(error){
 
 })
 // 等同于
 new Promise((resolve,reject)=>{
-	reject()
+    reject()
 }).catch(function(error){
 
 })
@@ -528,7 +528,7 @@ new Promise((resolve,reject)=>{
 let p = Promise.resolve(x)
 // 等价于
 let p = new Promise((resolve)=>{
-	resolve(x)
+    resolve(x)
 })
 ```
 #### Promise.reject
@@ -537,7 +537,7 @@ let p = new Promise((resolve)=>{
 let p = Promise.reject(x)
 // 等价于
 let p = new Promise((resolve,reject)=>{
-	reject(x)
+    reject(x)
 })
 ```
 #### Promise.all
@@ -559,23 +559,23 @@ let p2 = Promise.resolve(2);
 let p3 = 3;
 
 Promise.all([p1,p2,p3]).then((data)=>{
-	console.log(data); // print: [1,2,3]
+    console.log(data); // print: [1,2,3]
 })
 ```
 ```javascript
 let p1 = Promise.resolve(1);
 let p2 = new Promise((resolve,reject)=>{
-	setTimeout(function(){
-		reject('p2 error')
-	},1000)
+    setTimeout(function(){
+        reject('p2 error')
+    },1000)
 })
 let p3 = new Promise((resolve,reject)=>{
-	setTimeout(function(){
-		reject('p3 error')
-	},500)
+    setTimeout(function(){
+        reject('p3 error')
+    },500)
 })
 Promise.all([p1,p2,p3]).catch((error)=>{
-	console.log(error); // print: p3 error
+    console.log(error); // print: p3 error
 })
 ```
 #### Promise.race
@@ -589,43 +589,43 @@ const p = Promise.race([p1, p2, p3]);
 ```javascript
 let p1 = Promise.resolve(1);
 let p2 = new Promise((resolve,reject)=>{
-	setTimeout(function(){
-		reject('p2 error')
-	},1000)
+    setTimeout(function(){
+        reject('p2 error')
+    },1000)
 })
 let p3 = new Promise((resolve,reject)=>{
-	setTimeout(function(){
-		reject('p3 error')
-	},500)
+    setTimeout(function(){
+        reject('p3 error')
+    },500)
 })
 Promise.race([p1,p2,p3]).then(data=>{
-	console.log(data);
+    console.log(data);
 }).catch(error=>{
-	console.log(error);
+    console.log(error);
 })
 // print: 1
 ```
 ```javascript
 let p1 = new Promise((resolve,reject)=>{
-	setTimeout(function(){
-		resolve(1)
-	},1000)
+    setTimeout(function(){
+        resolve(1)
+    },1000)
 })
 let p2 = new Promise((resolve,reject)=>{
-	setTimeout(function(){
-		reject('p2 error')
-	},800)
+    setTimeout(function(){
+        reject('p2 error')
+    },800)
 })
 let p3 = new Promise((resolve,reject)=>{
-	setTimeout(function(){
-		reject('p3 error')
-	},500)
+    setTimeout(function(){
+        reject('p3 error')
+    },500)
 })
 
 Promise.race([p1,p2,p3]).then(data=>{
-	console.log(data);
+    console.log(data);
 }).catch(error=>{
-	console.log(error);
+    console.log(error);
 })
 // print: p3 error
 ```
