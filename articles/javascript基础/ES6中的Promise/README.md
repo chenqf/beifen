@@ -453,7 +453,7 @@ p1.then(null,(err)=>{
 });
 // print:Error: 异常
 ```
-##### 终值和拒因的冒泡特性
+##### 终值和拒因的穿透特性
 + 如果promise的状态变为Fulfilled，then方法没有注册 onFulfilled
     + then方法返回的 promise 对象的状态变为Fulfilled
     + then方法返回的 promise 对象的终值与原 promise 对象的终值相同
@@ -479,7 +479,7 @@ p6 = p4.then(null,null);
 // p3 的状态是 fulfilled 终值 1
 // p4 的状态是 rejected  拒因 2
 ```
-+ 冒泡特性主要用于异常处理
++ 穿透特性主要用于异常处理
 ```javascript
 let fn1 = function(){}
 let fn2 = function(){}
@@ -499,6 +499,8 @@ new Promise((resolve,reject)=>{
 .then(fn5)
 .then(null,onError)
 ```
+fn1、fn2、fn3、fn4、fn5 都可能发生错误，通过在最后的then函数注册的 onRejected 函数接收可能发生异常错误
+
 #### **catch方法：**
 catch(fn) 方法实际上是 then(null,fn) 方法的别名
 ```javascript
