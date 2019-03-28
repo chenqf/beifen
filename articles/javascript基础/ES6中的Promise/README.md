@@ -57,11 +57,11 @@ $.ajax({
 
 ## 什么是Promise
 Promise 是异步编程的一种解决方案，比传统的异步解决方案【回调函数】和【事件】更合理、更强大。  
-+ 从语法上讲，promise是一个对象，从它可以获取异步操作的消息
++ 从语法上讲，promise 是一个对象，从它可以获取异步操作的消息
 + 从本意上讲，它是承诺，承诺它过一段时间会给你一个结果
 
 ### 代码书写比较
-首先封装一个支持Promise的ajax方法，不理解这块代码的话，也没有关系，后文会逐步讲解Promise的执行机制
+首先封装一个支持 Promise 的 ajax 方法，不理解这块代码的话，也没有关系，后文会逐步讲解 Promise 的执行机制
 ```javascript
 function request(url,data = {}){
     return new Promise((resolve,reject)=>{
@@ -78,7 +78,7 @@ function request(url,data = {}){
     });
 }
 ```
-用request方法实现前面多个互相依赖的网络请求
+用 request 方法实现前面多个互相依赖的网络请求
 ```javascript
 let url1 = 'http://xxx.xxx.1';
 let url2 = 'http://xxx.xxx.2';
@@ -100,9 +100,9 @@ request(url1)
     });
 
 ```
-## Promise的特性
+## Promise 的特性
 
-### promise的状态
+### promise 的状态
 
 + pending   (等待态)
 + fulfilled (完成态)
@@ -110,18 +110,18 @@ request(url1)
 
 ### 终值与拒因
 + 终值：指的是 promise 被解决时传递给解决回调的值
-+ 拒因：拒绝原因，指在 promise 被拒绝时传递给异常回调的值
++ 拒因：拒绝原因，指在 promise 被拒绝时传递给异常回调的拒绝原因
 
 ### 状态与状态关系，状态与终值和拒因的关系
 + pending 可以迁移至 fulfilled 或 rejected
 + fulfilled 不能迁移至其他状态，必须拥有一个不可变的终值
-+ Rejected 不能迁移至其他状态，必须拥有一个不可变的据因
++ rejected 不能迁移至其他状态，必须拥有一个不可变的据因
 
 
-## Promise的使用
+## Promise 的使用
 
 ### 构造函数
-Promise 是一个构造函数，使用new操作符返回一个promise对象
+Promise 是一个构造函数，使用 new 操作符返回一个 promise 对象
 
 构造函数接收一个 excutor 函数作为参数
 
@@ -133,9 +133,9 @@ let p = new Promise((resolve,reject)=>{
 });
 ```
 
-+ 构造函数在调用时，excutor函数会作为同步代码立即执行
-+ 我们通常在excutor函数中执行我们的异步操作
-+ 未调用 resolve、reject 函数时，promise对象的状态为 pending
++ 构造函数在调用时，excutor 函数会作为同步代码立即执行
++ 我们通常在 excutor 函数中执行我们的异步操作
++ 未调用 resolve、reject 函数时，promise 对象的状态为 pending
 ```javascript
 let p1 = new Promise((resolve,reject)=>{
     setTimeout(()=>{
@@ -145,7 +145,7 @@ let p1 = new Promise((resolve,reject)=>{
 // p1 的状态一直为 pending
 ```
 + 当调用 resolve 函数, resolve 的参数为非 promise 对象、非 thenable 对象
-    + resolve 函数的参数，作为promise对象的终值
+    + resolve 函数的参数，作为 promise 对象的终值
     + promise 对象的状态变为 fulfilled
 ```javascript
 let p2 = new Promise((resolve,reject)=>{
@@ -169,7 +169,7 @@ let p1 = new Promise((resolve,reject)=>{
 })
 // p1 的状态为 rejected ，拒因为 error
 ```
-+ 当调用 resolve 函数, resolve的参数为 thenable 对象
++ 当调用 resolve 函数, resolve 的参数为 thenable 对象
     + 会对 thenable 对象进行展开操作，promise 对象的状态、终值、拒因取决于 thenable 对象的 then 方法调用结果
 ```javascript
 let thenable1 = {
@@ -233,8 +233,8 @@ promise 的 then 方法接受两个参数：
 ```javascript
 promise.then(onFulfilled, onRejected);
 ```
-+ onFulfilled 函数用于当promise状态变为 fulfilled 时，接收终值
-+ onRejected 函数用于当promise状态变为 rejected 时，接收拒因
++ onFulfilled 函数用于当 promise 状态变为 fulfilled 时，接收终值
++ onRejected 函数用于当 promise 状态变为 rejected 时，接收拒因
 ```javascript
 new Promise((resolve,reject)=>{
     setTimeout(()=>{
@@ -278,9 +278,9 @@ new Promise((resolve,reject)=>{
 + 在 promise 被拒绝执行前其不可被调用
 + 其调用次数不可超过一次
 ##### onFulfilled 和 onRejected 的调用时机
-+ 当promise对象的状态变为 fulfilled 或 rejected 时调用
++ 当 promise 对象的状态变为 fulfilled 或 rejected 时调用
 + onFulfilled、onRejected 永远都是异步调用
-+ onFulfilled、onRejected 是事件队里中作为微任务来处理
++ onFulfilled、onRejected 在事件队列中作为微任务来处理
 ```javascript
 console.log(1);
 setTimeout(function(){
@@ -295,9 +295,9 @@ console.log(4)
 // print: 1 4 3 2
 ```
 ##### onFulfilled 和 onRejected 的调用要求
-onFulfilled 和 onRejected 必须被作为函数调用  
-非严格模式下，this为全局对象    
-严格模式下，this为undefined    
++ onFulfilled 和 onRejected 必须被作为函数调用  
++ 非严格模式下，this 为全局对象    
++ 严格模式下，this 为 undefined    
 ```javascript
 function fn1(){
     new Promise((resolve)=>{
@@ -318,8 +318,8 @@ fn1(); // print: window
 fn2(); // print: undefined
 ```
 ##### then方法的多次调用
-+ then方法可以被同一个promise对象多次调用
-+ then方法会返回一个新的promise对象
++ then 方法可以被同一个 promise 对象多次调用
++ then 方法会返回一个新的 promise 对象
 + 当 promise 成功执行时，所有 onFulfilled 需按照其注册顺序依次回调
 + 当 promise 被拒绝执行时，所有的 onRejected 需按照其注册顺序依次回调
 ```javascript
@@ -361,7 +361,7 @@ p1.then((data)=>{
 });
 // print: 我是p2的终值
 ```
-+ 若 onFulfilled 、onRejected 返回一个promise对象的值 x ，promise2 的状态、终值、拒因与 x 同步
++ 若 onFulfilled 、onRejected 返回一个 promise 对象的值 x ，promise2 的状态、终值、拒因与 x 同步
 ```javascript
 let p1 = new Promise((resolve,reject)=>{
     resolve(1)
@@ -381,7 +381,7 @@ let p5 = p3.then(()=>{
 // p4 的状态为 fulfilled 终值为 1
 // p5 的状态为 rejected  拒因为 2
 ```
-+ 若 onFulfilled 、onRejected 返回一个thenable对象 ，会对thenable对象进行展开操作，promise2 的状态、终值、拒因取决于thenable对象的then方法调用结果
++ 若 onFulfilled 、onRejected 返回一个 thenable 对象 ，会对 thenable 对象进行展开操作，promise2 的状态、终值、拒因取决于 thenable 对象的 then 方法调用结果
 ```javascript
 let thenable1 = {
     then:function(resolve,reject){
@@ -405,7 +405,7 @@ let p3 = p1.then(()=>{
 // p2 的状态为 fulfilled 终值为 1
 // p3 的状态为 rejected  拒因为 2
 ```
-+ 若 onFulfilled 或者 onRejected 抛出一个异常 e ，则 promise2 的状态为 resolved，拒因为 e
++ 若 onFulfilled 或者 onRejected 抛出一个异常 e ，则 promise2 的状态为 rejected，拒因为 e
 ```javascript
 let p = new Promise((resolve,reject)=>{
     resolve();
@@ -417,7 +417,7 @@ p1.then(null,(err)=>{
     console.log(err);
 });
 // print:　Error: error
-```
+```promise
 + 若 onFulfilled 不是函数且 promise1 成功执行， promise2 的状态为 fulfilled 终值为 promise1 的终值
 ```javascript
 let p = new Promise((resolve,reject)=>{
@@ -454,12 +454,12 @@ p1.then(null,(err)=>{
 // print:Error: 异常
 ```
 ##### 终值和拒因的穿透特性
-+ 如果promise的状态变为Fulfilled，then方法没有注册 onFulfilled
-    + then方法返回的 promise 对象的状态变为Fulfilled
-    + then方法返回的 promise 对象的终值与原 promise 对象的终值相同
-+ 如果promise的状态变为 Rejected，then方法没有注册 onRejected
-    + then方法返回的 promise 对象的状态变为 Rejected
-    + then方法返回的 promise 对象的拒因与原 promise 对象的拒因相同
++ 如果 promise 的状态变为 fulfilled，then 方法没有注册 onFulfilled
+    + then 方法返回的 promise 对象的状态变为 fulfilled
+    + then 方法返回的 promise 对象的终值与原 promise 对象的终值相同
++ 如果 promise 的状态变为 rejected，then 方法没有注册 onRejected
+    + then 方法返回的 promise 对象的状态变为 rejected
+    + then 方法返回的 promise 对象的拒因与原 promise 对象的拒因相同
 ```javascript
 let p1 = new Promise((resolve,reject)=>{
     resolve(1)
@@ -502,7 +502,7 @@ new Promise((resolve,reject)=>{
 fn1、fn2、fn3、fn4、fn5 都可能发生错误，通过在最后的then函数注册的 onRejected 函数接收可能发生异常错误
 
 #### **catch方法：**
-catch(fn) 方法实际上是 then(null,fn) 方法的别名
+catch(fn) 方法实际上是 then(null,fn) 方法的别名，catch 方法的返回值以及 catch 方法中出现异常的情况与调用 then 方法相同
 ```javascript
 new Promise((resolve,reject)=>{
     reject()
@@ -518,13 +518,13 @@ new Promise((resolve,reject)=>{
 ```
 ### Promise 的静态方法
 #### Promise.resolve
-+ Promise.resolve 方法用于将现有数据转换为promise对象
++ Promise.resolve 方法用于将现有数据转换为 promise 对象
     + 若入参为 promise 对象
         + 返回的 promise 对象的状态、终值、拒因与 Promise.resolve 方法的入参同步
     + 若入参为 thenable 对象
-        + 会对thenable对象进行展开操作，返回的 promise 对象的状态、终值、拒因取决于thenable对象的then方法调用结果
+        + 会对 thenable 对象进行展开操作，返回的 promise 对象的状态、终值、拒因取决于 thenable 对象的 then 方法调用结果
     + 若入参为非 promise 非 thenable 对象
-        + 返回的 promise 对象的状态为 Fulfilled
+        + 返回的 promise 对象的状态为 fulfilled
         + 返回的 promise 对象的终值为 Promise.resolve 方法的入参
 ```javascript
 let p = Promise.resolve(x)
@@ -534,7 +534,7 @@ let p = new Promise((resolve)=>{
 })
 ```
 #### Promise.reject
-+ Promise.reject 方法用于返回一个状态为 Rejected ,拒因为方法入参的promise对象
++ Promise.reject 方法用于返回一个状态为 rejected ,拒因为方法入参的 promise 对象
 ```javascript
 let p = Promise.reject(x)
 // 等价于
@@ -543,18 +543,18 @@ let p = new Promise((resolve,reject)=>{
 })
 ```
 #### Promise.all
-+ Promise.all 方法用于将多个 promise 对象包装成一个新的promise对象
++ Promise.all 方法用于将多个 promise 对象包装成一个新的 promise 对象
 ```javascript
 const p = Promise.all([p1, p2, p3]);
 ```
 + p1、p2、p3 都是 promise 对象，如果不是，调用 Promise.resolve 方法转换为 promise 对象
 + p 的状态由 p1、p2、p3 决定
-    + 当 p1、p2、p3 的状态都变成fulfilled
+    + 当 p1、p2、p3 的状态都变成 fulfilled
         + p 的状态为 fulfilled
         + 此时 p1、p2、p3 的终值组成一个数组，这个数组作为 p 的终值
     + 当 p1、p2、p3 的状态有一个变成 rejected
         + p 的状态变为 rejected
-        + 此时第一个状态变为 rejected 的promise对象的拒因作为 p 的拒因
+        + 此时第一个状态变为 rejected 的 promise 对象的拒因作为 p 的拒因
 ```javascript
 let p1 = Promise.resolve(1);
 let p2 = Promise.resolve(2);
@@ -581,7 +581,7 @@ Promise.all([p1,p2,p3]).catch((error)=>{
 })
 ```
 #### Promise.race
-+ Promise.all 方法同样用于将多个 promise 对象包装成一个新的promise对象
++ Promise.all 方法同样用于将多个 promise 对象包装成一个新的 promise 对象
 ```javascript
 const p = Promise.race([p1, p2, p3]);
 ```
@@ -632,7 +632,7 @@ Promise.race([p1,p2,p3]).then(data=>{
 // print: p3 error
 ```
 ## Promise 的错误捕获
-当 promise 的状态为 Rejected 且为对 promise 对象使用 catch 方法，此时的异常信息会被 promise 对象吃掉
+当 promise 的状态为 rejected 且为对 promise 对象使用 catch 方法，此时的异常信息会被 promise 对象吃掉
 可以通过监听 unhandledRejection 事件，专门监听未捕获的reject错误
 ```javascript
 // node 环境下
@@ -646,8 +646,8 @@ window.addEventListener('unhandledrejection',(e)=>{
 });
 ```
 ## Promise 的问题
-+ 无法取消Promise，若没有状态变更，也无法停止promise的等待
-+ 不设定then或catch方法，构造函数(excutor函数)错误，无法捕获
++ 无法取消Promise，若没有状态变更，也无法停止 promise 的等待
++ 不设定 then 或 catch 方法，构造函数(excutor函数)错误，无法捕获
 + 未完成状态时，无法得知是刚开始，还是即将完成
 
 ## Promise 题目
