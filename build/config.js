@@ -8,7 +8,6 @@ module.exports = {
         'css 剪切',
         'http 缓存',
         'bind 的模拟实现',
-        'promise 介绍',
         'promise 原生实现 https://github.com/YvetteLau/Blog/issues/2',
         '真机调试：https://juejin.im/post/5c947f5251882568396a6773?utm_source=gold_browser_extension',
     ],
@@ -35,6 +34,10 @@ module.exports = {
             children:[
                 {
                     name:'防抖函数',
+                    issues:''
+                },
+                {
+                    name:'实现一个Promise',
                     issues:''
                 }
             ]
