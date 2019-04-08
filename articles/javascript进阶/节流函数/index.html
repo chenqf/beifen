@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>防抖函数</title>
+</head>
+<body>
+<style>
+    div{
+        height: 200px;
+        line-height: 200px;
+        text-align: center; color: #fff;
+        background-color: #444;
+        font-size: 25px;
+        border-radius: 3px;
+    }
+</style>
+<div id="container"></div>
+<!--<button id="cancel">点击取消防抖</button>-->
+<script>
+
+    /**
+     * 节流函数
+     * @param func 用户传入的节流函数
+     * @param wait 间隔的时间
+     */
+    const throttle = function (func,wait = 50) {
+        let timer = null;
+        return function (...args) {
+            if(!timer){
+                timer = setTimeout(()=>{
+                    func.apply(this,args);
+                    timer = null;
+                },wait);
+            }
+        }
+    };
+
+    let count = 1;
+    let container = document.getElementsByTagName('div')[0];
+//    let button = document.getElementById('cancel');
+    function updateCount() {
+        container.innerHTML = count ++ ;
+    }
+    let action = throttle(updateCount,1000);
+
+    container.addEventListener('mousemove',action);
+//    button.addEventListener('click',action.cancel);
+</script>
+</body>
+</html>

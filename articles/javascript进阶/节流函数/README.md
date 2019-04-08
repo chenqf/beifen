@@ -1,16 +1,15 @@
-# 防抖函数
+# 节流函数
 
 ## 前言 
 
-在页面上的某些事件触发频率非常高，比如滚动条滚动、窗口尺寸变化、鼠标移动等，如果我们需要注册这类事件，不得不考虑效率问题。
+防抖函数和节流函数本质是不一样的。防抖函数是将多次执行变为最后一次执行，节流函数是将多次执行变成每隔一段时间执行。  
 
-当窗口尺寸发生变化时，哪怕只变化了一点点，都有可能造成成百上千次对处理函数的调用，这对网页性能的影响是极其巨大的。
-
-于是，我们可以考虑，每次窗口尺寸变化、滚动条滚动、鼠标移动时，不要立即执行相关操作，而是等一段时间，以窗口尺寸停止变化、滚动条不再滚动、鼠标不再移动为计时起点，一段时间后再去执行操作。
+比如说，当当我们做图片懒加载（lazyload）时，需要通过滚动位置，实时显示图片时，如果使用防抖函数，懒加载（lazyload）函数将会不断被延时，
+当我们做图片懒加载（lazyload）时，需要通过滚动位置，实时显示图片时，如果使用防抖函数，懒加载（lazyload）函数将会不断被延时，
+只有停下来的时候才会被执行，对于这种需要周期性触发事件的情况，防抖函数就显得不是很友好了，此时就应该使用节流函数来实现了。
 
 ## 例子
-我们来列举一个关于鼠标移动的例子：
-
+我们依然使用[防抖函数]中的例子来介绍：
 ```html
 <div id="container"></div>
 ```
@@ -38,48 +37,73 @@ container.addEventListener('mousemove',updateCount);
 
 我们可以看到，鼠标从左侧滑到右侧，我们绑定的事件执行了119多次
 
-这个例子很简单，浏览器完全反应的过来，但如果在频繁的事件回调中做复杂计算，很有可能导致页面卡顿，不如将多次计算合并为一次计算，只在一个精确点做操作。
-
-
-为了处理这个问题，一般有两种解决方案：
-+ debounce 防抖
-+ throttle 节流
-
-PS：防抖函数和节流节流函数的作用都是防止函数多次调用。区别在于，假设一个用户一直触发这个函数，我们设定一个最小触发时间,当每次触发函数的间隔小于最小触发时间，防抖的情况下只会调用一次，而节流的 情况会每隔一个最小触发时间调用函数。
-
-关于节流函数部分，请看下一篇文章。
-
-## 防抖
-防抖的原理就是：你尽管触发事件，但是我一定在事件触发 n 秒后才执行，如果你在一个事件触发的 n 秒内又触发了这个事件，那我就以新的事件的时间为准，n 秒后才执行，总之，就是要等你触发完事件 n 秒内不再触发事件，我才执行，真是任性呐!
-
-### 防抖的简单实现
-```javascript 1.8
+## 节流函数的实现
+现在我们来实现一个节流函数，使得鼠标移动过程中每间隔一段时间事件触发一次。
+   
+### 使用时间戳来实现节流
+首先我们想到使用时间戳计时的方式，每次事件执行时获取当前时间并进行比较判断是否执行事件。
+```javascript
 /**
- * 防抖函数
- * @param func 用户传入的防抖函数
- * @param wait 等待的时间
+ * 节流函数
+ * @param func 用户传入的节流函数
+ * @param wait 间隔的时间
  */
-const debounce = function (func,wait = 50) {
-    // 缓存一个定时器id
-    let timer = null;
-    // 这里返回的函数时每次用户实际调用的防抖函数
-    // 如果已经设定过定时器了就清空上一次的定时器
-    // 开始一个定时器，延迟执行用户传入的方法
-    return function(...args){
-        if(timer) clearTimeout(timer);
-        timer = setTimeout(()=>{
-            //将实际的this和参数传入用户实际调用的函数
+const throttle = function (func,wait = 50) {
+    let preTime = 0;
+    return function (...args) {
+        let now = Date.now();
+        if(now - preTime >= wait){
             func.apply(this,args);
-        },wait);
+            preTime = now;
+        }
     }
 };
 ```
-使用这个防抖函数应用在最开始的例子上：
+```javascript
+let count = 1;
+let container = document.getElementsByTagName('div')[0];
+function updateCount() {
+    container.innerHTML = count ++ ;
+}
+let action = throttle(updateCount,1000);
+
+container.addEventListener('mousemove',action);
+```
+![avatar](./2.gif)
+此时当鼠标移入的时候，事件立即执行，在鼠标移动的过程中，每隔1000ms事件执行一次，旦在最后鼠标停止移动后，事件不会被执行        
+此时会有这样的两个问题：
++ 如果我们希望鼠标刚进入的时候不立即触发事件，此时该怎么办呢？
++ 如果我们希望鼠标停止移动后，等到间隔时间到来的时候，事件依然执行，此时该怎么办呢？
+
+### 使用定时器实现节流
+为满足上面的需求，我们考虑使用定时器来实现节流函数   
+当事件触发的时候，我们设置一个定时器，再触发的时候，定时器存在就不执行，等到定时器执行并执行函数，清空定时器，然后接着设置定时器
 ```javascript 1.8
-container.addEventListener('mousemove',debounce(updateCount,100));
+/**
+ * 节流函数
+ * @param func 用户传入的节流函数
+ * @param wait 间隔的时间
+ */
+const throttle = function (func,wait = 50) {
+    let timer = null;
+    return function (...args) {
+        if(!timer){
+            timer = setTimeout(()=>{
+                func.apply(this,args);
+                timer = null;
+            },wait);
+        }
+    }
+};
+```
+使用这个定时器节流函数应用在最开始的例子上：
+```javascript 1.8
+let action = throttle(updateCount,2000);
+
+container.addEventListener('mousemove',action);
 ```
 
-![avatar](./2.gif)
+![avatar](./3.gif)
 
 我们可以看到，不管我们怎么移动，我们绑定的回调事件都是在鼠标停止后100ms后才会触发。
 
