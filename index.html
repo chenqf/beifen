@@ -1,0 +1,54 @@
+<div id="container"></div>
+
+
+<style type="text/css">
+div{	
+    height: 200px;
+    line-height: 200px;
+    text-align: center; color: #fff;
+    background-color: #444;
+    font-size: 25px;
+    border-radius: 3px;
+}
+</style>
+
+<script type="text/javascript">
+function debounce(fn,wait = 50,now = true) {
+	let timer = null;
+	let result = null;
+	let debounced = function(...args){
+		if (timer) {
+			clearTimeout(timer)
+		}
+		if (now) {
+			if(!timer){
+				result = fn.apply(this,args)
+			}
+			timer = setTimeout(()=>{
+				timer = null;
+			},wait)
+		}else{
+			timer = setTimeout(()=>{
+				console.log(1)
+				fn.apply(this,args)
+			},wait)
+		}
+		
+	}
+	debounced.cancel = ()=>{
+		clearTimeout(timer);
+		timer = null;
+	}
+	return debounced;
+}
+
+
+let count = 1;
+let container = document.getElementsByTagName('div')[0];
+function updateCount() {
+    container.innerHTML = count ++ ;
+}
+container.addEventListener('mousemove',debounce(updateCount,1000,true));
+
+
+</script>
