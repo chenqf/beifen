@@ -37,7 +37,7 @@ module.exports = {
                     issues:''
                 },
                 {
-                    name:'实现一个Promise',
+                    name:'节流函数',
                     issues:''
                 }
             ]
