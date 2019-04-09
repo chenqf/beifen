@@ -105,162 +105,148 @@ container.addEventListener('mousemove',action);
 
 ![avatar](./3.gif)
 
-我们可以看到，不管我们怎么移动，我们绑定的回调事件都是在鼠标停止后100ms后才会触发。
+我们可以看到，当鼠标移入的时候，时间不会立即执行，等待2000ms后执行了一次，此后2000ms执行一次，当鼠标移除后，前一次触发事件的时间2000ms后还会触发一次事件。
 
+### 比较时间戳节流与定时器节流
++ 时间戳节流
+    + 开始时，事件立即执行
+    + 停止触发后，没有办法再执行事件
++ 定时器节流
+    + 开始时，会在间隔时间后第一次执行
+    + 停止触发后，依然会再次执行一次事件
+    
+对于我们日常的工作需求来说，可能出现的需求是，既需要开始时立即执行，也需要结束时还能再执行一次的节流函数。   
 
-这是一个简单版的防抖，但是有缺陷，这个防抖只能在最后调用。一般的防抖会有immediate选项，表示是否立即调用。这两者的区别，举个栗子来说：
-+ 在搜索引擎搜索问题的时候，我们当然是希望用户输入完最后一个字才调用查询接口，这个时候适用延迟执行的防抖函数，它总是在一连串（间隔小于wait的）函数触发之后调用。
-+ 用户在点赞的时候，我们希望用户点第一下的时候就去调用接口，并且成功之后改变star按钮的样子，用户就可以立马得到反馈是否star成功了，这个情况适用立即执行的防抖函数，它总是在第一次调用，并且下一次调用必须与前一次调用的时间间隔大于wait才会触发。
-
-### 立即执行的防抖函数
-
-```javascript 1.8
+### 综合时间戳节流和定时器节流
+```javascript
 /**
- * 防抖函数
- * @param func 用户传入的防抖函数
- * @param wait 等待的时间
- * @param immediate 是否立即执行
+ * 节流函数
+ * @param func 用户传入的节流函数
+ * @param wait 间隔的时间
  */
-const debounce = function (func,wait = 50,immediate = false) {
-    // 缓存一个定时器id
-    let timer = null;
-    // 这里返回的函数时每次用户实际调用的防抖函数
-    return function(...args){
-        // 如果已经设定过定时器了就清空上一次的定时器
-        if(timer) clearTimeout(timer);
-        if(immediate){
-            let callNow = !timer;
-            //等待wait的时间间隔后，timer为null的时候，函数才可以继续执行
-            timer = setTimeout(()=>{
-                timer = null;
-            },wait);
-            //未执行过，执行
-            if(callNow) func.apply(this,args);
-        }else{
-            // 开始一个定时器，延迟执行用户传入的方法
-            timer = setTimeout(()=>{
-                //将实际的this和参数传入用户实际调用的函数
-                func.apply(this,args);
-            },wait);
-        }
-    }
-};
-```
-
-![avatar](./3.gif)
-
-### 返回值
-此时要注意，用户传入的函数可能是有返回值的，但是当immediate为false的时候，因为使用了setTimeout，函数的返回值永远为undefined,所以我们只在immediate为true的时候返回函数的返回值
-```javascript 1.8
-/**
- * 防抖函数
- * @param func 用户传入的防抖函数
- * @param wait 等待的时间
- * @param immediate 是否立即执行
- */
-const debounce = function (func,wait = 50,immediate = false) {
-    // 缓存一个定时器id
-    let timer = null;
-    let result;
-    // 这里返回的函数时每次用户实际调用的防抖函数
-    return function(...args){
-        // 如果已经设定过定时器了就清空上一次的定时器
-        if(timer) clearTimeout(timer);
-        if(immediate){
-            let callNow = !timer;
-            //等待wait的时间间隔后，timer为null的时候，函数才可以继续执行
-            timer = setTimeout(()=>{
-                timer = null;
-            },wait);
-            //未执行过，执行
-            if(callNow) result = func.apply(this,args);
-        }else{
-            // 开始一个定时器，延迟执行用户传入的方法
-            timer = setTimeout(()=>{
-                //将实际的this和参数传入用户实际调用的函数
-                func.apply(this,args);
-            },wait);
-        }
-        return result;
-    }
-};
-```
-
-### 取消
-最后我们再思考一个小需求，我希望能取消 debounce 函数，比如说我 debounce 的时间间隔是 10 秒钟，immediate 为 true，这样的话，我只有等 10 秒后才能重新触发事件，现在我希望有一个按钮，点击后，取消防抖，这样我再去触发，就可以又立刻执行啦
-
-```javascript 1.8
-/**
- * 防抖函数
- * @param func 用户传入的防抖函数
- * @param wait 等待的时间
- * @param immediate 是否立即执行
- */
-const debounce = function (func,wait = 50,immediate = false) {
-    // 缓存一个定时器id
-    let timer = null;
-    let result;
-    let debounced = function (...args) {
-        // 如果已经设定过定时器了就清空上一次的定时器
-        if(timer) clearTimeout(timer);
-        if(immediate){
-            let callNow = !timer;
-            //等待wait的时间间隔后，timer为null的时候，函数才可以继续执行
-            timer = setTimeout(()=>{
-                timer = null;
-            },wait);
-            //未执行过，执行
-            if(callNow) result = func.apply(this,args);
-        }else{
-            // 开始一个定时器，延迟执行用户传入的方法
-            timer = setTimeout(()=>{
-                //将实际的this和参数传入用户实际调用的函数
-                func.apply(this,args);
-            },wait);
-        }
-        return result;
-    };
-    debounced.cancel = function(){
-        clearTimeout(timer);
+const throttle = function (func,wait = 50) {
+    let preTime = 0,
         timer = null;
-    };
-    // 这里返回的函数时每次用户实际调用的防抖函数
-    return debounced;
+    return function (...args) {
+        let now = Date.now();
+        // 没有剩余时间 || 修改了系统时间
+        if(now - preTime >= wait || preTime > now){
+            if(timer){
+                clearTimeout(timer);
+                timer = null;
+            }
+            preTime = now;
+            func.apply(this,args);
+        }else if(!timer){
+            timer = setTimeout(()=>{
+                preTime = Date.now();
+                timer = null;
+                func.apply(this,args)
+            },wait - now + preTime);
+        }
+    }
 };
 ```
-在原页面的基础上，修改如下
-```stylus
-div{
-    height: 200px;
-    line-height: 200px;
-    text-align: center; color: #fff;
-    background-color: #444;
-    font-size: 25px;
-    border-radius: 3px;
-}
-```
-```html
-<div id="container"></div>
-<button id="cancel">点击取消防抖</button>
-```
+使用这个定时器节流函数应用在最开始的例子上：
 ```javascript 1.8
- 
-let count = 1;
-let container = document.getElementsByTagName('div')[0];
-let button = document.getElementById('cancel');
-function updateCount() {
-    container.innerHTML = count ++ ;
-}
-let action = debounce(updateCount,10000,true);
+let action = throttle(updateCount,2000);
 
 container.addEventListener('mousemove',action);
-button.addEventListener('click',action.cancel);
 ```
-![avatar](4.gif)
- 
-至此我们已经完成时限了一个 debounce 函数
+![avatar](./4.gif)
+
+我们可以看到，当鼠标移入时，事件立即执行，之后每间隔2000ms后，事件均会执行，当鼠标离开时，前一次事件触发2000ms后，事件最后会再一次执行
+
+我们继续考虑下面的场景 
++ 有时候我们的需求变成鼠标移入时立即执行，鼠标移除后事件不在执行呢？
++ 有时候我们的需求变成鼠标移入时不立即执行，鼠标移除后事件还会执行呢？
+
+### 继续优化
+
+我们设置 opts 作为 throttle 函数的第三个参数，然后根据 opts 所携带的值来判断实现那种效果，约定如下：   
++ leading : Boolean 是否使用第一次执行   
++ trailing : Boolean 是否使用停止触发的回调
+
+修改代码如下：
+```javascript
+/**
+ * 节流函数
+ * @param func 用户传入的节流函数
+ * @param wait 间隔的时间
+ * @param opts leading 是否第一次执行 trailing 是否停止触发后执行
+ */
+const throttle = function (func,wait = 50,opts = {}) {
+    let preTime = 0,
+        timer = null,
+        { leading = true, trailing = true } = opts;
+    return function (...args) {
+        let now = Date.now();
+        if(!leading && !preTime){
+            preTime = now;
+        }
+        // 没有剩余时间 || 修改了系统时间
+        if(now - preTime >= wait || preTime > now){
+            if(timer){
+                clearTimeout(timer);
+                timer = null;
+            }
+            preTime = now;
+            func.apply(this,args);
+        }else if(!timer && trailing){
+            timer = setTimeout(()=>{
+                preTime = Date.now();
+                timer = null;
+                func.apply(this,args)
+            },wait - now + preTime);
+        }
+    }
+};
+```
+这里需要注意的是，leading：false 和 trailing: false 不能同时设置。
+因为如果同时设置的时候，当鼠标移除的时候，停止触发的时候不会设置定时器，也就是说，等到过了设置的时间，preTime不会被更新，此后再次移入的话就会立即执行，就违反了  leading: false
 
 
-+ [博客首页](https://github.com/chenqf/blog)
-+ [javascript 基础](https://github.com/chenqf/blog/blob/master/articles/javascript基础)
-+ [javascript 进阶](https://github.com/chenqf/blog/blob/master/articles/javascript进阶)
+### 取消
+在 debounce 的实现中，我们加了一个 cancel 方法，throttle 我们也加个 cancel 方法：
+```javascript 1.8
+/**
+ * 节流函数
+ * @param func 用户传入的节流函数
+ * @param wait 间隔的时间
+ * @param opts leading 是否第一次执行 trailing 是否停止触发后执行
+ */
+const throttle = function (func,wait = 50,opts = {}) {
+    let preTime = 0,
+        timer = null,
+        { leading = false, trailing = true } = opts,
+        throttled = function (...args) {
+            let now = Date.now();
+            if(!leading && !preTime){
+                preTime = now;
+            }
+            // 没有剩余时间 || 修改了系统时间
+            if(now - preTime >= wait || preTime > now){
+                if(timer){
+                    clearTimeout(timer);
+                    timer = null;
+                }
+                preTime = now;
+                func.apply(this,args);
+            }else if(!timer && trailing){
+                timer = setTimeout(()=>{
+                    preTime = Date.now();
+                    timer = null;
+                    func.apply(this,args)
+                },wait - now + preTime);
+            }
+        };
+    throttled.cancel = function () {
+        clearTimeout(timer);
+        timer = null;
+        preTime = 0;
+    };
+    return throttled;
+};
+```
+
+至此我们完成了一个节流函数。

@@ -15,25 +15,48 @@
         border-radius: 3px;
     }
 </style>
-<div id="container"></div>
+<div id="container">
+
+</div>
 <!--<button id="cancel">点击取消防抖</button>-->
 <script>
-
     /**
      * 节流函数
      * @param func 用户传入的节流函数
      * @param wait 间隔的时间
+     * @param opts leading 是否第一次执行 trailing 是否停止触发后执行
      */
-    const throttle = function (func,wait = 50) {
-        let timer = null;
-        return function (...args) {
-            if(!timer){
-                timer = setTimeout(()=>{
+    const throttle = function (func,wait = 50,opts = {}) {
+        let preTime = 0,
+            timer = null,
+            { leading = false, trailing = true } = opts,
+            throttled = function (...args) {
+                let now = Date.now();
+                if(!leading && !preTime){
+                    preTime = now;
+                }
+                // 没有剩余时间 || 修改了系统时间
+                if(now - preTime >= wait || preTime > now){
+                    if(timer){
+                        clearTimeout(timer);
+                        timer = null;
+                    }
+                    preTime = now;
                     func.apply(this,args);
-                    timer = null;
-                },wait);
-            }
-        }
+                }else if(!timer && trailing){
+                    timer = setTimeout(()=>{
+                        preTime = Date.now();
+                        timer = null;
+                        func.apply(this,args)
+                    },wait - now + preTime);
+                }
+            };
+        throttled.cancel = function () {
+            clearTimeout(timer);
+            timer = null;
+            preTime = 0;
+        };
+        return throttled;
     };
 
     let count = 1;
@@ -42,7 +65,7 @@
     function updateCount() {
         container.innerHTML = count ++ ;
     }
-    let action = throttle(updateCount,1000);
+    let action = throttle(updateCount,2000,{});
 
     container.addEventListener('mousemove',action);
 //    button.addEventListener('click',action.cancel);
