@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+</head>
+<body>
+<ul></ul>
+<script>
+
+///**
+// * 渲染
+// * @param start     开始渲染的索引
+// * @param once      一次渲染多少条
+// * @param total     剩余多少条需要渲染
+// */
+//function render(dom,start,once,total){
+//    //获取真正渲染条数，渲染条数小于剩余总数，将渲染条数覆为盖剩余条数
+//    let curOnce = Math.min(once,total);
+//    //将渲染
+//    setTimeout(()=>{
+//        for(let i = 0; i < curOnce; i++){
+//            let li = document.createElement('li');
+//            li.innerText = start + i + ' : ' + Math.floor(Math.random() * total)
+//            dom.appendChild(li)
+//        }
+//    },0)
+//    //获取剩余条数
+//    let nextTotal = total - curOnce;
+//    //获取下次渲染索引
+//    let nextStart = start + curOnce;
+//    //进行下次渲染
+//    if(nextTotal > 0){
+//        render(dom,nextStart,once,nextTotal);
+//    }
+//}
+//
+//// 插入十万条数据
+//const total = 50000;
+//// 一次插入 20 条，如果觉得性能不好就减少
+//const once = 20;
+////需要插入的容器
+//let ul = document.querySelector('ul');
+//render(ul,0,once,total)
+
+
+
+
+
+// 插入十万条数据
+const total = 100000 ;
+// 一次插入 20 条，如果觉得性能不好就减少
+const once = 20 ;
+// 渲染数据总共需要几次
+const loopCount = total / once ;
+let countOfRender = 0 ;
+let ul = document.querySelector('ul') ;
+function add() {
+    // 优化性能，插入不会造成回流
+    const fragment = document.createDocumentFragment();
+    for (let i = 0; i < once; i++) {
+        const li = document.createElement('li');
+        li.innerText = countOfRender * once + i + ' : ' + Math.floor(Math.random() * total);
+        ul.appendChild(li);
+        fragment.appendChild(li)
+    }
+    ul.appendChild(fragment);
+    countOfRender += 1;
+    loop()
+}
+function loop() {
+    if (countOfRender < loopCount) {
+        window.requestAnimationFrame(add)
+    }
+}
+loop()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -137,3 +137,8 @@ class MyPromise{
     }
 }
 ```
+
+
++ [博客首页](https://github.com/chenqf/blog)
++ [javascript 基础](https://github.com/chenqf/blog/blob/master/articles/javascript基础)
++ [javascript 进阶](https://github.com/chenqf/blog/blob/master/articles/javascript进阶)
