@@ -14,6 +14,11 @@
 + [2.节流函数](https://github.com/chenqf/blog/blob/master/articles/javascript进阶/节流函数/README.md)
 
 
+## 前端性能
+
++ [1.如何渲染几万条数据并不卡住界面](https://github.com/chenqf/blog/blob/master/articles/前端性能/如何渲染几万条数据并不卡住界面/README.md)
+
+
 
 
 
