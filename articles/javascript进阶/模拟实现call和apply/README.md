@@ -3,6 +3,21 @@
 ## 简单介绍一下 call 和 apply
 call、apply、bind三者均来自Function.prototype，被设计用来用于改变函数体内this的指向。
 
+举个 call 的例子：
+```javascript
+let foo = {
+    value: 1
+};
+
+function bar() {
+    console.log(this.value);
+}
+
+bar.call(foo); 
+// print: 1
+```
+在这个例子中，我们注意到 call 改变了 this 的指向，指向 foo ,并且 bar 函数执行了
+
 #### call
 > apply() 方法调用一个具有给定this值的函数，以及作为一个数组（或类似数组对象）提供的参数。    
 ```javascript
