@@ -417,7 +417,7 @@ p1.then(null,(err)=>{
     console.log(err);
 });
 // print:　Error: error
-```promise
+```
 + 若 onFulfilled 不是函数且 promise1 成功执行， promise2 的状态为 fulfilled 终值为 promise1 的终值
 ```javascript
 let p = new Promise((resolve,reject)=>{

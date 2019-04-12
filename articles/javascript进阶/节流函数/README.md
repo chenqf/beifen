@@ -9,7 +9,7 @@
 只有停下来的时候才会被执行，对于这种需要周期性触发事件的情况，防抖函数就显得不是很友好了，此时就应该使用节流函数来实现了。
 
 ## 例子
-我们依然使用[防抖函数]中的例子来介绍：
+我们依然使用[防抖函数](https://github.com/chenqf/blog/blob/master/articles/javascript%E8%BF%9B%E9%98%B6/%E9%98%B2%E6%8A%96%E5%87%BD%E6%95%B0/README.md)中的例子来介绍：
 ```html
 <div id="container"></div>
 ```

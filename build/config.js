@@ -8,6 +8,8 @@ module.exports = {
         'css 剪切',
         'http 缓存',
         'bind 的模拟实现',
+        'http 与 https 对称加密，非对称加密',
+        '手写代码实现 call apply bind https://juejin.im/post/5ca9de22e51d452b5372ed90?utm_source=gold_browser_extension',
         'promise 原生实现 https://github.com/YvetteLau/Blog/issues/2',
         '真机调试：https://juejin.im/post/5c947f5251882568396a6773?utm_source=gold_browser_extension',
     ],
@@ -38,6 +40,10 @@ module.exports = {
                 },
                 {
                     name:'节流函数',
+                    issues:''
+                },
+                {
+                    name:'模拟实现call和apply',
                     issues:''
                 }
             ]
