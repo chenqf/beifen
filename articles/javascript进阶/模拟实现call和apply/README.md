@@ -1,10 +1,75 @@
 # 模拟实现call和apply
 
-## 前言 
+## 简单介绍一下 call 和 apply
+call、apply、bind三者均来自Function.prototype，被设计用来用于改变函数体内this的指向。
 
-防抖函数和节流函数本质是不一样的。防抖函数是将多次执行变为最后一次执行，节流函数是将多次执行变成每隔一段时间执行。  
+#### call
+> apply() 方法调用一个具有给定this值的函数，以及作为一个数组（或类似数组对象）提供的参数。    
+```javascript
+func.apply(thisArg, [argsArray])
+```
++ **thisArg** 
+    + 可选的参数，在 func 函数运行时使用的 this 值。
+    + 注意，不一定是该函数执行时真正的 this 值，非严格模式下会出现一下情况
+        + 指定为 null 或 undefined 时会自动指向全局对象（浏览器中就是window对象），
+        + 指定为原始值，会指向原始值对应的包装对象
++ **argsArray**
+    + 可选的参数。一个数组或者类数组对象
+    + 其中的数组元素的每一项将作为单独的参数传给 func 函数
+    + 如果该参数的值为 null 或  undefined，则表示不需要传入任何参数
+    + 从ECMAScript 5 开始可以使用类数组对象。
+    
+#### apply
+> call() 方法调用一个函数, 其具有一个指定的this值和分别地提供的参数。
++ **thisArg** 
+    + 可选的参数，在 func 函数运行时使用的 this 值。
+    + 注意，不一定是该函数执行时真正的 this 值，非严格模式下会出现一下情况
+        + 指定为 null 或 undefined 时会自动指向全局对象（浏览器中就是window对象），
+        + 指定为原始值，会指向原始值对应的包装对象
++ **arg1,arg2,arg3,...**
+    + 可选的参数
+    + 指定参数列表
+    
+## 简单模拟实现
+在这里只考虑非严格模式下对call和apply的模拟实现，又由于Symbol没有对应的包装对象，在此不考虑Symbol类型作为this的情况
 
-比如说，当当我们做图片懒加载（lazyload）时，需要通过滚动位置，实时显示图片时，如果使用防抖函数，懒加载（lazyload）函数将会不断被延时，
-当我们做图片懒加载（lazyload）时，需要通过滚动位置，实时显示图片时，如果使用防抖函数，懒加载（lazyload）函数将会不断被延时，
-只有停下来的时候才会被执行，对于这种需要周期性触发事件的情况，防抖函数就显得不是很友好了，此时就应该使用节流函数来实现了。
+call 和 apply 都是改变了this的指向，让新的对象可以执行该函数。
 
+那么我们的思路就变成给新的对象添加一个函数，然后在执行完以后删除。
+
+实现如下：
+
+```javascript
+Function.prototype.myCall = function(thisArg,...args) {
+	// undefined null 时 thisArg 重置为window
+	// 基本类型时 thisArg 重置为对应的包装对象
+	if(thisArg === undefined || thisArg === null){
+		thisArg = window;
+	}else if(typeof thisArg === 'number'){
+		thisArg = new Number(thisArg);
+	}else if(typeof thisArg === 'string'){
+		thisArg = new String(thisArg);
+	}else if(typeof thisArg === 'boolean'){
+		thisArg = new Boolean(thisArg);
+	}
+	//为thisArg设置fn属性，绑定当前函数
+	thisArg.fn = this;
+	//获取函数调用结果
+	let result = thisArg.fn(...args);
+	//删除临时增加的属性fn
+	delete thisArg.fn;
+	//返回最终结果
+	return result;
+
+};
+
+Function.prototype.myApply = function(thisArg,args) {
+	return this.myCall(thisArg,...args)
+};
+```
+
+
++ [博客首页](https://github.com/chenqf/blog)
++ [javascript 基础](https://github.com/chenqf/blog/blob/master/articles/javascript基础)
++ [javascript 进阶](https://github.com/chenqf/blog/blob/master/articles/javascript进阶)
++ [前端性能](https://github.com/chenqf/blog/blob/master/articles/前端性能)
