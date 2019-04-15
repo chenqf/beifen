@@ -2,8 +2,7 @@
 <%for(let i = 0; i<data.publish.length; i++){%>
 ## <%=data.publish[i].name%>
 <%for(let j = 0; j<data.publish[i].children.length; j++){%>
-<%= j + 1 %>. [<%=data.publish[i].children[j].name%>](<%= data.publish[i].children[j].issues ? data.publish[i].children[j].issues: `${data.baseUrl}/${data.publish[i].path}/${data.publish[i].children[j].name}/README.md` %>)
-<%}%>
+<%= j + 1 %>. [<%=data.publish[i].children[j].name%>](<%= data.publish[i].children[j].issues ? data.publish[i].children[j].issues: `${data.baseUrl}/${data.publish[i].path}/${data.publish[i].children[j].name}/README.md` %>)<%}%>
 <%}%>
 
 
