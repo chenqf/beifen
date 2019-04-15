@@ -3,6 +3,7 @@ module.exports = {
     wait:[
         'typeof instanceOf isPrototypeOf() 之间的区别  https://juejin.im/post/5c9216716fb9a070ef60a011?utm_source=gold_browser_extension',
         '请指出document.onload和document.ready两个事件的区别',
+        '手写代码： https://juejin.im/post/5c9c3989e51d454e3a3902b6?utm_source=gold_browser_extension#heading-19',
         'event loop',
         '重排与重绘 https://mp.weixin.qq.com/s?__biz=MzA5NzkwNDk3MQ==&mid=2650588825&idx=1&sn=9ce03764375441ef0a8eb4fbce702e7a&chksm=8891d6bdbfe65fab0e76b1f86ec807ab0d13dec92951604c59fd1fe23ab0619257bf1dfa32bf&scene=0&xtrack=1#rd',
         '防抖和节流',
