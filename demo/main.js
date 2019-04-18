@@ -3,4 +3,6 @@
 import {debounce} from './lib/debounce.js';
 import {throttle} from './lib/throttle.js';
 
+import  './lib/demo.js'
+
 

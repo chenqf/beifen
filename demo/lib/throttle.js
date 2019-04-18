@@ -5,7 +5,7 @@ export const throttle = function(func,wait = 50,opt = {}) {
     let timer = null,
         preTime = 0,
         {leading = true,trailing = true} = opt;
-    let throttled = function(...args){
+    let throttled = function (...args) {
         let now = Date.now();
         if(!leading && !preTime){
             preTime = now;
@@ -15,16 +15,16 @@ export const throttle = function(func,wait = 50,opt = {}) {
             timer = null;
             preTime = now;
             func.apply(this,args);
-        }else if(!timer && trailing){
+        }else if(trailing && !timer){
             timer = setTimeout(()=>{
-                timer = null;
                 preTime = Date.now();
+                timer = null;
                 func.apply(this,args);
             },wait - now + preTime);
         }
     }
     throttled.cancel = function(){
-        clearTimeout(timer)
+        clearTimeout(timer);
         timer = null;
         preTime = 0;
     }

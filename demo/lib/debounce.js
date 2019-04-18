@@ -10,21 +10,21 @@ export const debounce = function(func,wait = 50,immediate = true) {
         if(immediate){
             let callNow = !timer;
             timer = setTimeout(()=>{
-                timer = null;   
+                timer = null;
             },wait);
-            if(callNow){
-                result = func.apply(this,args);
-            }
+            callNow && (result = func.apply(this,args));
         }else{
             timer = setTimeout(()=>{
                 func.apply(this,args);
             },wait);
         }
         return result;
-    }
+    };
     debounced.cancel = function(){
         clearTimeout(timer);
         timer = null;
     }
-    return debounced;
 };
+
+
+

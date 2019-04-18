@@ -10,6 +10,12 @@ module.exports = {
         '重排与重绘 https://mp.weixin.qq.com/s?__biz=MzA5NzkwNDk3MQ==&mid=2650588825&idx=1&sn=9ce03764375441ef0a8eb4fbce702e7a&chksm=8891d6bdbfe65fab0e76b1f86ec807ab0d13dec92951604c59fd1fe23ab0619257bf1dfa32bf&scene=0&xtrack=1#rd',
         '防抖和节流',
         'css 剪切',
+        'webpack 抽象语法树，https://github.com/airuikun/blog/issues/4',
+        'async 实现原理 阮一峰 、https://github.com/airuikun/Weekly-FE-Interview/issues/14',
+        'https 对称加密，非对称加密 https://github.com/airuikun/Weekly-FE-Interview/issues/3',
+        '前后端分离项目，如何seo https://github.com/airuikun/Weekly-FE-Interview/issues/13',
+        '1000-div问题 https://github.com/airuikun/Weekly-FE-Interview/issues/15',
+        '开放题：2万小球问题 https://github.com/airuikun/Weekly-FE-Interview/issues/16',
         'http 缓存',
         'bind 的模拟实现',
         'http 与 https 对称加密，非对称加密',
@@ -48,6 +54,10 @@ module.exports = {
                 },
                 {
                     name:'模拟实现call和apply',
+                    issues:''
+                },
+                {
+                    name:'模拟实现bind',
                     issues:''
                 },
                 {
