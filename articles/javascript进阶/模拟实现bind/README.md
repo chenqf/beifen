@@ -86,5 +86,21 @@ fn3('a','b'); // print: 1 2
 
 由此我们得出这样的结论：
 
+bind 函数可以在指定 this 的同时，同时指定为新函数预设参数，当然也可以不预设参数。
+
+接下来我们来实现预设参数的特性
+
+```javascript
+Function.prototype.myBind = function(thisArg,...args) {
+    let func = this;
+    return function(){
+        //将 arguments 转换为 数组 并与 myBind 函数的 args 合并
+        let _args = [...args,...Array.prototype.slice.call(arguments)];
+        return func.apply(thisArg,_args);
+    }
+}
+```
+
+
 
 
