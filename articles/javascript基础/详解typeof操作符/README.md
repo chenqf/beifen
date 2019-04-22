@@ -140,3 +140,9 @@ typeof null === 'object'; // 从一开始出现JavaScript就是这样的
 ```javascript
 typeof document.all === 'undefined';
 ```
+
+
++ [博客首页](https://github.com/chenqf/blog)
++ [javascript 基础](https://github.com/chenqf/blog/blob/master/articles/javascript基础)
++ [javascript 进阶](https://github.com/chenqf/blog/blob/master/articles/javascript进阶)
++ [前端性能](https://github.com/chenqf/blog/blob/master/articles/前端性能)
