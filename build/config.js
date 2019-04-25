@@ -41,10 +41,6 @@ module.exports = {
                     issues:''
                 },
                 {
-                    name:'详解try-catch语句',
-                    issues:''
-                },
-                {
                     name:'如何中断forEach循环',
                     issues:''
                 },

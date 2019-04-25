@@ -143,4 +143,8 @@ console.log(arr);
 所以：如果实际工作中，真的遇到需要打破forEach循环的需求，最好还是按照MDN的官方推荐，使用其他函数来模拟。
 
 
-
++ [博客首页](https://github.com/chenqf/blog)
++ [javascript 基础](https://github.com/chenqf/blog/blob/master/articles/javascript基础)
++ [javascript 进阶](https://github.com/chenqf/blog/blob/master/articles/javascript进阶)
++ [浏览器](https://github.com/chenqf/blog/blob/master/articles/浏览器)
++ [前端性能](https://github.com/chenqf/blog/blob/master/articles/前端性能)
