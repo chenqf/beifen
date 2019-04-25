@@ -45,10 +45,12 @@ let list = util.allFile(resolve(__dirname,'../articles')).filter((item)=>/\.md$/
 list.forEach(function (item) {
     let path = item.path;
     let content = fs.readFileSync(path,'utf-8');
-    if(content.indexOf('博客首页') < 0){
-        content = `${content.replace(/(.*?)\s*$/,'$1')}\n\n${linkTemplate}`;
-        fs.writeFileSync(path, content);
+    let index = content.indexOf('+ [博客首页]');
+    if(index >= 0){
+        content = content.slice(0,index);
     }
+    content = `${content.replace(/(.*?)\s*$/,'$1')}\n\n${linkTemplate}`;
+    fs.writeFileSync(path, content);
 });
 
 return ;

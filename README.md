@@ -3,9 +3,8 @@
 ## javascript 基础
 
 1. [详解typeof操作符](https://github.com/chenqf/blog/blob/master/articles/javascript基础/详解typeof操作符/README.md)
-2. [详解try-catch语句](https://github.com/chenqf/blog/blob/master/articles/javascript基础/详解try-catch语句/README.md)
-3. [如何中断forEach循环](https://github.com/chenqf/blog/blob/master/articles/javascript基础/如何中断forEach循环/README.md)
-4. [ES6中的Promise](https://github.com/chenqf/blog/blob/master/articles/javascript基础/ES6中的Promise/README.md)
+2. [如何中断forEach循环](https://github.com/chenqf/blog/blob/master/articles/javascript基础/如何中断forEach循环/README.md)
+3. [ES6中的Promise](https://github.com/chenqf/blog/blob/master/articles/javascript基础/ES6中的Promise/README.md)
 
 ## javascript 进阶
 
