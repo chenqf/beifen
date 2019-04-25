@@ -2,10 +2,13 @@
 module.exports = {
     wait:[
         '请指出document.onload和document.ready两个事件的区别',
+        'currentColor https://c.51tiangou.com/pages/viewpage.action?pageId=27102148',
         'event loop',
         '变量提升，函数声明变函数表达式',
-        'try catch ',
-
+        '现金券最优选中 动态规划 背包问题',
+        '图片异常处理 https://c.51tiangou.com/pages/viewpage.action?pageId=27105604',
+        'let和const https://c.51tiangou.com/pages/viewpage.action?pageId=27111595',
+        '栈内存和堆内存 https://c.51tiangou.com/pages/viewpage.action?pageId=27109652',
         '深度好文，https://juejin.im/post/5cb0315f518825215e61ec14?utm_source=gold_browser_extension',
         'await 在forEach 中 https://juejin.im/post/5cb1d5a3f265da03587bed99?utm_source=gold_browser_extension',
         'typeof instanceOf isPrototypeOf() 之间的区别  https://juejin.im/post/5c9216716fb9a070ef60a011?utm_source=gold_browser_extension',
@@ -14,7 +17,6 @@ module.exports = {
 
 
         '重排与重绘 https://mp.weixin.qq.com/s?__biz=MzA5NzkwNDk3MQ==&mid=2650588825&idx=1&sn=9ce03764375441ef0a8eb4fbce702e7a&chksm=8891d6bdbfe65fab0e76b1f86ec807ab0d13dec92951604c59fd1fe23ab0619257bf1dfa32bf&scene=0&xtrack=1#rd',
-        '防抖和节流',
         'css 剪切',
         'webpack 抽象语法树，https://github.com/airuikun/blog/issues/4',
         'async 实现原理 阮一峰 、https://github.com/airuikun/Weekly-FE-Interview/issues/14',
@@ -36,6 +38,10 @@ module.exports = {
             children:[
                 {
                     name:'详解typeof操作符',
+                    issues:''
+                },
+                {
+                    name:'详解try-catch语句',
                     issues:''
                 },
                 {
@@ -70,6 +76,16 @@ module.exports = {
                 },
                 {
                     name:'数组扁平化',
+                    issues:''
+                }
+            ]
+        },
+        {
+            name:'浏览器',//分类的标题
+            path:'浏览器',//分类的路径
+            children:[
+                {
+                    name:'如何处理图片加载失败',
                     issues:''
                 }
             ]
