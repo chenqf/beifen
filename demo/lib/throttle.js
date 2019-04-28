@@ -30,3 +30,26 @@ export const throttle = function(func,wait = 50,opt = {}) {
     }
     return throttled;
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
