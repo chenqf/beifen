@@ -4,9 +4,10 @@ module.exports = {
         '请指出document.onload和document.ready两个事件的区别',
         'currentColor https://c.51tiangou.com/pages/viewpage.action?pageId=27102148',
         'event loop',
+        '前端登录：https://juejin.im/post/5cc3bcb0f265da03681463a0?utm_source=gold_browser_extension',
+        'AOP https://juejin.im/post/5cc2e15651882525041c64b5?utm_source=gold_browser_extension',
         '变量提升，函数声明变函数表达式',
         '现金券最优选中 动态规划 背包问题',
-        '图片异常处理 https://c.51tiangou.com/pages/viewpage.action?pageId=27105604',
         'let和const https://c.51tiangou.com/pages/viewpage.action?pageId=27111595',
         '栈内存和堆内存 https://c.51tiangou.com/pages/viewpage.action?pageId=27109652',
         '深度好文，https://juejin.im/post/5cb0315f518825215e61ec14?utm_source=gold_browser_extension',
@@ -80,6 +81,10 @@ module.exports = {
             name:'浏览器',//分类的标题
             path:'浏览器',//分类的路径
             children:[
+                {
+                    name:'一次搞懂Event Loop',
+                    issues:''
+                },
                 {
                     name:'如何处理图片加载失败',
                     issues:''
