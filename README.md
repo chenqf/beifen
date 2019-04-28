@@ -16,7 +16,8 @@
 
 ## 浏览器
 
-1. [如何处理图片加载失败](https://github.com/chenqf/blog/blob/master/articles/浏览器/如何处理图片加载失败/README.md)
+1. [一次搞懂Event Loop](https://github.com/chenqf/blog/blob/master/articles/浏览器/一次搞懂Event Loop/README.md)
+2. [如何处理图片加载失败](https://github.com/chenqf/blog/blob/master/articles/浏览器/如何处理图片加载失败/README.md)
 
 ## 前端性能
 
