@@ -1,13 +1,16 @@
 
 module.exports = {
     wait:[
+        '骨架屏 https://segmentfault.com/a/1190000016689372',
+        '贝塞尔曲线 https://segmentfault.com/a/1190000018502700',
+        '自己实现一个前端路由',
         '请指出document.onload和document.ready两个事件的区别',
         'currentColor https://c.51tiangou.com/pages/viewpage.action?pageId=27102148',
-        'event loop',
         '前端登录：https://juejin.im/post/5cc3bcb0f265da03681463a0?utm_source=gold_browser_extension',
         'AOP https://juejin.im/post/5cc2e15651882525041c64b5?utm_source=gold_browser_extension',
         '变量提升，函数声明变函数表达式',
         '现金券最优选中 动态规划 背包问题',
+        '函数组合，函数柯里化',
         'let和const https://c.51tiangou.com/pages/viewpage.action?pageId=27111595',
         '栈内存和堆内存 https://c.51tiangou.com/pages/viewpage.action?pageId=27109652',
         '深度好文，https://juejin.im/post/5cb0315f518825215e61ec14?utm_source=gold_browser_extension',
@@ -103,6 +106,9 @@ module.exports = {
         },
     ],
     pay:{
+        ddd:[
+            '本文首发与github，欢迎Watch & Star ★，转载请注明出处。'
+        ],
         title:'如果您觉得此文有帮助，可以打赏一个红包，以资鼓励~'
     },
 };
