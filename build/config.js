@@ -3,15 +3,18 @@ module.exports = {
     wait:[
         '骨架屏 https://segmentfault.com/a/1190000016689372',
         '贝塞尔曲线 https://segmentfault.com/a/1190000018502700',
+        'React Hooks https://github.com/brickspert/blog/issues/26',
+        '洗牌算法 https://gaohaoyang.github.io/2016/10/16/shuffle-algorithm/',
+        '使用js创建并下载文件 https://gaohaoyang.github.io/2016/11/22/js-create-file-and-download/',
         '自己实现一个前端路由',
         '请指出document.onload和document.ready两个事件的区别',
         'currentColor https://c.51tiangou.com/pages/viewpage.action?pageId=27102148',
         '前端登录：https://juejin.im/post/5cc3bcb0f265da03681463a0?utm_source=gold_browser_extension',
-        'AOP https://juejin.im/post/5cc2e15651882525041c64b5?utm_source=gold_browser_extension',
+        'AOP https://juejin.im/post/5cc2e15651882525041c64b5?utm_source=gold_browser_extension https://www.cnblogs.com/Wolfmanlq/p/6036019.html',
         '变量提升，函数声明变函数表达式',
         '现金券最优选中 动态规划 背包问题',
         '函数组合，函数柯里化',
-        'let和const https://c.51tiangou.com/pages/viewpage.action?pageId=27111595',
+        'let和const https://c.51tiangou.com/pages/viewpage.action?pageId=27111595 https://zhuanlan.zhihu.com/p/28140450',
         '栈内存和堆内存 https://c.51tiangou.com/pages/viewpage.action?pageId=27109652',
         '深度好文，https://juejin.im/post/5cb0315f518825215e61ec14?utm_source=gold_browser_extension',
         'await 在forEach 中 https://juejin.im/post/5cb1d5a3f265da03587bed99?utm_source=gold_browser_extension',
@@ -30,7 +33,7 @@ module.exports = {
         '开放题：2万小球问题 https://github.com/airuikun/Weekly-FE-Interview/issues/16',
         'http 缓存',
         'http 与 https 对称加密，非对称加密',
-        'promise 原生实现 https://github.com/YvetteLau/Blog/issues/2',
+        'promise 原生实现 https://github.com/YvetteLau/Blog/issues/2   https://github.com/xieranmaya/blog/issues/3',
         '真机调试：https://juejin.im/post/5c947f5251882568396a6773?utm_source=gold_browser_extension',
     ],
     logTitle:'个人博客',
@@ -41,15 +44,19 @@ module.exports = {
             path:'javascript基础',//分类的路径
             children:[
                 {
+                    name:'ES6中的let和const',
+                    issues:''
+                },
+                {
+                    name:'ES6中的Promise',
+                    issues:''
+                },
+                {
                     name:'详解typeof操作符',
                     issues:''
                 },
                 {
                     name:'如何中断forEach循环',
-                    issues:''
-                },
-                {
-                    name:'ES6中的Promise',
                     issues:''
                 }
             ]
@@ -104,10 +111,31 @@ module.exports = {
                 }
             ]
         },
+        {
+            name:'算法相关',//分类的标题
+            path:'算法相关',//分类的路径
+            children:[
+                {
+                    name:'',
+                    issues:''
+                }
+            ]
+        },
+        {
+            name:'技术随笔',//分类的标题
+            path:'技术随笔',//分类的路径
+            children:[
+                {
+                    name:'',
+                    issues:''
+                }
+            ]
+        },
     ],
     pay:{
         ddd:[
-            '本文首发与github，欢迎Watch & Star ★，转载请注明出处。'
+            '本文首发与github，欢迎Watch & Star ★，转载请注明出处。',
+            '为什么要捐助？一篇好文章可以帮助你节省大量的时间，而你的时间是相当宝贵的。 向文章的作者提供小额捐助，可以鼓励作者写出更好的文章。这是一种良性循环，现在就行动吧！ 鼓励留言，让我认识你。'
         ],
         title:'如果您觉得此文有帮助，可以打赏一个红包，以资鼓励~'
     },
