@@ -111,25 +111,35 @@ module.exports = {
                 }
             ]
         },
+        // {
+        //     name:'网络',//分类的标题
+        //     path:'网络',//分类的路径
+        //     children:[
+        //         {
+        //             name:'彻底弄懂HTTP缓存机制及原理',
+        //             issues:''
+        //         }
+        //     ]
+        // },
         {
             name:'算法相关',//分类的标题
             path:'算法相关',//分类的路径
-            children:[
-                {
-                    name:'',
-                    issues:''
-                }
-            ]
+            // children:[
+            //     {
+            //         name:'',
+            //         issues:''
+            //     }
+            // ]
         },
         {
             name:'技术随笔',//分类的标题
             path:'技术随笔',//分类的路径
-            children:[
-                {
-                    name:'',
-                    issues:''
-                }
-            ]
+            // children:[
+            //     {
+            //         name:'',
+            //         issues:''
+            //     }
+            // ]
         },
     ],
     pay:{
