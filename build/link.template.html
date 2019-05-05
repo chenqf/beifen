@@ -1,3 +1,3 @@
 
 + [博客首页](https://github.com/chenqf/blog)<%for(let i = 0; i<data.publish.length; i++){%>
-+ [<%= data.publish[i].name %>](<%= `${data.baseUrl}/${data.publish[i].path}` %>)<%}%>
++ [<%= data.publish[i].nickName || data.publish[i].name %>](<%= `${data.baseUrl}/${data.publish[i].path}` %>)<%}%>

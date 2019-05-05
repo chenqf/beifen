@@ -108,7 +108,7 @@ module.exports = {
             children:[
                 {
                     name:'一次搞懂EventLoop',
-                    nickName:'',
+                    nickName:'一次搞懂Event Loop',
                     issues:''
                 },
                 {
