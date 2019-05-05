@@ -4,9 +4,10 @@ module.exports = {
         '骨架屏 https://segmentfault.com/a/1190000016689372',
         '贝塞尔曲线 https://segmentfault.com/a/1190000018502700',
         'React Hooks https://github.com/brickspert/blog/issues/26',
+        '如何管理好10万行代码的前端单页面应用 https://juejin.im/post/59cb0d0b5188257e876a2d27',
         '洗牌算法 https://gaohaoyang.github.io/2016/10/16/shuffle-algorithm/',
         '使用js创建并下载文件 https://gaohaoyang.github.io/2016/11/22/js-create-file-and-download/',
-        '自己实现一个前端路由',
+        '自己实现一个前端路由 https://zhuanlan.zhihu.com/p/37730038?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io',
         '请指出document.onload和document.ready两个事件的区别',
         'currentColor https://c.51tiangou.com/pages/viewpage.action?pageId=27102148',
         '前端登录：https://juejin.im/post/5cc3bcb0f265da03681463a0?utm_source=gold_browser_extension',
@@ -19,10 +20,10 @@ module.exports = {
         '深度好文，https://juejin.im/post/5cb0315f518825215e61ec14?utm_source=gold_browser_extension',
         'await 在forEach 中 https://juejin.im/post/5cb1d5a3f265da03587bed99?utm_source=gold_browser_extension',
         'typeof instanceOf isPrototypeOf() 之间的区别  https://juejin.im/post/5c9216716fb9a070ef60a011?utm_source=gold_browser_extension',
-
+        'react 源码 https://juejin.im/post/5cca5ad2e51d456e6154b4c7?utm_source=gold_browser_extension',
         '手写代码： https://juejin.im/post/5c9c3989e51d454e3a3902b6?utm_source=gold_browser_extension#heading-19',
-
-
+        'JS 内存机制 https://mp.weixin.qq.com/s/op26GEKXEN-yI3IpA9tZQg',
+        'this https://blog.techbridge.cc/2019/02/23/javascript-this/',
         '重排与重绘 https://mp.weixin.qq.com/s?__biz=MzA5NzkwNDk3MQ==&mid=2650588825&idx=1&sn=9ce03764375441ef0a8eb4fbce702e7a&chksm=8891d6bdbfe65fab0e76b1f86ec807ab0d13dec92951604c59fd1fe23ab0619257bf1dfa32bf&scene=0&xtrack=1#rd',
         'css 剪切',
         'webpack 抽象语法树，https://github.com/airuikun/blog/issues/4',
@@ -35,6 +36,20 @@ module.exports = {
         'http 与 https 对称加密，非对称加密',
         'promise 原生实现 https://github.com/YvetteLau/Blog/issues/2   https://github.com/xieranmaya/blog/issues/3',
         '真机调试：https://juejin.im/post/5c947f5251882568396a6773?utm_source=gold_browser_extension',
+        {
+            virtualDOM:[
+                'https://blog.techbridge.cc/2019/02/04/vdom-from-scratch/',
+                'https://juejin.im/post/5b10dd36e51d4506e04cf802'
+            ],
+            react:[
+                '源码解析：https://juejin.im/post/5abb22925188255c4c1050e0',
+                'https://juejin.im/post/5cc53af6f265da038e54b2e6?utm_source=gold_browser_extension'
+            ],
+            css:[
+                '0.5px https://juejin.im/post/5ab65f40f265da2384408a95',
+                'https://www.zcfy.cc/article/stunning-hover-effects-with-css-variables'
+            ]
+        }
     ],
     logTitle:'个人博客',
     baseUrl:'https://github.com/chenqf/blog/blob/master/articles',
