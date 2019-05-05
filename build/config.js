@@ -134,12 +134,12 @@ module.exports = {
         {
             name:'技术随笔',//分类的标题
             path:'技术随笔',//分类的路径
-            // children:[
-            //     {
-            //         name:'',
-            //         issues:''
-            //     }
-            // ]
+            children:[
+                {
+                    name:'Async、Await 陷阱',
+                    issues:''
+                }
+            ]
         },
     ],
     pay:{
