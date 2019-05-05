@@ -107,7 +107,8 @@ module.exports = {
             path:'浏览器',//分类的路径
             children:[
                 {
-                    name:'一次搞懂Event Loop',
+                    name:'一次搞懂EventLoop',
+                    nickName:'',
                     issues:''
                 },
                 {
@@ -151,7 +152,7 @@ module.exports = {
             path:'技术随笔',//分类的路径
             children:[
                 {
-                    name:'Async、Await 陷阱',
+                    name:'Async、Await陷阱',
                     issues:''
                 }
             ]
