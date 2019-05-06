@@ -4,14 +4,21 @@ import {debounce} from './lib/debounce.js';
 import {throttle} from './lib/throttle.js';
 
 
-
-
-let container = document.getElementById('container');
-
-
-container.onclick = function () {
-	console.log(this);
+function fn(f) {
+	setTimeout(()=>{
+		f();
+	},2000);
 }
+
+
+var f = function () {
+	console.log(1);
+}
+
+
+fn(f)
+
+f = 2;
 
 
 
