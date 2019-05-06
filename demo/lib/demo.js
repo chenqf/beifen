@@ -72,15 +72,16 @@ const throttle = function(func,wait,opt = {}){
 
 
 
-const flatten = function(arr = []){
-    return [].concat(...arr.map(item=>Array.isArray(item) ? flatten(item):item))
+const throttle = function(func,wait){
+    let preTime = 0;
+    return function(...args){
+        let now = Date.now();
+        if(now - preTime >= wait){
+            preTime = now;
+            func.apply(this,args);
+        }
+    }
 }
-
-
-let arr = [1,[2,3],[4,5,[6,7,[8],9,[10,11],[12]],[13,14,[15,16]],[17,18]],19,[20,21]];
-
-
-console.log(flatten(arr));
 
 
 

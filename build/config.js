@@ -1,6 +1,7 @@
 
 module.exports = {
     wait:[
+        '屏幕适配 PC phone',
         '骨架屏 https://segmentfault.com/a/1190000016689372',
         '贝塞尔曲线 https://segmentfault.com/a/1190000018502700',
         'React Hooks https://github.com/brickspert/blog/issues/26',
@@ -15,7 +16,6 @@ module.exports = {
         '变量提升，函数声明变函数表达式',
         '现金券最优选中 动态规划 背包问题',
         '函数组合，函数柯里化',
-        'let和const https://c.51tiangou.com/pages/viewpage.action?pageId=27111595 https://zhuanlan.zhihu.com/p/28140450',
         '栈内存和堆内存 https://c.51tiangou.com/pages/viewpage.action?pageId=27109652',
         '深度好文，https://juejin.im/post/5cb0315f518825215e61ec14?utm_source=gold_browser_extension',
         'await 在forEach 中 https://juejin.im/post/5cb1d5a3f265da03587bed99?utm_source=gold_browser_extension',
