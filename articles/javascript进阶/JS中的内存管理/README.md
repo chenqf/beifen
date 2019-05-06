@@ -342,3 +342,11 @@ function removeImage() {
 1. 减少不必要的全局变量，使用严格模式避免意外创建全局变量。
 2. 在你使用完数据后，及时解除引用（闭包中的变量，dom引用，定时器清除）。
 3. 组织好你的逻辑，避免死循环等造成浏览器卡顿，崩溃的问题。
+
+
++ [博客首页](https://github.com/chenqf/blog)
++ [javascript 基础](https://github.com/chenqf/blog/blob/master/articles/javascript基础)
++ [javascript 进阶](https://github.com/chenqf/blog/blob/master/articles/javascript进阶)
++ [浏览器](https://github.com/chenqf/blog/blob/master/articles/浏览器)
++ [前端性能](https://github.com/chenqf/blog/blob/master/articles/前端性能)
++ [技术随笔](https://github.com/chenqf/blog/blob/master/articles/技术随笔)
