@@ -16,13 +16,12 @@ module.exports = {
         '变量提升，函数声明变函数表达式',
         '现金券最优选中 动态规划 背包问题',
         '函数组合，函数柯里化',
-        '栈内存和堆内存 https://c.51tiangou.com/pages/viewpage.action?pageId=27109652',
+        '栈内存和堆内存',
         '深度好文，https://juejin.im/post/5cb0315f518825215e61ec14?utm_source=gold_browser_extension',
         'await 在forEach 中 https://juejin.im/post/5cb1d5a3f265da03587bed99?utm_source=gold_browser_extension',
         'typeof instanceOf isPrototypeOf() 之间的区别  https://juejin.im/post/5c9216716fb9a070ef60a011?utm_source=gold_browser_extension',
         'react 源码 https://juejin.im/post/5cca5ad2e51d456e6154b4c7?utm_source=gold_browser_extension',
         '手写代码： https://juejin.im/post/5c9c3989e51d454e3a3902b6?utm_source=gold_browser_extension#heading-19',
-        'JS 内存机制 https://mp.weixin.qq.com/s/op26GEKXEN-yI3IpA9tZQg',
         'this https://blog.techbridge.cc/2019/02/23/javascript-this/',
         '重排与重绘 https://mp.weixin.qq.com/s?__biz=MzA5NzkwNDk3MQ==&mid=2650588825&idx=1&sn=9ce03764375441ef0a8eb4fbce702e7a&chksm=8891d6bdbfe65fab0e76b1f86ec807ab0d13dec92951604c59fd1fe23ab0619257bf1dfa32bf&scene=0&xtrack=1#rd',
         'css 剪切',
@@ -83,6 +82,17 @@ module.exports = {
                 {
                     name:'防抖函数',
                     issues:''
+                },
+                {
+                    name:'JS中的内存管理',
+                    issues:'',
+                    refer:[
+                        'http://obkoro1.com/web_accumulate/accumulate/tool/js%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6.html',
+                        'http://www.ruanyifeng.com/blog/2017/04/memory-leak.html',
+                        'https://mp.weixin.qq.com/s/op26GEKXEN-yI3IpA9tZQg',
+                        'https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Memory_Management',
+                        'https://blog.sessionstack.com/how-javascript-works-memory-management-how-to-handle-4-common-memory-leaks-3f28b94cfbec'
+                    ]
                 },
                 {
                     name:'节流函数',
