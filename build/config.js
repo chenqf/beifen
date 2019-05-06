@@ -84,6 +84,10 @@ module.exports = {
                     issues:''
                 },
                 {
+                    name:'节流函数',
+                    issues:''
+                },
+                {
                     name:'JS中的内存管理',
                     issues:'',
                     refer:[
@@ -93,10 +97,6 @@ module.exports = {
                         'https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Memory_Management',
                         'https://blog.sessionstack.com/how-javascript-works-memory-management-how-to-handle-4-common-memory-leaks-3f28b94cfbec'
                     ]
-                },
-                {
-                    name:'节流函数',
-                    issues:''
                 },
                 {
                     name:'模拟实现call和apply',
