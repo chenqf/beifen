@@ -4,9 +4,8 @@ module.exports = {
         '屏幕适配 PC phone',
         '骨架屏 https://segmentfault.com/a/1190000016689372',
         '贝塞尔曲线 https://segmentfault.com/a/1190000018502700',
-        'React Hooks https://github.com/brickspert/blog/issues/26',
         '如何管理好10万行代码的前端单页面应用 https://juejin.im/post/59cb0d0b5188257e876a2d27',
-        '洗牌算法 https://gaohaoyang.github.io/2016/10/16/shuffle-algorithm/',
+        '洗牌算法 http://obkoro1.com/web_accumulate/accumulate/JS/%E6%95%B0%E7%BB%84%E5%AE%8C%E5%85%A8%E4%B9%B1%E5%BA%8F.html https://gaohaoyang.github.io/2016/10/16/shuffle-algorithm/ https://github.com/HOUCe/shuffle-array',
         '使用js创建并下载文件 https://gaohaoyang.github.io/2016/11/22/js-create-file-and-download/',
         '自己实现一个前端路由 https://zhuanlan.zhihu.com/p/37730038?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io',
         '请指出document.onload和document.ready两个事件的区别',
@@ -16,7 +15,6 @@ module.exports = {
         '变量提升，函数声明变函数表达式',
         '现金券最优选中 动态规划 背包问题',
         '函数组合，函数柯里化',
-        '栈内存和堆内存',
         '深度好文，https://juejin.im/post/5cb0315f518825215e61ec14?utm_source=gold_browser_extension',
         'await 在forEach 中 https://juejin.im/post/5cb1d5a3f265da03587bed99?utm_source=gold_browser_extension',
         'typeof instanceOf isPrototypeOf() 之间的区别  https://juejin.im/post/5c9216716fb9a070ef60a011?utm_source=gold_browser_extension',
@@ -41,6 +39,7 @@ module.exports = {
                 'https://juejin.im/post/5b10dd36e51d4506e04cf802'
             ],
             react:[
+                'React Hooks https://github.com/brickspert/blog/issues/26',
                 '源码解析：https://juejin.im/post/5abb22925188255c4c1050e0',
                 'https://juejin.im/post/5cc53af6f265da038e54b2e6?utm_source=gold_browser_extension'
             ],
@@ -88,9 +87,15 @@ module.exports = {
                     issues:''
                 },
                 {
+                    name:'JS中的栈内存和堆内存',
+                    issues:'',
+                    refer:[]
+                },
+                {
                     name:'JS中的内存管理',
                     issues:'',
                     refer:[
+                        '栈内存和堆内存',
                         'http://obkoro1.com/web_accumulate/accumulate/tool/js%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6.html',
                         'http://www.ruanyifeng.com/blog/2017/04/memory-leak.html',
                         'https://mp.weixin.qq.com/s/op26GEKXEN-yI3IpA9tZQg',
