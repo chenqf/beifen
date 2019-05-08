@@ -6,20 +6,38 @@ const resolve = path.resolve;
 const template = require('art-template');
 let mainPath = resolve(__dirname,'../README.md');
 
+
+
+function dealPublishData() {
+    config.publish = config.publish.filter(item=>{
+        let {children = []} = item;
+        item.children = children.filter(i=>i.complete);
+        return item.children.length;
+    })
+}
+
+function loadMain() {
+    let mainTemplate = template(__dirname + '/main.template.html', {
+        data:config
+    });
+    //批量生成首页目录
+    fs.writeFileSync(mainPath, mainTemplate);
+}
+
+dealPublishData();
+loadMain();
+
 let payTemplate = template(__dirname + '/pay.template.html', {
     data:config.pay
 });
-let mainTemplate = template(__dirname + '/main.template.html', {
-    data:config
-});
+
 let linkTemplate = template(__dirname + '/link.template.html', {
     data:config
 });
 
 
 
-//批量生成首页目录
-fs.writeFileSync(mainPath, mainTemplate);
+
 
 //批量未每个分类下生成文章列表
 let igList = [];// 分类目录，不做批量添加处理

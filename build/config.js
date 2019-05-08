@@ -58,19 +58,23 @@ module.exports = {
             children:[
                 {
                     name:'ES6中的let和const',
-                    issues:''
+                    issues:'',
+                    complete:true
                 },
                 {
                     name:'ES6中的Promise',
-                    issues:''
+                    issues:'',
+                    complete:true
                 },
                 {
                     name:'详解typeof操作符',
-                    issues:''
+                    issues:'',
+                    complete:true
                 },
                 {
                     name:'如何中断forEach循环',
-                    issues:''
+                    issues:'',
+                    complete:true
                 }
             ]
         },
@@ -80,21 +84,24 @@ module.exports = {
             children:[
                 {
                     name:'防抖函数',
-                    issues:''
+                    issues:'',
+                    complete:true
                 },
                 {
                     name:'节流函数',
-                    issues:''
+                    issues:'',
+                    complete:true
                 },
                 {
                     name:'JS中的栈内存和堆内存',
                     issues:'',
+                    complete:false,
                     refer:[
                         'https://github.com/yygmind/blog/issues/14',
                         'https://github.com/yygmind/blog/issues/15',
                         'https://www.jianshu.com/p/996671d4dcc4',
                         'https://blog.csdn.net/xdd19910505/article/details/41900693',
-                    ]
+                    ],
                 },
                 {
                     name:'JS中的内存管理',
@@ -106,19 +113,23 @@ module.exports = {
                         'https://mp.weixin.qq.com/s/op26GEKXEN-yI3IpA9tZQg',
                         'https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Memory_Management',
                         'https://blog.sessionstack.com/how-javascript-works-memory-management-how-to-handle-4-common-memory-leaks-3f28b94cfbec'
-                    ]
+                    ],
+                    complete:true,
                 },
                 {
                     name:'模拟实现call和apply',
-                    issues:''
+                    issues:'',
+                    complete:true,
                 },
                 {
                     name:'模拟实现bind',
-                    issues:''
+                    issues:'',
+                    complete:true,
                 },
                 {
                     name:'数组扁平化',
-                    issues:''
+                    issues:'',
+                    complete:true,
                 }
             ]
         },
@@ -129,11 +140,13 @@ module.exports = {
                 {
                     name:'一次搞懂EventLoop',
                     nickName:'一次搞懂Event Loop',
-                    issues:''
+                    issues:'',
+                    complete:true,
                 },
                 {
                     name:'如何处理图片加载失败',
-                    issues:''
+                    issues:'',
+                    complete:true,
                 }
             ]
         },
@@ -143,7 +156,8 @@ module.exports = {
             children:[
                 {
                     name:'如何渲染几万条数据并不卡住界面',
-                    issues:''
+                    issues:'',
+                    complete:true,
                 }
             ]
         },
@@ -173,7 +187,8 @@ module.exports = {
             children:[
                 {
                     name:'Async、Await陷阱',
-                    issues:''
+                    issues:'',
+                    complete:true,
                 }
             ]
         },
