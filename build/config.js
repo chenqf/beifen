@@ -29,7 +29,7 @@ module.exports = {
         '前后端分离项目，如何seo https://github.com/airuikun/Weekly-FE-Interview/issues/13',
         '1000-div问题 https://github.com/airuikun/Weekly-FE-Interview/issues/15',
         '开放题：2万小球问题 https://github.com/airuikun/Weekly-FE-Interview/issues/16',
-        'http 缓存',
+        'http 缓存  https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Caching_FAQ',
         'http 与 https 对称加密，非对称加密',
         'promise 原生实现 https://github.com/YvetteLau/Blog/issues/2   https://github.com/xieranmaya/blog/issues/3',
         '真机调试：https://juejin.im/post/5c947f5251882568396a6773?utm_source=gold_browser_extension',
@@ -89,7 +89,12 @@ module.exports = {
                 {
                     name:'JS中的栈内存和堆内存',
                     issues:'',
-                    refer:[]
+                    refer:[
+                        'https://github.com/yygmind/blog/issues/14',
+                        'https://github.com/yygmind/blog/issues/15',
+                        'https://www.jianshu.com/p/996671d4dcc4',
+                        'https://blog.csdn.net/xdd19910505/article/details/41900693',
+                    ]
                 },
                 {
                     name:'JS中的内存管理',
