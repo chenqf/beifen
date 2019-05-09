@@ -1,6 +1,7 @@
 
 module.exports = {
     wait:[
+        'https://github.com/Aaaaaaaty/Blog/issues/17 关于内存泄漏，日后深入研究',
         '屏幕适配 PC phone',
         '骨架屏 https://segmentfault.com/a/1190000016689372',
         '贝塞尔曲线 https://segmentfault.com/a/1190000018502700',
@@ -97,6 +98,7 @@ module.exports = {
                     issues:'',
                     complete:false,
                     refer:[
+                        'https://juejin.im/post/5c7157f3e51d4526643fac46',
                         'https://github.com/yygmind/blog/issues/14',
                         'https://github.com/yygmind/blog/issues/15',
                         'https://www.jianshu.com/p/996671d4dcc4',
