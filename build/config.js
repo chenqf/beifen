@@ -97,6 +97,10 @@ module.exports = {
                     name:'JS中的栈内存和堆内存',
                     issues:'',
                     complete:false,
+                    question:[
+                        'null 是在栈内存中，还是堆内存中',
+                        ''
+                    ],
                     refer:[
                         'https://juejin.im/post/5c7157f3e51d4526643fac46',
                         'https://github.com/yygmind/blog/issues/14',
@@ -143,7 +147,7 @@ module.exports = {
                     name:'一次搞懂EventLoop',
                     nickName:'一次搞懂Event Loop',
                     issues:'',
-                    complete:true,
+                    complete:false,
                 },
                 {
                     name:'如何处理图片加载失败',
@@ -159,7 +163,7 @@ module.exports = {
                 {
                     name:'如何渲染几万条数据并不卡住界面',
                     issues:'',
-                    complete:true,
+                    complete:false,
                 }
             ]
         },
@@ -190,11 +194,12 @@ module.exports = {
                 {
                     name:'Async、Await陷阱',
                     issues:'',
-                    complete:true,
+                    complete:false,
                 }
             ]
         },
     ],
+    banQuan:'除非注明，否则均为原创文章，转载必须以链接形式标明本文链接',
     pay:{
         ddd:[
             '本文首发与github，欢迎Watch & Star ★，转载请注明出处。',

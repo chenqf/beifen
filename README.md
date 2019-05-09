@@ -18,16 +18,7 @@
 
 ## 浏览器
 
-1. [一次搞懂Event Loop](https://github.com/chenqf/blog/blob/master/articles/浏览器/一次搞懂EventLoop/README.md)
-2. [如何处理图片加载失败](https://github.com/chenqf/blog/blob/master/articles/浏览器/如何处理图片加载失败/README.md)
-
-## 前端性能
-
-1. [如何渲染几万条数据并不卡住界面](https://github.com/chenqf/blog/blob/master/articles/前端性能/如何渲染几万条数据并不卡住界面/README.md)
-
-## 技术随笔
-
-1. [Async、Await陷阱](https://github.com/chenqf/blog/blob/master/articles/技术随笔/Async、Await陷阱/README.md)
+1. [如何处理图片加载失败](https://github.com/chenqf/blog/blob/master/articles/浏览器/如何处理图片加载失败/README.md)
 
 
 

@@ -7,6 +7,9 @@ const template = require('art-template');
 let mainPath = resolve(__dirname,'../README.md');
 
 
+// TODO 每篇文章的图，还是要好好想一想，重新改一改
+
+
 //删除不希望发布的内容
 function dealPublishData() {
     config.publish = config.publish.filter(item=>{
