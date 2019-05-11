@@ -20,9 +20,7 @@
 
 
 ### 差集
-<div style="border: 1px solid #adadad;">
-    <img src="./3.png" width="500" />
-</div>
+![avatar](./3.png)
 
 
 
