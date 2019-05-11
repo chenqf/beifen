@@ -20,8 +20,10 @@
 
 
 ### 差集
+<div style="border: 1px solid #adadad;">
+    <img src="./3.png" width="500" />
+</div>
 
-<img src="./3.png" width="500" style="border: 1px solid black;"/>
 
 
 
