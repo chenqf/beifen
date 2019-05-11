@@ -75,7 +75,7 @@ module.exports = {
                     complete:true
                 },
                 {
-                    name:'数组的交集并集差集',
+                    name:'数组的交集并集补集',
                     issues:'',
                     complete:false
                 },
