@@ -3,10 +3,13 @@ module.exports = {
     wait:[
         'https://github.com/Aaaaaaaty/Blog/issues/17 关于内存泄漏，日后深入研究',
         '屏幕适配 PC phone',
+        'gzip https://juejin.im/post/5cb7ee0e51882532fe3440ea',
+        '数组交集并集差集 http://obkoro1.com/web_accumulate/accumulate/JS/%E6%95%B0%E7%BB%84%E4%BA%A4%E9%9B%86%E5%B7%AE%E9%9B%86.html#%E6%95%B0%E7%BB%84%E4%BA%A4%E9%9B%86%E5%B7%AE%E9%9B%86%E5%B9%B6%E9%9B%86',
+        'AST https://github.com/CodeLittlePrince/blog/issues/19',
         '骨架屏 https://segmentfault.com/a/1190000016689372',
         '贝塞尔曲线 https://segmentfault.com/a/1190000018502700',
         '如何管理好10万行代码的前端单页面应用 https://juejin.im/post/59cb0d0b5188257e876a2d27',
-        '洗牌算法 http://obkoro1.com/web_accumulate/accumulate/JS/%E6%95%B0%E7%BB%84%E5%AE%8C%E5%85%A8%E4%B9%B1%E5%BA%8F.html https://gaohaoyang.github.io/2016/10/16/shuffle-algorithm/ https://github.com/HOUCe/shuffle-array',
+        '洗牌算法 http://obkoro1.com/web_accumulate/accumulate/JS/%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%BB%84%E6%88%90%E7%9A%84%E6%95%B0%E7%BB%84.html http://obkoro1.com/web_accumulate/accumulate/JS/%E6%95%B0%E7%BB%84%E5%AE%8C%E5%85%A8%E4%B9%B1%E5%BA%8F.html https://gaohaoyang.github.io/2016/10/16/shuffle-algorithm/ https://github.com/HOUCe/shuffle-array',
         '使用js创建并下载文件 https://gaohaoyang.github.io/2016/11/22/js-create-file-and-download/',
         '自己实现一个前端路由 https://zhuanlan.zhihu.com/p/37730038?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io',
         '请指出document.onload和document.ready两个事件的区别',
@@ -31,7 +34,6 @@ module.exports = {
         '1000-div问题 https://github.com/airuikun/Weekly-FE-Interview/issues/15',
         '开放题：2万小球问题 https://github.com/airuikun/Weekly-FE-Interview/issues/16',
         'http 缓存  https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Caching_FAQ',
-        'http 与 https 对称加密，非对称加密',
         'promise 原生实现 https://github.com/YvetteLau/Blog/issues/2   https://github.com/xieranmaya/blog/issues/3',
         '真机调试：https://juejin.im/post/5c947f5251882568396a6773?utm_source=gold_browser_extension',
         {
@@ -71,6 +73,11 @@ module.exports = {
                     name:'详解typeof操作符',
                     issues:'',
                     complete:true
+                },
+                {
+                    name:'数组的交集并集差集',
+                    issues:'',
+                    complete:false
                 },
                 {
                     name:'如何中断forEach循环',
@@ -131,6 +138,17 @@ module.exports = {
                     name:'模拟实现bind',
                     issues:'',
                     complete:true,
+                },
+                {
+                    name:'函数柯里化',
+                    issues:'',
+                    complete:false,
+                    refer:[
+                        'https://yangbo5207.github.io/wutongluo/ji-chu-jin-jie-xi-lie/ba-3001-ke-li-hua.html',
+                        'https://www.jianshu.com/p/5e1899fe7d6b',
+                        'https://github.com/mqyqingfeng/Blog/issues/42',
+                        'https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html'
+                    ]
                 },
                 {
                     name:'数组扁平化',
@@ -200,6 +218,28 @@ module.exports = {
         },
     ],
     banQuan:'除非注明，否则均为原创文章，转载必须以链接形式标明本文链接',
+    phone:[
+        17128240242,
+        16739465448,
+        16739465447,
+        17128240214,
+        17128240224,
+        17128240042,
+        17128240174,
+        17128240043,
+        17128240164,
+        17128240154,
+        17128240034,
+        17157721545,
+        17128240241,
+        17128240148,
+        16739465440,
+        16739465443,
+        16739465445,
+        16739465439,
+        16739465441,
+        16739465442,
+    ],
     pay:{
         ddd:[
             '本文首发与github，欢迎Watch & Star ★，转载请注明出处。',

@@ -2,73 +2,6 @@
 
 
 
-const debounce = function(func,wait,immediate){
-    let timer = null,
-        result,
-        debounced = function(...args){
-            if (timer) {
-                clearTimeout(timer);
-            }
-
-            if(immediate){
-                let callNow = !timer;
-                timer = setTimeout(()=>{
-                    timer = null;
-                },wait)
-                if (callNow) {
-                    result = func.apply(this,args);
-                }
-            }else{
-                timer = setTimeout(()=>{
-                    func.apply(this,args);
-                },wait)
-            }
-            return result;
-        }
-    debounced.cancel = function(){
-        clearTimeout(timer);
-        timer = null;
-    }
-    return debounced;
-}
-
-
-
-const throttle = function(func,wait,opt = {}){
-    let timer = null;
-    let preTime = 0;
-    let {leading = true,trailing = true} = opt;
-    let throttled = function(...args){
-        let now = Date.now();
-        if(!leading && !preTime){
-            preTime = now;
-        }
-        if(now - preTime >= wait){
-            clearTimeout(timer);
-            timer = null;
-            preTime = now;
-            func.apply(this,args);
-        }else if(trailing && !timer){
-            timer = setTimeout(()=>{
-                preTime = Date.now();
-                clearTimeout(timer);
-                timer = null;
-                func.apply(this,args);
-            },wait - now + preTime) 
-        }
-    }
-    throttled.cancel = function(){
-        preTime = 0;
-        clearTimeout(timer);
-        timer = null;
-    }
-    
-}
-
-
-
-
-
 
 
 
@@ -82,6 +15,102 @@ const throttle = function(func,wait){
         }
     }
 }
+
+
+const throttle = function(func,wait){
+    let timer = null;
+    return function(...args){
+        if(!timer){
+            timer = setTimeout(()=>{
+                timer = null;
+                func.apply(this,args);
+            },wait)
+        }
+    }
+}
+
+
+const throttle = function(){
+    let timer = null;
+    let preTime = 0;
+    return function(args){
+        let now = Date.now();
+        if(now - preTime >= wait){
+            clearTimeout(timer);
+            timer = null;
+            preTime = now;
+            func.apply(this,args);
+        }else if(!timer){
+            timer = setTimeout(()=>{
+                timer = null;
+                preTime = Date.now();
+                func.apply(this,args);
+            },wait - now + preTime)
+        }
+    }
+}
+
+
+
+
+
+
+
+const debounce = function(func,wati,immediate){
+    let timer = null;
+
+    return function(...args){
+        if(timer){
+            clearTimeout(timer)
+        }
+        if(immediate){
+            let callNow = !timer;
+            timer = setTimeout(()=>{
+                timer = null;
+            },wait)
+            if (callNow) {
+                func.apply(this,args);
+            }
+        }else{
+            timer = setTimeout(()=>{
+                timer = null;
+                func.apply(this,args)
+            },wait)
+        }
+
+    }
+}
+
+
+
+const throttle = function(func,wait,opt = {}){
+    let {leading = true,trailing = true} = opt;
+    let timer = null;
+    let preTime = 0;
+    return function(...args){
+        let now = Date.now();
+        if(!leading && !preTime){
+            preTime = now;
+        }
+        if(now - preTime >= wait){
+            clearTimeout(timer);
+            timer = null;
+            preTime = now;
+            func.apply(this,args);
+        }else if(!timer && trailing){
+            timer = setTimeout(()=>{
+                timer = null;
+                preTime = Date.now();
+                func.apply(this,args);
+            },wait - now + preTime)
+        }
+    }
+}
+
+
+
+
+
 
 
 
