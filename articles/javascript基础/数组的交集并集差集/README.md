@@ -21,7 +21,7 @@
 
 ### 差集
 
-<img src="./3.png"/>
+<img src="./3.png" width="500" style="border: 1px solid black;"/>
 
 
 
