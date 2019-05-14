@@ -8,7 +8,6 @@ module.exports = {
         '骨架屏 https://segmentfault.com/a/1190000016689372',
         '贝塞尔曲线 https://segmentfault.com/a/1190000018502700',
         '如何管理好10万行代码的前端单页面应用 https://juejin.im/post/59cb0d0b5188257e876a2d27',
-        '洗牌算法  ',
         '使用js创建并下载文件 https://gaohaoyang.github.io/2016/11/22/js-create-file-and-download/',
         '自己实现一个前端路由 https://juejin.im/post/5cd8d609e51d456e7b372155?utm_source=gold_browser_extension https://zhuanlan.zhihu.com/p/37730038?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io',
         '请指出document.onload和document.ready两个事件的区别',
@@ -154,7 +153,16 @@ module.exports = {
                     name:'数组扁平化',
                     issues:'',
                     complete:true,
-                }
+                },
+                {
+                    name:'数组乱序',
+                    issues:'',
+                    complete:false,
+                    refer:[
+                        'https://github.com/HOUCe/shuffle-array',
+                        'https://mp.weixin.qq.com/s/0j7iMJwaXYt3BD036M8s-w'
+                    ]
+                },
             ]
         },
         {
