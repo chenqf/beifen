@@ -9,7 +9,8 @@
   },
   "devDependencies": {
     "art-template": "^4.13.2",
-    "files-tree": "^1.0.8"
+    "files-tree": "^1.0.8",
+    "lodash": "^4.17.11"
   },
   "scripts": {
     "build": "node build/index.js",
