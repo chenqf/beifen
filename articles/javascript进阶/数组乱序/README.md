@@ -72,7 +72,7 @@ test_shuffle(shuffle)
 test_shuffle 函数定义了一个长度为 10 的数组 ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']，
 并使用传入的乱序函数进行十万次操作，并将数组中每个元素在每个位置出现的次数存放到变量 countObj 中，最终将 countObj 打印出来。
 
-最终结果如下： 
+结果如下： 
 
 ![avatar](./1.png)
 
@@ -126,6 +126,7 @@ function shuffle(arr) {
     let newArr = arr.map(item=>({val:item,ram:Math.random()}));
     newArr.sort((a,b)=>a.ram-b.ram);
     arr.splice(0,arr.length,...newArr.map(i=>i.val));
+    return arr;
 }
 ```
 
@@ -147,9 +148,7 @@ test_shuffle(shuffle)
 
 为什么叫 Fisher–Yates 呢？ 因为这个算法是由 Ronald Fisher 和 Frank Yates 首次提出的。
 
-这个算法其实非常的简单，就是将数组从后向前遍历，然后将当前元素与随机位置的元素进行交换。
-
-我们用图例来解释一下：
+这个算法其实非常的简单，就是将数组从后向前遍历，然后将当前元素与随机位置的元素进行交换。结合图片来解释一下：
 
 首先我们有一个已经排好序的数组
 
@@ -178,13 +177,40 @@ Step2： 上一步中，我们已经把数组末尾元素进行随机置换。
 
 ![avatar](./10.png)
 
-Step3： 理解了前两部，接下来就是依次进行，如此简单。
+Step3： 理解了前两步，接下来就是依次进行，如此简单。
 
 ![avatar](./11.png)
 
 
+接下来我们用代码来实现一下 Fisher–Yates
+```javascript
+function shuffle(arr) {
+    let m = arr.length;
+    while (m){
+        let index = Math.floor(Math.random() * m--);
+        let cur = arr[m];
+        arr[m] = arr[index];
+        arr[index] = cur;
+    }
+    return arr;
+}
+```
 
+接着我们再用之前的验证函数 test_shuffle 中 
 
+```javascript
+test_shuffle(shuffle);
+```
+
+结果如下： 
+
+![avatar](./12.png)
+
+从表格中我们可以看出，每个元素在每个位置出现的次数相差不大，说明这种方式满足了随机性的要求。
+
+而且 Fisher–Yates 算法只需要通过一次遍历即可将数组随机打乱顺序，性能极为优异~~
+
+至此，我们找到了将数组乱序操作的最优办法：Fisher–Yates~
 
 
 
