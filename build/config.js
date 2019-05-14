@@ -61,26 +61,31 @@ module.exports = {
                 {
                     name:'ES6中的let和const',
                     issues:'',
+                    over:true,
                     complete:true
                 },
                 {
                     name:'ES6中的Promise',
                     issues:'',
+                    over:true,
                     complete:true
                 },
                 {
                     name:'详解typeof操作符',
                     issues:'',
+                    over:true,
                     complete:true
                 },
                 {
                     name:'数组的交集并集差集',
                     issues:'',
+                    over:true,
                     complete:false
                 },
                 {
                     name:'如何中断forEach循环',
                     issues:'',
+                    over:true,
                     complete:true
                 }
             ]
@@ -92,21 +97,20 @@ module.exports = {
                 {
                     name:'防抖函数',
                     issues:'',
+                    over:true,
                     complete:true
                 },
                 {
                     name:'节流函数',
                     issues:'',
+                    over:true,
                     complete:true
                 },
                 {
                     name:'JS中的栈内存和堆内存',
                     issues:'',
+                    over:true,
                     complete:false,
-                    question:[
-                        'null 是在栈内存中，还是堆内存中',
-                        ''
-                    ],
                     refer:[
                         'https://juejin.im/post/5c7157f3e51d4526643fac46',
                         'https://github.com/yygmind/blog/issues/14',
@@ -126,21 +130,25 @@ module.exports = {
                         'https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Memory_Management',
                         'https://blog.sessionstack.com/how-javascript-works-memory-management-how-to-handle-4-common-memory-leaks-3f28b94cfbec'
                     ],
+                    over:true,
                     complete:true,
                 },
                 {
                     name:'模拟实现call和apply',
                     issues:'',
+                    over:true,
                     complete:true,
                 },
                 {
                     name:'模拟实现bind',
                     issues:'',
+                    over:true,
                     complete:true,
                 },
                 {
                     name:'函数柯里化',
                     issues:'',
+                    over:false,
                     complete:false,
                     refer:[
                         'https://yangbo5207.github.io/wutongluo/ji-chu-jin-jie-xi-lie/ba-3001-ke-li-hua.html',
@@ -152,11 +160,13 @@ module.exports = {
                 {
                     name:'数组扁平化',
                     issues:'',
+                    over:true,
                     complete:true,
                 },
                 {
                     name:'数组乱序',
                     issues:'',
+                    over:true,
                     complete:false,
                     refer:[
                         'https://github.com/HOUCe/shuffle-array',
@@ -173,11 +183,13 @@ module.exports = {
                     name:'一次搞懂EventLoop',
                     nickName:'一次搞懂Event Loop',
                     issues:'',
+                    over:true,
                     complete:false,
                 },
                 {
                     name:'如何处理图片加载失败',
                     issues:'',
+                    over:true,
                     complete:true,
                 }
             ]
@@ -189,6 +201,7 @@ module.exports = {
                 {
                     name:'如何渲染几万条数据并不卡住界面',
                     issues:'',
+                    over:true,
                     complete:false,
                 }
             ]
@@ -220,6 +233,7 @@ module.exports = {
                 {
                     name:'Async、Await陷阱',
                     issues:'',
+                    over:true,
                     complete:false,
                 }
             ]
