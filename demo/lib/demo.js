@@ -1,118 +1,30 @@
-// @flow Created by 陈其丰 on 2019/4/18.
-
-
-
-
-
-
-const throttle = function(func,wait){
-    let preTime = 0;
-    return function(...args){
-        let now = Date.now();
-        if(now - preTime >= wait){
-            preTime = now;
-            func.apply(this,args);
-        }
-    }
+// 多次乱序数组的次数
+let n = 100000; 
+// 保存每个元素在每个位置上出现的次数
+let countObj = {
+    a:Array.from({length:10}).fill(0),
+    b:Array.from({length:10}).fill(0),
+    c:Array.from({length:10}).fill(0),
+    d:Array.from({length:10}).fill(0),
+    e:Array.from({length:10}).fill(0),
+    f:Array.from({length:10}).fill(0),
+    g:Array.from({length:10}).fill(0),
+    h:Array.from({length:10}).fill(0),
+    i:Array.from({length:10}).fill(0),
+    j:Array.from({length:10}).fill(0),
 }
-
-
-const throttle = function(func,wait){
-    let timer = null;
-    return function(...args){
-        if(!timer){
-            timer = setTimeout(()=>{
-                timer = null;
-                func.apply(this,args);
-            },wait)
-        }
-    }
+for (let i = 0; i < n; i ++) {
+    let arr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
+    arr.sort(() => Math.random() - 0.5);
+    countObj.a[arr.indexOf('a')]++;
+    countObj.b[arr.indexOf('b')]++;
+    countObj.c[arr.indexOf('c')]++;
+    countObj.d[arr.indexOf('d')]++;
+    countObj.e[arr.indexOf('e')]++;
+    countObj.f[arr.indexOf('f')]++;
+    countObj.g[arr.indexOf('g')]++;
+    countObj.h[arr.indexOf('h')]++;
+    countObj.i[arr.indexOf('i')]++;
+    countObj.j[arr.indexOf('j')]++;
 }
-
-
-const throttle = function(){
-    let timer = null;
-    let preTime = 0;
-    return function(args){
-        let now = Date.now();
-        if(now - preTime >= wait){
-            clearTimeout(timer);
-            timer = null;
-            preTime = now;
-            func.apply(this,args);
-        }else if(!timer){
-            timer = setTimeout(()=>{
-                timer = null;
-                preTime = Date.now();
-                func.apply(this,args);
-            },wait - now + preTime)
-        }
-    }
-}
-
-
-
-
-
-
-
-const debounce = function(func,wati,immediate){
-    let timer = null;
-
-    return function(...args){
-        if(timer){
-            clearTimeout(timer)
-        }
-        if(immediate){
-            let callNow = !timer;
-            timer = setTimeout(()=>{
-                timer = null;
-            },wait)
-            if (callNow) {
-                func.apply(this,args);
-            }
-        }else{
-            timer = setTimeout(()=>{
-                timer = null;
-                func.apply(this,args)
-            },wait)
-        }
-
-    }
-}
-
-
-
-const throttle = function(func,wait,opt = {}){
-    let {leading = true,trailing = true} = opt;
-    let timer = null;
-    let preTime = 0;
-    return function(...args){
-        let now = Date.now();
-        if(!leading && !preTime){
-            preTime = now;
-        }
-        if(now - preTime >= wait){
-            clearTimeout(timer);
-            timer = null;
-            preTime = now;
-            func.apply(this,args);
-        }else if(!timer && trailing){
-            timer = setTimeout(()=>{
-                timer = null;
-                preTime = Date.now();
-                func.apply(this,args);
-            },wait - now + preTime)
-        }
-    }
-}
-
-
-
-
-
-
-
-
-
-
+console.table(countObj);

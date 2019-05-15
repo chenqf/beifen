@@ -9,7 +9,6 @@ module.exports = {
         '贝塞尔曲线 https://segmentfault.com/a/1190000018502700',
         '如何管理好10万行代码的前端单页面应用 https://juejin.im/post/59cb0d0b5188257e876a2d27',
         '使用js创建并下载文件 https://gaohaoyang.github.io/2016/11/22/js-create-file-and-download/',
-        '自己实现一个前端路由 https://juejin.im/post/5cd8d609e51d456e7b372155?utm_source=gold_browser_extension https://zhuanlan.zhihu.com/p/37730038?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io',
         '请指出document.onload和document.ready两个事件的区别',
         'currentColor https://c.51tiangou.com/pages/viewpage.action?pageId=27102148',
         '前端登录：https://juejin.im/post/5cc3bcb0f265da03681463a0?utm_source=gold_browser_extension',
@@ -19,6 +18,7 @@ module.exports = {
         '函数组合，函数柯里化',
         'cookie 和 session https://juejin.im/post/5cd9037ee51d456e5c5babca?utm_source=gold_browser_extension',
         '深度好文，https://juejin.im/post/5cb0315f518825215e61ec14?utm_source=gold_browser_extension',
+
         'await 在forEach 中 https://juejin.im/post/5cb1d5a3f265da03587bed99?utm_source=gold_browser_extension',
         'typeof instanceOf isPrototypeOf() 之间的区别  https://juejin.im/post/5c9216716fb9a070ef60a011?utm_source=gold_browser_extension',
         'react 源码 https://juejin.im/post/5cca5ad2e51d456e6154b4c7?utm_source=gold_browser_extension',
@@ -32,13 +32,25 @@ module.exports = {
         '前后端分离项目，如何seo https://github.com/airuikun/Weekly-FE-Interview/issues/13',
         '1000-div问题 https://github.com/airuikun/Weekly-FE-Interview/issues/15',
         '开放题：2万小球问题 https://github.com/airuikun/Weekly-FE-Interview/issues/16',
-        'http 缓存  https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Caching_FAQ',
+        'http 缓存  https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Caching_FAQ https://github.com/BooheeFE/weekly/issues/30',
         'promise 原生实现 https://github.com/YvetteLau/Blog/issues/2   https://github.com/xieranmaya/blog/issues/3',
         '真机调试：https://juejin.im/post/5c947f5251882568396a6773?utm_source=gold_browser_extension',
         {
+            await:[
+                'https://juejin.im/post/5cb68a40e51d456e303db873',
+                'https://juejin.im/post/59f9ce7a51882554f666220f',
+                'https://juejin.im/post/58ede4c1b123db43cc365551',
+                'https://github.com/dt-fe/weekly/blob/master/55.%E7%B2%BE%E8%AF%BB%E3%80%8Aasync%20await%20%E6%98%AF%E6%8A%8A%E5%8F%8C%E5%88%83%E5%89%91%E3%80%8B.md'
+            ],
             virtualDOM:[
                 'https://blog.techbridge.cc/2019/02/04/vdom-from-scratch/',
                 'https://juejin.im/post/5b10dd36e51d4506e04cf802'
+            ],
+            双向绑定:[
+                'https://www.jianshu.com/p/2df6dcddb0d7'
+            ],
+            promise:[
+                'https://github.com/forthealllight/blog/issues/4'
             ],
             react:[
                 'React Hooks https://github.com/brickspert/blog/issues/26',
@@ -48,6 +60,14 @@ module.exports = {
             css:[
                 '0.5px https://juejin.im/post/5ab65f40f265da2384408a95',
                 'https://www.zcfy.cc/article/stunning-hover-effects-with-css-variables'
+            ],
+            router:[
+                'https://zhuanlan.zhihu.com/p/31876075',
+                'https://juejin.im/post/5ac61da66fb9a028c71eae1b',
+                'https://github.com/youngwind/blog/issues/109',
+                'https://zhuanlan.zhihu.com/p/37730038?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io',
+                'http://www.bingshangroup.com/blog/2019/05/13/carry/history/',
+                'https://juejin.im/post/5cd8d609e51d456e7b372155?utm_source=gold_browser_extension'
             ]
         }
     ],
@@ -151,6 +171,8 @@ module.exports = {
                     over:false,
                     complete:false,
                     refer:[
+                        'https://www.zhangxinxu.com/wordpress/2013/02/js-currying/',
+                        'https://blog.csdn.net/woqutechteam/article/details/80323065',
                         'https://yangbo5207.github.io/wutongluo/ji-chu-jin-jie-xi-lie/ba-3001-ke-li-hua.html',
                         'https://www.jianshu.com/p/5e1899fe7d6b',
                         'https://github.com/mqyqingfeng/Blog/issues/42',
