@@ -18,7 +18,6 @@ module.exports = {
         '函数组合，函数柯里化',
         'cookie 和 session https://juejin.im/post/5cd9037ee51d456e5c5babca?utm_source=gold_browser_extension',
         '深度好文，https://juejin.im/post/5cb0315f518825215e61ec14?utm_source=gold_browser_extension',
-
         'await 在forEach 中 https://juejin.im/post/5cb1d5a3f265da03587bed99?utm_source=gold_browser_extension',
         'typeof instanceOf isPrototypeOf() 之间的区别  https://juejin.im/post/5c9216716fb9a070ef60a011?utm_source=gold_browser_extension',
         'react 源码 https://juejin.im/post/5cca5ad2e51d456e6154b4c7?utm_source=gold_browser_extension',
@@ -32,10 +31,14 @@ module.exports = {
         '前后端分离项目，如何seo https://github.com/airuikun/Weekly-FE-Interview/issues/13',
         '1000-div问题 https://github.com/airuikun/Weekly-FE-Interview/issues/15',
         '开放题：2万小球问题 https://github.com/airuikun/Weekly-FE-Interview/issues/16',
-        'http 缓存  https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Caching_FAQ https://github.com/BooheeFE/weekly/issues/30',
         'promise 原生实现 https://github.com/YvetteLau/Blog/issues/2   https://github.com/xieranmaya/blog/issues/3',
         '真机调试：https://juejin.im/post/5c947f5251882568396a6773?utm_source=gold_browser_extension',
+        '反柯里化',
         {
+            http_cache:[
+                'https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Caching_FAQ',
+                'https://github.com/BooheeFE/weekly/issues/30'
+            ],
             await:[
                 'https://juejin.im/post/5cb68a40e51d456e303db873',
                 'https://juejin.im/post/59f9ce7a51882554f666220f',
@@ -171,7 +174,6 @@ module.exports = {
                     over:false,
                     complete:false,
                     refer:[
-                        'https://www.zhangxinxu.com/wordpress/2013/02/js-currying/',
                         'https://blog.csdn.net/woqutechteam/article/details/80323065',
                         'https://yangbo5207.github.io/wutongluo/ji-chu-jin-jie-xi-lie/ba-3001-ke-li-hua.html',
                         'https://www.jianshu.com/p/5e1899fe7d6b',
@@ -228,16 +230,18 @@ module.exports = {
                 }
             ]
         },
-        // {
-        //     name:'网络',//分类的标题
-        //     path:'网络',//分类的路径
-        //     children:[
-        //         {
-        //             name:'彻底弄懂HTTP缓存机制及原理',
-        //             issues:''
-        //         }
-        //     ]
-        // },
+        {
+            name:'网络',//分类的标题
+            path:'网络',//分类的路径
+            children:[
+                {
+                    name:'彻底弄懂HTTP缓存机制及原理',
+                    issues:'',
+                    over:true,
+                    complete:false,
+                }
+            ]
+        },
         // {
         //     name:'算法相关',//分类的标题
         //     path:'算法相关',//分类的路径
