@@ -98,6 +98,29 @@ v8在处理sort方法时，使用了插入排序和快排两种方案。
 而在sort排序算法中，大多数情况都不会满足这样的条件。因而当然不是完全随机的结果了。
 
 
+## 从插入排序来看 sort 的不完全比较
+
+一段简单的插入排序代码：
+```javascript
+function insertSort(list = []) {
+    for(let i = 1 , len = list.length; i < len; i++){
+        let j = i - 1;
+        let temp = list[ i ];
+        while (j >= 0 && list[ j ] > temp){
+            list[j + 1] = list[ j ];
+            j = j - 1;
+        }
+        list[j + 1] = temp;
+    }
+    return list;
+}
+```
+一个简单的插入排序图例
+![avatar](./1.gif)
+
+以数组 [ 1 , 2 , 3] 为例，来看乱序方法的问题：
+![avatar](./13.png)
+
 ## 改造 sort 和 Math.random() 的结合方式
 
 我们已然知道 sort 和 Math.random() 来实现数组乱序所存在的问题，
