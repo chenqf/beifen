@@ -1,5 +1,6 @@
 
 module.exports = {
+    座右铭:'https://juejin.im/post/5ce2055f5188251cf708b3d2?utm_source=gold_browser_extension 不关注细节',
     wait:[
         'https://github.com/Aaaaaaaty/Blog/issues/17 关于内存泄漏，日后深入研究',
         '屏幕适配 PC phone',
@@ -194,7 +195,8 @@ module.exports = {
                     complete:false,
                     refer:[
                         'https://github.com/HOUCe/shuffle-array',
-                        'https://mp.weixin.qq.com/s/0j7iMJwaXYt3BD036M8s-w'
+                        'https://mp.weixin.qq.com/s/0j7iMJwaXYt3BD036M8s-w',
+                        'https://github.com/mqyqingfeng/Blog/issues/51'
                     ]
                 },
             ]
