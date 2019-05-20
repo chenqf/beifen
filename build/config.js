@@ -193,6 +193,7 @@ module.exports = {
                     issues:'',
                     over:true,
                     complete:false,
+                    todo:'关于插入排序，还需要深入的说明',
                     refer:[
                         'https://github.com/HOUCe/shuffle-array',
                         'https://mp.weixin.qq.com/s/0j7iMJwaXYt3BD036M8s-w',
