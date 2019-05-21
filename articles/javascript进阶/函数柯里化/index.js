@@ -3,21 +3,17 @@
 
 /**
  * 柯里化工具函数
- * @param fn      柯里化的原函数
- * @param length  原函数需要的参数个数
- * @param holder  接收的占位符
- * @param args    已接收的参数列表
- * @param holders 已接收的占位符位置列表
- * @return        继续柯里化的函数 或 最终结果
+ * @param fn            柯里化的原函数
+ * @param length        原函数需要的参数个数
+ * @param holder        接收的占位符
+ * @param args          已接收的参数列表
+ * @param holders       已接收的占位符位置列表
+ * @return {Function}   继续柯里化的函数 或 最终结果
  */
 function _curry(fn,length,holder,args,holders){
     return function(..._args){
-        //倒序遍历参数列表，删除无用占位符
-        while(_args.length && _args[_args.length - 1] === holder){
-            _args.pop();
-        }
         //将参数复制一份，避免多次操作同一函数导致参数混乱
-        params = args.slice();
+        let params = args.slice();
         //将占位符位置列表复制一份，新增加的占位符增加至此
         let _holders = holders.slice();
         //循环入参，追加参数 或 替换占位符
@@ -41,26 +37,27 @@ function _curry(fn,length,holder,args,holders){
             else if(arg === holder && holders.length){
                 holders.shift();
             }
-        })
-
-
-        //存在占位符 或 入参小于需要参数个数 继续柯里化
-        if(_holders.length || params.length < length){
-            return _curry.call(this,fn,length,holder,params,_holders)
-        }
-        //已满足要求，直接调用函数
-        else{
+        });
+        // params 中前 length 条记录中不包含占位符，执行函数
+        if(params.length >= length && params.slice(0,length).every(i=>i!==holder)){
             return fn.apply(this,params);
+        }else{
+            return _curry.call(this,fn,length,holder,params,_holders)
         }
     }
 }
 
 
-
+/**
+ * 将函数柯里化
+ * @param  fn 	  		待柯里化的函数
+ * @param  length 		需要的参数个数，默认为函数的形参个数
+ * @param  holder 		占位符，默认当前柯里化函数
+ * @return {Function}   柯里化后的函数
+ */
 function curry(fn,length = fn.length,holder = curry){
     return _curry.call(this,fn,length,holder,[],[])
 }
-
 
 
 
@@ -75,9 +72,13 @@ var _fn = curry(fn,5,_);
 
 
 
-_fn(1, 2, 3, 4, 5);
+
+
+
+_fn(1, 2, 3, 4, 5,_,_);
 _fn(_, 2, 3, 4, 5)(1);
 _fn(1, _, 3, 4, 5)(2);
-_fn(1, _, 3)(_, 4)(2)(5);
+_fn(1, _, 3)(_, 4,_)(2)(5);
 _fn(1, _, _, 4)(_, 3)(2)(5);
-_fn(_, 2)(_, _, 4)(1)(3)(5)
+_fn(_, 2)(_, _, 4)(1)(3)(5);
+_fn(_, 2, 3, 4, 5)(1,_,2);
