@@ -36,13 +36,19 @@ module.exports = {
         '开放题：2万小球问题 https://github.com/airuikun/Weekly-FE-Interview/issues/16',
         'promise 原生实现 https://github.com/YvetteLau/Blog/issues/2   https://github.com/xieranmaya/blog/issues/3',
         '真机调试：https://juejin.im/post/5c947f5251882568396a6773?utm_source=gold_browser_extension',
+        '如何发布可在浏览器和节点中使用的包  https://medium.freecodecamp.org/how-to-publish-packages-that-can-be-used-in-browsers-and-node-c51274dca77c',
         '反柯里化',
         {
+            job:[
+                'https://medium.freecodecamp.org/how-to-become-more-productive-while-working-less-9b9be71e9141',
+
+            ],
             http_cache:[
                 'https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Caching_FAQ',
                 'https://github.com/BooheeFE/weekly/issues/30'
             ],
             await:[
+                'https://medium.com/@zellwk/an-introduction-to-javascripts-async-and-await-edb313356677',
                 'https://juejin.im/post/5cb68a40e51d456e303db873',
                 'https://juejin.im/post/59f9ce7a51882554f666220f',
                 'https://juejin.im/post/58ede4c1b123db43cc365551',
@@ -64,6 +70,7 @@ module.exports = {
                 'https://juejin.im/post/5cc53af6f265da038e54b2e6?utm_source=gold_browser_extension'
             ],
             css:[
+                'https://medium.freecodecamp.org/empty-and-blank-53b9e96151cd',
                 '0.5px https://juejin.im/post/5ab65f40f265da2384408a95',
                 'https://www.zcfy.cc/article/stunning-hover-effects-with-css-variables'
             ],
