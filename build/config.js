@@ -2,6 +2,8 @@
 module.exports = {
     座右铭:'https://juejin.im/post/5ce2055f5188251cf708b3d2?utm_source=gold_browser_extension 不关注细节',
     wait:[
+        '自执行表达式 https://medium.com/@vvkchandra/essential-javascript-mastering-immediately-invoked-function-expressions-67791338ddc6',
+        '迭代器 https://codeburst.io/a-simple-guide-to-es6-iterators-in-javascript-with-examples-189d052c3d8e',
         '时间切片 https://mp.weixin.qq.com/s?__biz=MzA5NzkwNDk3MQ==&mid=2650589786&idx=1&sn=bf6182de3c40fe9f8912754ae209d817&chksm=8891da7ebfe653681350158cd774eaf2859158924f307516f5eae1b35591e535fe49a6185f21&scene=0&xtrack=1#rd',
         '函数式编程 https://medium.com/front-end-weekly/8-steps-to-turn-imperative-javascript-class-to-a-functional-declarative-code-862964faf46c',
         'https://github.com/Aaaaaaaty/Blog/issues/17 关于内存泄漏，日后深入研究',
@@ -39,6 +41,9 @@ module.exports = {
         '如何发布可在浏览器和节点中使用的包  https://medium.freecodecamp.org/how-to-publish-packages-that-can-be-used-in-browsers-and-node-c51274dca77c',
         '反柯里化',
         {
+            veryGood:[
+                'https://medium.com/@vvkchandra/essential-javascript-mastering-immediately-invoked-function-expressions-67791338ddc6'
+            ],
             job:[
                 'https://medium.freecodecamp.org/how-to-become-more-productive-while-working-less-9b9be71e9141',
 
@@ -120,6 +125,12 @@ module.exports = {
                     issues:'',
                     over:true,
                     complete:true
+                },
+                {
+                    name:'立即调用的函数表达式',
+                    issues:'',
+                    over:false,
+                    complete:false
                 }
             ]
         },
