@@ -216,4 +216,123 @@ IIFE 非常擅长的一件事就是能够为 IIFE 创建私有作用域。
 
 但 IIFE 的另一个非常重要且强大的功能是它们可以返回可以分配给变量的值。
 
+```javascript
+let result = (function() {
+    return "From IIFE";
+}());
+
+console.log(result); // print："From IIFE"
+```
+
+在上面的代码中，我们创建了一个 IIFE 立即执行，并将返回值传递给变量 result
+
+这是一个非常强大的功能，我们将在后文介绍模块的时候来使用它。
+
+### 具有参数的 IIFE
+
+IIFE 不仅可以有返回值，也可以在调用时进行参数传递，我们来看一下：
+
+```javascript
+(function IIFE(msg, times) {
+    for (let i = 1; i <= times; i++) {
+        console.log(msg);
+    }
+}("Hello!", 5));
+```
+
+在这个例子中，我们创建了一个 IIFE 并且给予了两个参数 msg 和 times。
+
+这是一个非常强大的功能，我们经常在 Jquery 或其他库中看到这种使用方式。
+
+```javascript
+(function($, global, document) {
+    // use $ for jQuery, global for window
+}(jQuery, window, document));
+```
+
+在这个例子中，我们将 jQuery、window 和 document 作为参数传递给 IIFE，
+在 IIFE中的代码使用 $、global 和 document 作为形参变量来接收这三个实参。
+
+这种传递参数的有点如下：
+1. JS引擎在查找变量时，从当前作用域开始查找，如果找不到就会向上一级继续查找，直至抵达最外层的全局作用域。
+   从性能上考虑，所需的变量存在于当前作用域时，变量查找时间要小于变量存在于上层作用域。
+2. 在将代码发布线上时，我们会对JS代码进行压缩，安全的缩小函数中声明的参数名称。如果我们没有将 jQuery、window、document
+    作为参数传递至 IIFE 内，则在对JS代码进行压缩时，所有使用到这些参数的地方，不会对这些参数引用进行压缩。
+
+
+### 经典的 JavaScript 模块模式
+
+下面我们通过 IIFE 来实现一个模块模式的例子。
+
+我们来实现一个经典的 Sequence 对象，我们分为两步编写此代码，以便逐步了解正在发生的事情。
+
+```javascript
+let Sequence = (function sequenceIIFE() {
+    // IIFE 中的私有变量
+    let current = 0;
+   
+    // 通过 IIFE 返回一个空对象
+    return {};
+}());
+
+console.log(typeof Sequence); // print："object"
+```
+
+在上面的例子中，我们创建了一个返回空对象的 IIFE，并且在 IIFE 内创建了一个私有变量 current。
+
+接下来，我们做一些改进，在 IIFE 返回的空对象中添加一些函数。
+
+```javascript
+let Sequence = (function sequenceIIFE() {
+    // IIFE 中的私有变量
+    let current = 0;
+   
+    // 通过 IIFE 返回一个空对象
+    return {
+        getCurrentValue: function() {
+            return current;
+        },
+        getNextValue: function() {
+            current = current + 1;
+            return current;
+        }
+    };
+    
+}());
+
+console.log(Sequence.getNextValue()); // 1
+console.log(Sequence.getNextValue()); // 2
+console.log(Sequence.getCurrentValue()); // 2
+```
+
+在这个例子中，我们在 IIFE 返回的对象中，添加了两个函数 getNextValue 和 getCurrentValue。
+
+getCurrentValue 用于将当前的 current 的值返回。
+
+getNextValue 用于将 current 的值递增 1 ，并且返回当前 current 的值。
+
+由于 IIFE 中的变量 current 是私有的，外部无法访问的，因为只有通过 getCurrentValue 或 getNextValue 函数才能访问它的值。
+
+这是一个非常强大的 Javascript 模块模式，它结合了 IIFE 和闭包的强大功能。
+
+### 什么时候可以省略括号
+
+用于包裹函数体的括号是用于强制将我们正在操作的函数体变为函数表达式。
+
+但是当 Javascript 引擎可以确认这是一个函数表达式时，我们就不需要包裹在函数外的括号了。
+ 
+```javascript
+let result = function() {
+    return 'From IIFE'
+}();
+console.log(result);
+```
+
+在上面的示例中，function 关键字不是语句中的第一个单词。因此 Javascript 引擎不会将其视为函数声明。
+
+即使如此，依然还是建议在函数体外包裹一对括号。
+
+使用括号可以通过在第一行上对读者进行风格上的暗示，暗示该函数将成为 IIFE ，
+而不必要滚动到函数的最后一行才能确定是否是 IIFE ,因此使用括号可以提高代码的可读性。
+
 

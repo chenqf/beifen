@@ -1,6 +1,10 @@
 
 module.exports = {
+    好词好句:[
+        '动态类型一时爽，代码重构火葬场'
+    ],
     座右铭:'https://juejin.im/post/5ce2055f5188251cf708b3d2?utm_source=gold_browser_extension 不关注细节',
+    架构好文:'https://juejin.im/post/5cea1f705188250640005472?utm_source=gold_browser_extension',
     wait:[
         '自执行表达式 https://medium.com/@vvkchandra/essential-javascript-mastering-immediately-invoked-function-expressions-67791338ddc6',
         '迭代器 https://codeburst.io/a-simple-guide-to-es6-iterators-in-javascript-with-examples-189d052c3d8e',
