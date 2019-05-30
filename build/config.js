@@ -221,8 +221,8 @@ module.exports = {
                     over: true,
                     complete: false,
                     refer: [
-                        'javascript权威指南',
-                        'javascript精粹'
+                        'javascript权威指南-记忆',
+                        'javascript精粹-记忆'
                     ]
                 },
                 {
