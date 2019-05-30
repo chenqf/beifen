@@ -90,7 +90,7 @@ let memoize = function(fn,resolver){
 依然使用 Fibonacci 的例子来验证一下我们完成的 memoize 函数。
 
 
-### 函数调用次数是否减少
+### 调用次数是否减少
 
 ```javascript
 let count = 0; //用于记录函数调用次数
@@ -121,7 +121,7 @@ console.log('总次数:',count)
 // 总次数: 10
 ```
 
-### 函数调用时间是否减少了
+### 调用时间是否减少了
 
 未使用 memoize 时，n 为 30 时 fibonacci 函数执行时间如下:
 
