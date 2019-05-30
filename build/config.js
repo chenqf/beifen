@@ -221,8 +221,8 @@ module.exports = {
                     over: true,
                     complete: false,
                     refer: [
-                        'javascript权威指南-记忆',
-                        'javascript精粹-记忆'
+                        'javascript权威指南-第八章函数-8.8.函数式编程',
+                        'javascript精粹-第四章函数-记忆'
                     ]
                 },
                 {
