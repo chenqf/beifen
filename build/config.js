@@ -216,6 +216,16 @@ module.exports = {
                     ]
                 },
                 {
+                    name: '函数记忆',
+                    issues: '',
+                    over: true,
+                    complete: false,
+                    refer: [
+                        'javascript权威指南',
+                        'javascript精粹'
+                    ]
+                },
+                {
                     name: '数组扁平化',
                     issues: '',
                     over: true,
