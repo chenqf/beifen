@@ -16,7 +16,6 @@ module.exports = {
     座右铭: 'https://juejin.im/post/5ce2055f5188251cf708b3d2?utm_source=gold_browser_extension 不关注细节',
     架构好文: 'https://juejin.im/post/5cea1f705188250640005472?utm_source=gold_browser_extension',
     wait: [
-        '自执行表达式 https://medium.com/@vvkchandra/essential-javascript-mastering-immediately-invoked-function-expressions-67791338ddc6',
         '迭代器 https://codeburst.io/a-simple-guide-to-es6-iterators-in-javascript-with-examples-189d052c3d8e',
         '时间切片 https://mp.weixin.qq.com/s?__biz=MzA5NzkwNDk3MQ==&mid=2650589786&idx=1&sn=bf6182de3c40fe9f8912754ae209d817&chksm=8891da7ebfe653681350158cd774eaf2859158924f307516f5eae1b35591e535fe49a6185f21&scene=0&xtrack=1#rd',
         '函数式编程 https://medium.com/front-end-weekly/8-steps-to-turn-imperative-javascript-class-to-a-functional-declarative-code-862964faf46c',
@@ -35,6 +34,7 @@ module.exports = {
         '变量提升，函数声明变函数表达式',
         '现金券最优选中 动态规划 背包问题',
         '函数组合，函数柯里化',
+        '拖拽滑动如何实现，禁用浏览器默认行为解决phone中后退问题是否可行？',
         'cookie 和 session https://juejin.im/post/5cd9037ee51d456e5c5babca?utm_source=gold_browser_extension',
         '深度好文，https://juejin.im/post/5cb0315f518825215e61ec14?utm_source=gold_browser_extension',
         'await 在forEach 中 https://juejin.im/post/5cb1d5a3f265da03587bed99?utm_source=gold_browser_extension',
@@ -140,7 +140,11 @@ module.exports = {
                     name: '立即调用的函数表达式',
                     issues: '',
                     over: true,
-                    complete: false
+                    complete: false,
+                    todo: '重新校验一下语句是否通顺',
+                    refer: [
+                        'https://medium.com/@vvkchandra/essential-javascript-mastering-immediately-invoked-function-expressions-67791338ddc6'
+                    ]
                 }
             ]
         },
@@ -201,7 +205,7 @@ module.exports = {
                 {
                     name: '函数柯里化',
                     issues: '',
-                    over: false,
+                    over: true,
                     complete: false,
                     refer: [
                         'https://blog.csdn.net/woqutechteam/article/details/80323065',
@@ -227,6 +231,17 @@ module.exports = {
                         'https://github.com/HOUCe/shuffle-array',
                         'https://mp.weixin.qq.com/s/0j7iMJwaXYt3BD036M8s-w',
                         'https://github.com/mqyqingfeng/Blog/issues/51'
+                    ]
+                },
+                {
+                    name: '时间切片',
+                    issues: '',
+                    over: false,
+                    complete: false,
+                    todo: '',
+                    refer: [
+                        'https://segmentfault.com/a/1190000013524698',
+                        'https://mp.weixin.qq.com/s?__biz=MzA5NzkwNDk3MQ==&mid=2650589786&idx=1&sn=bf6182de3c40fe9f8912754ae209d817&chksm=8891da7ebfe653681350158cd774eaf2859158924f307516f5eae1b35591e535fe49a6185f21&scene=0&xtrack=1#rd'
                     ]
                 },
                 {
