@@ -34,6 +34,7 @@ module.exports = {
         '变量提升，函数声明变函数表达式',
         '现金券最优选中 动态规划 背包问题',
         '函数组合，函数柯里化',
+
         '拖拽滑动如何实现，禁用浏览器默认行为解决phone中后退问题是否可行？',
         'cookie 和 session https://juejin.im/post/5cd9037ee51d456e5c5babca?utm_source=gold_browser_extension',
         '深度好文，https://juejin.im/post/5cb0315f518825215e61ec14?utm_source=gold_browser_extension',
@@ -55,6 +56,14 @@ module.exports = {
         '如何发布可在浏览器和节点中使用的包  https://medium.freecodecamp.org/how-to-publish-packages-that-can-be-used-in-browsers-and-node-c51274dca77c',
         '反柯里化',
         {
+            原型继承: [
+                'https://juejin.im/post/5cee3c69e51d45108b2cae03?utm_source=gold_browser_extension',
+                'ES6 的继承'
+            ],
+            偏函数: [
+                '函数式编程书-部分应用',
+                '犀牛书-不完全函数',
+            ],
             veryGood: [
                 'https://medium.com/@vvkchandra/essential-javascript-mastering-immediately-invoked-function-expressions-67791338ddc6'
             ],
@@ -332,18 +341,18 @@ module.exports = {
     ],
     banQuan: '除非注明，否则均为原创文章，转载必须以链接形式标明本文链接',
     phone: [
-        17128240242,
-        16739465448,
-        16739465447,
-        17128240214,
-        17128240224,
-        17128240042,
-        17128240174,
-        17128240043,
-        17128240164,
-        17128240154,
-        17128240034,
-        17157721545,
+        17128240242, // 37abc浏览器
+        16739465448, // 360安全浏览器
+        16739465447, // 360极速浏览器
+        17128240214, // Chromium
+        17128240224, // Mozilla Firefox
+        17128240042, // Opera 浏览器
+        17128240174, // QQ
+        17128240043, // UC
+        17128240164, // 傲游5
+        17128240154, // 搜狗高速浏览器
+        17128240034, // phone qq
+        17157721545, // phone wc
         17128240241,
         17128240148,
         16739465440,
