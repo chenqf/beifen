@@ -247,7 +247,7 @@ module.exports = {
                     name: '时间切片',
                     issues: '',
                     over: false,
-                    complete: true,
+                    complete: false,
                     todo: '',
                     refer: [
                         'https://segmentfault.com/a/1190000013524698',
@@ -258,7 +258,7 @@ module.exports = {
                     name: '单页路由解析与实现',
                     issues: '',
                     over: false,
-                    complete: true,
+                    complete: false,
                     todo: '',
                     refer: [
                         'https://zhuanlan.zhihu.com/p/31876075',

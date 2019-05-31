@@ -21,8 +21,6 @@
 8. [函数记忆](https://github.com/chenqf/blog/blob/master/articles/javascript进阶/函数记忆/README.md)
 9. [数组扁平化](https://github.com/chenqf/blog/blob/master/articles/javascript进阶/数组扁平化/README.md)
 10. [数组乱序](https://github.com/chenqf/blog/blob/master/articles/javascript进阶/数组乱序/README.md)
-11. [时间切片](https://github.com/chenqf/blog/blob/master/articles/javascript进阶/时间切片/README.md)
-12. [单页路由解析与实现](https://github.com/chenqf/blog/blob/master/articles/javascript进阶/单页路由解析与实现/README.md)
 
 ## 浏览器
 
