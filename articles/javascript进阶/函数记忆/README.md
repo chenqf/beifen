@@ -4,8 +4,21 @@
 
 函数可以将之前的操作结果缓存在某个对象中，当下次调用时，如果遇到相同的参数，就直接返回缓存中的数据，从而避免无谓的重复运算。这种优化被称作记忆。
 
-记忆只是一种编程技巧，本质上是牺牲算法的空间复杂度以换取更优的时间复杂度，在客户端 Javascript 中代码的执行时间复杂度往往成为瓶颈，因此在大多数情况下，这种牺牲空间换取时间的做法是非常可取的。
+举个例子：
 
+```javascript
+function add(a, b) {
+    return a + b;
+}
+
+// 假设 memoize 可以实现函数记忆
+var memoizedAdd = memoize(add);
+
+memoizedAdd(1, 2) // 3
+memoizedAdd(1, 2) // 相同的参数，第二次调用时，从缓存中取出数据，而非重新计算一次
+```
+
+记忆只是一种编程技巧，本质上是牺牲算法的空间复杂度以换取更优的时间复杂度，在客户端 Javascript 中代码的执行时间复杂度往往成为瓶颈，因此在大多数情况下，这种牺牲空间换取时间的做法是非常可取的。
 
 ## 适用场景
 
@@ -42,7 +55,6 @@ console.log('总次数:',count)
 
 上面的代码本身是没什么问题的，但它做了很多无谓的工作。我们在 for 循环中共调用了 10 次 fibonacci 函数，但实际上 fibonacci 函数被调用了 276 次，它自身调用了 266 次去计算可能已被刚刚计算过的值。如果我们让该函数具备记忆功能，就可以显著地减少运算量。
 
-
 ## 实现
 
 接下来我们来思考如何实现一个通用函数( memoize )来帮助我们构造带记忆功能的函数。
@@ -66,7 +78,7 @@ let memoize = function(fn){
 
 上面的代码，我们将函数的参数转换为JSON字符串后用作缓存的 key，这以基本能够保证每次函数调用可通过参数获取精确的 Key 值。
 
-但对于一些特殊的参数通过 JSON.string 转换后，并不能获得真实的 key 值，比如 undefined、NaN、Infinity、正则对象、函数等。
+但对于一些特殊的参数通过 JSON.stringify 转换后，并不能获得真实的 key 值，比如 undefined、NaN、Infinity、正则对象、函数等。
 
 考虑给 memoize 函数增加一个函数类型的参数 resolver ，用于将缓存的 key 的生成规则转交给用户。
 
@@ -88,7 +100,6 @@ let memoize = function(fn,resolver){
 ## 验证
 
 依然使用 Fibonacci 的例子来验证一下我们完成的 memoize 函数。
-
 
 ### 函数调用次数是否减少
 
@@ -133,7 +144,6 @@ console.timeEnd('no memoize time');
 // no memoize time: 10.919ms
 ```
 
-
 使用 memoize 时，n 为 30 时 fibonacci 函数执行时间如下:
 
 ```javascript
@@ -148,7 +158,6 @@ console.timeEnd('memoize time');
 
 二者时间比较，我们可以很清晰的看到使用 memoize 函数后，函数的调用时间大幅降低。
 
-
 ## 总结
 
 1. 函数记忆：
@@ -159,7 +168,6 @@ console.timeEnd('memoize time');
     + 函数可能反复计算相同的数据时
 4. 如何实现:
     + 使用闭包保存住曾经计算过的参数和处理结果
-
 
 + [博客首页](https://github.com/chenqf/blog)
 + [javascript 基础](https://github.com/chenqf/blog/blob/master/articles/javascript基础)
