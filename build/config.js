@@ -128,7 +128,7 @@ module.exports = {
                     name: '数组的交集并集差集',
                     issues: '',
                     over: true,
-                    complete: false
+                    complete: true
                 },
                 {
                     name: '如何中断forEach循环',
@@ -140,7 +140,7 @@ module.exports = {
                     name: '立即调用的函数表达式',
                     issues: '',
                     over: true,
-                    complete: false,
+                    complete: true,
                     todo: '重新校验一下语句是否通顺',
                     refer: [
                         'https://medium.com/@vvkchandra/essential-javascript-mastering-immediately-invoked-function-expressions-67791338ddc6'
@@ -167,7 +167,7 @@ module.exports = {
                     name: 'JS中的栈内存和堆内存',
                     issues: '',
                     over: true,
-                    complete: false,
+                    complete: true,
                     refer: [
                         'https://juejin.im/post/5c7157f3e51d4526643fac46',
                         'https://github.com/yygmind/blog/issues/14',
@@ -206,7 +206,7 @@ module.exports = {
                     name: '函数柯里化',
                     issues: '',
                     over: true,
-                    complete: false,
+                    complete: true,
                     refer: [
                         'https://blog.csdn.net/woqutechteam/article/details/80323065',
                         'https://yangbo5207.github.io/wutongluo/ji-chu-jin-jie-xi-lie/ba-3001-ke-li-hua.html',
@@ -219,7 +219,7 @@ module.exports = {
                     name: '函数记忆',
                     issues: '',
                     over: true,
-                    complete: false,
+                    complete: true,
                     refer: [
                         'javascript权威指南-第八章函数-8.8.函数式编程',
                         'javascript精粹-第四章函数-记忆'
@@ -235,7 +235,7 @@ module.exports = {
                     name: '数组乱序',
                     issues: '',
                     over: true,
-                    complete: false,
+                    complete: true,
                     todo: '关于插入排序，还需要深入的说明',
                     refer: [
                         'https://github.com/HOUCe/shuffle-array',
@@ -247,7 +247,7 @@ module.exports = {
                     name: '时间切片',
                     issues: '',
                     over: false,
-                    complete: false,
+                    complete: true,
                     todo: '',
                     refer: [
                         'https://segmentfault.com/a/1190000013524698',
@@ -258,7 +258,7 @@ module.exports = {
                     name: '单页路由解析与实现',
                     issues: '',
                     over: false,
-                    complete: false,
+                    complete: true,
                     todo: '',
                     refer: [
                         'https://zhuanlan.zhihu.com/p/31876075',
@@ -279,7 +279,7 @@ module.exports = {
                     nickName: '一次搞懂Event Loop',
                     issues: '',
                     over: true,
-                    complete: false,
+                    complete: true,
                 },
                 {
                     name: '如何处理图片加载失败',
@@ -296,7 +296,7 @@ module.exports = {
                 name: '如何渲染几万条数据并不卡住界面',
                 issues: '',
                 over: true,
-                complete: false,
+                complete: true,
             }]
         },
         {
@@ -306,7 +306,7 @@ module.exports = {
                 name: '彻底弄懂HTTP缓存机制及原理',
                 issues: '',
                 over: true,
-                complete: false,
+                complete: true,
             }]
         },
         // {
@@ -326,7 +326,7 @@ module.exports = {
                 name: 'Async、Await陷阱',
                 issues: '',
                 over: true,
-                complete: false,
+                complete: true,
             }]
         },
     ],

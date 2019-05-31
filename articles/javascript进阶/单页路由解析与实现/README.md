@@ -40,13 +40,10 @@ SPA 的出现大大提高了 WEB 应用的交互体验。在与用户的交互�
 ## history 模式
 
 
-
-
-
-
-
-
-
-
-
-
++ [博客首页](https://github.com/chenqf/blog)
++ [javascript 基础](https://github.com/chenqf/blog/blob/master/articles/javascript基础)
++ [javascript 进阶](https://github.com/chenqf/blog/blob/master/articles/javascript进阶)
++ [浏览器](https://github.com/chenqf/blog/blob/master/articles/浏览器)
++ [前端性能](https://github.com/chenqf/blog/blob/master/articles/前端性能)
++ [网络](https://github.com/chenqf/blog/blob/master/articles/网络)
++ [技术随笔](https://github.com/chenqf/blog/blob/master/articles/技术随笔)
