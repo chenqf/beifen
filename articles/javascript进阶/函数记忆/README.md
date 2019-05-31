@@ -12,10 +12,10 @@ function add(a, b) {
 }
 
 // 假设 memoize 可以实现函数记忆
-var memoizedAdd = memoize(add);
+let memoizeAdd = memoize(add);
 
-memoizedAdd(1, 2) // 3
-memoizedAdd(1, 2) // 相同的参数，第二次调用时，从缓存中取出数据，而非重新计算一次
+memoizeAdd(1, 2) // 3
+memoizeAdd(1, 2) // 相同的参数，第二次调用时，从缓存中取出数据，而非重新计算一次
 ```
 
 记忆只是一种编程技巧，本质上是牺牲算法的空间复杂度以换取更优的时间复杂度，在客户端 Javascript 中代码的执行时间复杂度往往成为瓶颈，因此在大多数情况下，这种牺牲空间换取时间的做法是非常可取的。
