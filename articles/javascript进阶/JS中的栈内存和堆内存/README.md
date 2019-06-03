@@ -156,25 +156,10 @@ function A() {
 现在的 JS 引擎可以通过逃逸分析辨别出哪些变量需要存储在堆上，哪些需要存储在栈上。
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
++ [博客首页](https://github.com/chenqf/blog)
++ [javascript 基础](https://github.com/chenqf/blog/blob/master/articles/javascript基础)
++ [javascript 进阶](https://github.com/chenqf/blog/blob/master/articles/javascript进阶)
++ [浏览器](https://github.com/chenqf/blog/blob/master/articles/浏览器)
++ [前端性能](https://github.com/chenqf/blog/blob/master/articles/前端性能)
++ [网络](https://github.com/chenqf/blog/blob/master/articles/网络)
++ [技术随笔](https://github.com/chenqf/blog/blob/master/articles/技术随笔)
