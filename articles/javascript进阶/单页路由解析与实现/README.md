@@ -25,6 +25,7 @@ SPA 是 single page web application 的简称，译为单页Web应用。
 SPA 的出现大大提高了 WEB 应用的交互体验。在与用户的交互过程中，不再需要重新刷新页面，获取数据也是通过 Ajax 异步获取，页面显示变的更加流畅。
 
 但由于 SPA 中用户的交互是通过 JS 改变 HTML 内容来实现的，页面本身的 url 并没有变化，这导致了两个问题：
+
 1. SPA 无法记住用户的操作记录，无论是刷新、前进还是后退，都无法展示用户真实的期望内容。
 2. SPA 中虽然由于业务的不同会有多种页面展示形式，但只有一个 url，对 SEO 不友好，不方便搜索引擎进行收录。
 
@@ -35,15 +36,48 @@ SPA 的出现大大提高了 WEB 应用的交互体验。在与用户的交互�
 
 简单的说，就是在保证只有一个 HTML 页面，且与用户交互时不刷新和跳转页面的同时，为 SPA 中的每种页面展示形式匹配一个特殊的 url。在刷新、前进、后退和SEO时均通过这个特殊的 url 来实现。
 
+为实现这一目标，我们需要做到以下二点：
+
+1. 改变 url 且不让浏览器像服务器发送请求。
+2. 可以监听到 url 的变化
+
+接下来要介绍的 hash 模式和 history 模式，就是实现了上面的功能
+
 ## hash 模式
+
+这里的 hash 就是指 url 后的 # 号以及后面的字符。比如说 "http://www.baidu.com/#hashhash" ，其中 "#hashhash" 就是我们期望的 hash 值。
+
+由于 hash 值的变化不会导致浏览器像服务器发送请求，而且 hash 的改变会触发 hashchange 事件，浏览器的前进后退也能对其进行控制，所以在 H5 的 history 模式出现之前，基本都是使用 hash 模式来实现前端路由。
+
+**使用到的API:**
+
+```javascript
+window.location.hash = 'hash字符串'; // 用于设置 hash 值
+
+let hash = window.location.hash; // 获取当前 hash 值
+
+// 监听hash变化，点击浏览器的前进后退会触发
+window.addEventListener('hashchange', function(event){ 
+    let newURL = event.newURL; // hash 改变后的新 url
+    let oldURL = event.oldURL; // hash 改变前的旧 url
+})
+```
+
+**接下来我们来实现一个路由对象**
+
+
+
+
+
+
+
+
 
 ## history 模式
 
+已经有 hash 模式了，而且 hash 能兼容到IE8， history 只能兼容到 IE10，为什么还要搞个 history 呢？
+首先，hash 本来是拿来做页面定位的，如果拿来做路由的话，原来的锚点功能就不能用了。其次，hash 的传参是基于 url 的，如果要传递复杂的数据，会有体积的限制，而 history 模式不仅可以在url里放参数，还可以将数据存放在一个特定的对象中。
 
-+ [博客首页](https://github.com/chenqf/blog)
-+ [javascript 基础](https://github.com/chenqf/blog/blob/master/articles/javascript基础)
-+ [javascript 进阶](https://github.com/chenqf/blog/blob/master/articles/javascript进阶)
-+ [浏览器](https://github.com/chenqf/blog/blob/master/articles/浏览器)
-+ [前端性能](https://github.com/chenqf/blog/blob/master/articles/前端性能)
-+ [网络](https://github.com/chenqf/blog/blob/master/articles/网络)
-+ [技术随笔](https://github.com/chenqf/blog/blob/master/articles/技术随笔)
+
+
+
