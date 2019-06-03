@@ -40,6 +40,7 @@ module.exports = {
         '真机调试：https://juejin.im/post/5c947f5251882568396a6773?utm_source=gold_browser_extension',
         '如何发布可在浏览器和节点中使用的包  https://medium.freecodecamp.org/how-to-publish-packages-that-can-be-used-in-browsers-and-node-c51274dca77c',
         '反柯里化',
+        '代理 https://juejin.im/post/5a6fd23ff265da3e4a6fc189',
         {
             veryGood:[
                 'https://medium.com/@vvkchandra/essential-javascript-mastering-immediately-invoked-function-expressions-67791338ddc6'
@@ -72,12 +73,19 @@ module.exports = {
             react:[
                 'React Hooks https://github.com/brickspert/blog/issues/26',
                 '源码解析：https://juejin.im/post/5abb22925188255c4c1050e0',
+                'https://juejin.im/post/5bed21546fb9a049e93c4bac',
                 'https://juejin.im/post/5cc53af6f265da038e54b2e6?utm_source=gold_browser_extension'
             ],
             css:[
                 'https://medium.freecodecamp.org/empty-and-blank-53b9e96151cd',
                 '0.5px https://juejin.im/post/5ab65f40f265da2384408a95',
                 'https://www.zcfy.cc/article/stunning-hover-effects-with-css-variables'
+            ],
+            vue:[
+                'https://juejin.im/post/5a5eb5b6f265da3e591e4d3d',
+                'https://juejin.im/post/5a94baa56fb9a063435f01a9',
+                'https://juejin.im/post/5b98c4da6fb9a05d353c5fd7',
+                ''
             ],
             router:[
                 'https://zhuanlan.zhihu.com/p/31876075',
