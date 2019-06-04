@@ -274,10 +274,61 @@ router.registerError((e)=>container.innerHTML = '页面异常，错误消息：<
 
 ## history 模式
 
+在 HTML5 之前，浏览器就已经有了 history 对象。但在早期的 history 中只能用于多页面的跳转：
+
+```javascript
+history.go(-1);       // 后退一页
+history.go(2);        // 前进两页
+history.forward();     // 前进一页
+history.back();      // 后退一页
+```
+
+在 HTML5 的规范中，history 新增了以下几个 API：
+
+```javascript
+history.pushState();         // 添加新的状态到历史状态栈
+history.replaceState();      // 用新的状态代替当前状态
+history.state                // 返回当前状态对象
+```
+
+来自[MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/History_API)的解释：
+
+> HTML5引入了 history.pushState() 和 history.replaceState() 方法，它们分别可以添加和修改历史记录条目。这些方法通常与window.onpopstate 配合使用。
+
+history.pushState() 和 history.replaceState() 均接收三个参数（state, title, url）
+
+参数说明如下：
+
+1. state：合法的 Javascript 对象，可以用在 popstate 事件中
+2. title：现在大多浏览器忽略这个参数，可以直接用 null 代替
+3. url：任意有效的 URL，用于更新浏览器的地址栏
+
+history.pushState() 和 history.replaceState() 的区别在于：
+
++. history.pushState() 在保留现有历史记录的同时，将 url 加入到历史记录中。
++. history.replaceState() 会将历史记录中的当前页面历史替换为 url。
+
+由于 history.pushState() 和 history.replaceState() 可以改变 url 同时，不会刷新页面，所以在 HTML5 中的 histroy 具备了实现前端路由的能力。
+
+回想我们之前完成的 hash 模式，当 hash 变化时，可以通过 hashchange 进行监听。
+而 history 的改变并不会触发任何事件，所以我们无法直接监听 history 的改变而做出相应的改变。
+
+所以，我们需要换个思路，我们可以罗列出所有可能触发 history 改变的情况，并且将这些方式一一进行拦截，变相地监听 history 的改变。
+
+对于单页应用的 history 模式而言，url 的改变只能由下面四种方式引起：
+
+1. 点击浏览器的前进或后退按钮
+2. 点击 a 标签
+3. 在 JS 代码中触发 history.pushState 函数
+4. 在 JS 代码中触发 history.replaceState 函数
+
+**思路已经有了，接下来我们来实现一个路由对象**
+
+## hash、history 如何抉择 
+
 已经有 hash 模式了，而且 hash 能兼容到IE8， history 只能兼容到 IE10，为什么还要搞个 history 呢？
 首先，hash 本来是拿来做页面定位的，如果拿来做路由的话，原来的锚点功能就不能用了。其次，hash 的传参是基于 url 的，如果要传递复杂的数据，会有体积的限制，而 history 模式不仅可以在url里放参数，还可以将数据存放在一个特定的对象中。
 
-## hash、history 如何抉择 
 
 hash 锚点功能失效
 hash 兼容性更好，兼容到ie8
@@ -288,19 +339,6 @@ history 兼容性不好，只能高版本浏览器
 history 看起来更美观
 
 
-
-## history 模式
-
-
-
-这里的 hash 就是指 url 后的 # 号以及后面的字符。比如说 "http://www.baidu.com/#hashhash" ，其中 "#hashhash" 就是我们期望的 hash 值。
-
-由于 hash 值的变化不会导致浏览器像服务器发送请求，而且 hash 的改变会触发 hashchange 事件，浏览器的前进后退也能对其进行控制，所以在 H5 的 history 模式出现之前，基本都是使用 hash 模式来实现前端路由。
-
-
-
-已经有 hash 模式了，而且 hash 能兼容到IE8， history 只能兼容到 IE10，为什么还要搞个 history 呢？
-首先，hash 本来是拿来做页面定位的，如果拿来做路由的话，原来的锚点功能就不能用了。其次，hash 的传参是基于 url 的，如果要传递复杂的数据，会有体积的限制，而 history 模式不仅可以在url里放参数，还可以将数据存放在一个特定的对象中。
 
 
 
