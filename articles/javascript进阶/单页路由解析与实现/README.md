@@ -7,7 +7,9 @@
 
 每个现代前端框架都有与之对应的路由实现，例如 vue-router、react-router 等。
 
-本文将深入介绍前端路由的实现方式以及其原理。
+本文并不涉及 vue-router、react-router 的实现方式，而是介绍前端路由的基本实现原理及实现方式。
+
+vue-router、react-router 的源码解析，会在以后的文章中逐步推出。
 
 
 ## 什么是 SPA
@@ -66,7 +68,7 @@ window.addEventListener('hashchange', function(event){
 **接下来我们来实现一个路由对象**
 
 
-1. 创建一个路由对象, 实现 register 函数用于注册每个 hash 值对应的回调函数
+创建一个路由对象, 实现 register 方法用于注册每个 hash 值对应的回调函数
 
 ```javascript
 class HashRouter{
@@ -81,7 +83,7 @@ class HashRouter{
 }
 ```
 
-2. 不存在hash值时，认为是首页，所以实现 registerIndex 函数用于注册首页时的回调函数
+不存在hash值时，认为是首页，所以实现 registerIndex 方法用于注册首页时的回调函数
 
 ```javascript
 class HashRouter{
@@ -100,7 +102,7 @@ class HashRouter{
 }
 ```
 
-2. 通过 hashchange 监听 hash 变化，并定义 hash 变化时的回调函数
+通过 hashchange 监听 hash 变化，并定义 hash 变化时的回调函数
 
 ```javascript
 class HashRouter{
@@ -118,8 +120,8 @@ class HashRouter{
         this.routers['index'] = callback;
     }
     //用于调用不同页面的回调函数
-    load(e){
-        let hash = location.hash.slice(1);,
+    load(){
+        let hash = location.hash.slice(1),
             handler;
         //没有hash 默认为首页
         if(!hash){
@@ -135,18 +137,167 @@ class HashRouter{
 
 我们做一个例子来演示一下我们刚刚完成的 HashRouter
 
+```html
+<body>
+    <div id="nav">
+        <a href="#/page1">page1</a>
+        <a href="#/page2">page2</a>
+        <a href="#/page3">page3</a>
+    </div>
+    <div id="container"></div>
+</body>
+```
 
+```javascript
+let router = new HashRouter();
+let container = document.getElementById('container');
 
+//注册首页回调函数
+router.registerIndex(()=> container.innerHTML = '我是首页');
 
+//注册其他页面回到函数
+router.register('/page1',()=> container.innerHTML = '我是page1');
+router.register('/page2',()=> container.innerHTML = '我是page2');
+router.register('/page3',()=> container.innerHTML = '我是page3');
 
+//加载页面
+router.load();
+```
 
+我们来看一下效果：
 
+![avatar](./1.gif)
 
+基本的路由功能我们已经实现了，但依然有点小问题
 
+1. 页面切换后，新的 hash 值没有在路由中注册  
+2. hash 值对应的回调函数在执行过程中抛出异常
+
+对应的解决办法如下：
+
+1. 我们追加 registerNotFound 方法，用于注册 hash 值为找到时的默认回调函数；
+2. 修改 load 方法，追加 try/catch 用于捕获异常，追加 registerError 方法，用于处理异常
+
+代码修改后：
+
+```javascript
+class HashRouter{
+    constructor(){
+        //用于存储不同hash值对应的回调函数
+        this.routers = {};
+        window.addEventListener('hashchange',this.load.bind(this),false)
+    }
+    //用于注册每个页面
+    register(url,callback = function(){}){
+        this.routers[url] = callback;
+    }
+    //用于注册首页
+    registerIndex(callback = ()=>{}){
+        this.routers['index'] = callback;
+    }
+    registerNotFound(callback = ()=>{}){
+        this.routers['404'] = callback;
+    }
+    //用于处理异常情况
+    registerError(callback = ()=>{}){
+        this.routers['error'] = callback;
+    }
+    //用于调用不同页面的回调函数
+    load(){
+        let hash = location.hash.slice(1),
+            handler;
+        //没有hash 默认为首页
+        if(!hash){
+            handler = this.routers.index;
+        }
+        //未找到对应hash值
+        else if(!this.routers.hasOwnProperty(hash)){
+            handler = this.routers['404'] || function(){};
+        }
+        else{
+            handler = this.routers[hash]
+        }
+        //执行注册的回调函数
+        try{
+            handler();
+        }catch(e){
+            console.error(e);
+            (this.routers['error'] || function(){})(e);
+        }
+    }
+}
+```
+
+再来一个例子，演示一下：
+
+```html
+<body>
+    <div id="nav">
+        <a href="#/page1">page1</a>
+        <a href="#/page2">page2</a>
+        <a href="#/page3">page3</a>
+        <a href="#/page4">page4</a>
+        <a href="#/page5">page5</a>
+    </div>
+    <div id="container"></div>
+</body>
+```
+
+```javascript
+let router = new HashRouter();
+let container = document.getElementById('container');
+
+//注册首页回调函数
+router.registerIndex(()=> container.innerHTML = '我是首页');
+
+//注册其他页面回到函数
+router.register('/page1',()=> container.innerHTML = '我是page1');
+router.register('/page2',()=> container.innerHTML = '我是page2');
+router.register('/page3',()=> container.innerHTML = '我是page3');
+router.register('/page4',()=> {throw new Error('抛出一个异常')});
+
+//加载页面
+router.load();
+//注册未找到对应hash值时的回调
+router.registerNotFound(()=>container.innerHTML = '页面未找到');
+//注册出现异常时的回调
+router.registerError((e)=>container.innerHTML = '页面异常，错误消息：<br>' + e.message);
+```
+
+我们来看一下效果：
+
+![avatar](./2.gif)
+
+至此，基于 hash 方式实现的前端路由，我们已经将基本雏形实现完成了，当然，它与 vue-router、react-router 相比还太过简陋，但它们的内部实现原理和我们现在的实现原理是相同的。
+
+接下来我们来介绍前端路由的另一种模式：history 模式。
+
+## history 模式
+
+已经有 hash 模式了，而且 hash 能兼容到IE8， history 只能兼容到 IE10，为什么还要搞个 history 呢？
+首先，hash 本来是拿来做页面定位的，如果拿来做路由的话，原来的锚点功能就不能用了。其次，hash 的传参是基于 url 的，如果要传递复杂的数据，会有体积的限制，而 history 模式不仅可以在url里放参数，还可以将数据存放在一个特定的对象中。
+
+## hash、history 如何抉择 
+
+hash 锚点功能失效
+hash 兼容性更好，兼容到ie8
+hash 看起来更丑
+
+history 需要服务端配合
+history 兼容性不好，只能高版本浏览器
+history 看起来更美观
 
 
 
 ## history 模式
+
+
+
+这里的 hash 就是指 url 后的 # 号以及后面的字符。比如说 "http://www.baidu.com/#hashhash" ，其中 "#hashhash" 就是我们期望的 hash 值。
+
+由于 hash 值的变化不会导致浏览器像服务器发送请求，而且 hash 的改变会触发 hashchange 事件，浏览器的前进后退也能对其进行控制，所以在 H5 的 history 模式出现之前，基本都是使用 hash 模式来实现前端路由。
+
+
 
 已经有 hash 模式了，而且 hash 能兼容到IE8， history 只能兼容到 IE10，为什么还要搞个 history 呢？
 首先，hash 本来是拿来做页面定位的，如果拿来做路由的话，原来的锚点功能就不能用了。其次，hash 的传参是基于 url 的，如果要传递复杂的数据，会有体积的限制，而 history 模式不仅可以在url里放参数，还可以将数据存放在一个特定的对象中。
