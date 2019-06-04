@@ -66,6 +66,79 @@ window.addEventListener('hashchange', function(event){
 **接下来我们来实现一个路由对象**
 
 
+1. 创建一个路由对象, 实现 register 函数用于注册每个 hash 值对应的回调函数
+
+```javascript
+class HashRouter{
+    constructor(){
+        //用于存储不同hash值对应的回调函数
+        this.routers = {};
+    }
+    //用于注册每个页面
+    register(url,callback = function(){}){
+        this.routers[url] = callback;
+    }
+}
+```
+
+2. 不存在hash值时，认为是首页，所以实现 registerIndex 函数用于注册首页时的回调函数
+
+```javascript
+class HashRouter{
+    constructor(){
+        //用于存储不同hash值对应的回调函数
+        this.routers = {};
+    }
+    //用于注册每个页面
+    register(url,callback = ()=>{}){
+        this.routers[url] = callback;
+    }
+    //用于注册首页
+    registerIndex(callback = ()=>{}){
+        this.routers['index'] = callback;
+    }
+}
+```
+
+2. 通过 hashchange 监听 hash 变化，并定义 hash 变化时的回调函数
+
+```javascript
+class HashRouter{
+    constructor(){
+        //用于存储不同hash值对应的回调函数
+        this.routers = {};
+        window.addEventListener('hashchange',this.load.bind(this),false)
+    }
+    //用于注册每个页面
+    register(url,callback = function(){}){
+        this.routers[url] = callback;
+    }
+    //用于注册首页
+    registerIndex(callback = ()=>{}){
+        this.routers['index'] = callback;
+    }
+    //用于调用不同页面的回调函数
+    load(e){
+        let hash = location.hash.slice(1);,
+            handler;
+        //没有hash 默认为首页
+        if(!hash){
+            handler = this.routers.index;
+        }else{
+            handler = this.routers[hash];
+        }
+        //执行注册的回调函数
+        handler();
+    }
+}
+```
+
+我们做一个例子来演示一下我们刚刚完成的 HashRouter
+
+
+
+
+
 
 
 
