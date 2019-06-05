@@ -62,7 +62,7 @@ let hash = window.location.hash; // 获取当前 hash 值
 window.addEventListener('hashchange', function(event){ 
     let newURL = event.newURL; // hash 改变后的新 url
     let oldURL = event.oldURL; // hash 改变前的旧 url
-})
+},false)
 ```
 
 **接下来我们来实现一个路由对象**
@@ -77,8 +77,8 @@ class HashRouter{
         this.routers = {};
     }
     //用于注册每个页面
-    register(url,callback = function(){}){
-        this.routers[url] = callback;
+    register(hash,callback = function(){}){
+        this.routers[hash] = callback;
     }
 }
 ```
@@ -92,11 +92,11 @@ class HashRouter{
         this.routers = {};
     }
     //用于注册每个页面
-    register(url,callback = ()=>{}){
-        this.routers[url] = callback;
+    register(hash,callback = function(){}){
+        this.routers[hash] = callback;
     }
     //用于注册首页
-    registerIndex(callback = ()=>{}){
+    registerIndex(callback = function(){}){
         this.routers['index'] = callback;
     }
 }
@@ -112,11 +112,11 @@ class HashRouter{
         window.addEventListener('hashchange',this.load.bind(this),false)
     }
     //用于注册每个页面
-    register(url,callback = function(){}){
-        this.routers[url] = callback;
+    register(hash,callback = function(){}){
+        this.routers[hash] = callback;
     }
     //用于注册首页
-    registerIndex(callback = ()=>{}){
+    registerIndex(callback = function(){}){
         this.routers['index'] = callback;
     }
     //用于调用不同页面的回调函数
@@ -130,7 +130,7 @@ class HashRouter{
             handler = this.routers[hash];
         }
         //执行注册的回调函数
-        handler();
+        handler.call(this);
     }
 }
 ```
@@ -164,7 +164,7 @@ router.register('/page3',()=> container.innerHTML = '我是page3');
 router.load();
 ```
 
-我们来看一下效果：
+来看一下效果：
 
 ![avatar](./1.gif)
 
@@ -188,18 +188,19 @@ class HashRouter{
         window.addEventListener('hashchange',this.load.bind(this),false)
     }
     //用于注册每个页面
-    register(url,callback = function(){}){
-        this.routers[url] = callback;
+    register(hash,callback = function(){}){
+        this.routers[hash] = callback;
     }
     //用于注册首页
-    registerIndex(callback = ()=>{}){
+    registerIndex(callback = function(){}){
         this.routers['index'] = callback;
     }
-    registerNotFound(callback = ()=>{}){
+    //用于处理页面未找到的情况
+    registerNotFound(callback = function(){}){
         this.routers['404'] = callback;
     }
     //用于处理异常情况
-    registerError(callback = ()=>{}){
+    registerError(callback = function(){}){
         this.routers['error'] = callback;
     }
     //用于调用不同页面的回调函数
@@ -219,10 +220,10 @@ class HashRouter{
         }
         //执行注册的回调函数
         try{
-            handler();
+            handler.apply(this);
         }catch(e){
             console.error(e);
-            (this.routers['error'] || function(){})(e);
+            (this.routers['error'] || function(){}).call(this,e);
         }
     }
 }
@@ -264,7 +265,7 @@ router.registerNotFound(()=>container.innerHTML = '页面未找到');
 router.registerError((e)=>container.innerHTML = '页面异常，错误消息：<br>' + e.message);
 ```
 
-我们来看一下效果：
+来看一下效果：
 
 ![avatar](./2.gif)
 
@@ -324,20 +325,254 @@ history.pushState() 和 history.replaceState() 的区别在于：
 
 **思路已经有了，接下来我们来实现一个路由对象**
 
+1. 创建一个路由对象, 实现 register 方法用于注册每个 location.pathname 值对应的回调函数
+2. 当 location.pathname === '/' 时，认为是首页，所以实现 registerIndex 方法用于注册首页时的回调函数
+3. 解决 location.path 没有对应的匹配，增加方法 registerNotFound 用于注册默认回调函数
+4. 解决注册的回到函数执行时出现异常，增加方法 registerError 用于处理异常情况
+
+```javascript
+class HistoryRouter{
+    constructor(){
+        //用于存储不同path值对应的回调函数
+        this.routers = {};
+    }
+    //用于注册每个页面
+    register(path,callback = function(){}){
+        this.routers[path] = callback;
+    }
+    //用于注册首页
+    registerIndex(callback = function(){}){
+        this.routers['/'] = callback;
+    }
+    //用于处理页面未找到的情况
+    registerNotFound(callback = function(){}){
+        this.routers['404'] = callback;
+    }
+    //用于处理异常情况
+    registerError(callback = function(){}){
+        this.routers['error'] = callback;
+    }
+}
+```
+
+5. 定义 assign 方法，用于通过 JS 触发 history.pushState 函数
+6. 定义 replace 方法，用于通过 JS 触发 history.replaceState 函数
+
+```javascript
+class HistoryRouter{
+    constructor(){
+        //用于存储不同path值对应的回调函数
+        this.routers = {};
+    }
+    //用于注册每个页面
+    register(path,callback = function(){}){
+        this.routers[path] = callback;
+    }
+    //用于注册首页
+    registerIndex(callback = function(){}){
+        this.routers['/'] = callback;
+    }
+    //用于处理页面未找到的情况
+    registerNotFound(callback = function(){}){
+        this.routers['404'] = callback;
+    }
+    //用于处理异常情况
+    registerError(callback = function(){}){
+        this.routers['error'] = callback;
+    }
+    //跳转到path
+    assign(path){
+        history.pushState({path},null,path);
+        this.dealPathHandler(path)
+    }
+    //替换为path
+    replace(path){
+        history.replaceState({path},null,path);
+        this.dealPathHandler(path)
+    }
+    //通用处理 path 调用回调函数
+    dealPathHandler(path){
+        let handler;
+        //没有对应path
+        if(!this.routers.hasOwnProperty(path)){
+            handler = this.routers['404'] || function(){};
+        }
+        //有对应path
+        else{
+            handler = this.routers[path];
+        }
+        try{
+            handler.call(this)
+        }catch(e){
+            console.error(e);
+            (this.routers['error'] || function(){}).call(this,e);
+        }
+    }
+}
+```
+
+7. 监听 popstate 用于处理前进后退时调用对应的回调函数
+8. 全局阻止A链接的默认事件，获取A链接的href属性，并调用 history.pushState 方法
+9. 定义 load 方法，用于首次进入页面时 根据 location.pathname 调用对应的回调函数
+
+最终代码如下：
+
+```javascript
+class HistoryRouter{
+    constructor(){
+        //用于存储不同path值对应的回调函数
+        this.routers = {};
+        this.listenPopState();
+        this.listenLink();
+    }
+    //监听popstate
+    listenPopState(){
+        window.addEventListener('popstate',(e)=>{
+            let state = e.state || {},
+                path = state.path || '';
+            this.dealPathHandler(path)
+        },false)
+    }
+    //全局监听A链接
+    listenLink(){
+        window.addEventListener('click',(e)=>{
+            let dom = e.target;
+            if(dom.tagName.toUpperCase() === 'A' && dom.getAttribute('href')){
+                e.preventDefault()
+                this.assign(dom.getAttribute('href'));
+            }
+        },false)
+    }
+    //用于首次进入页面时调用
+    load(){
+        let path = location.pathname;
+        this.dealPathHandler(path)
+    }
+    //用于注册每个页面
+    register(path,callback = function(){}){
+        this.routers[path] = callback;
+    }
+    //用于注册首页
+    registerIndex(callback = function(){}){
+        this.routers['/'] = callback;
+    }
+    //用于处理页面未找到的情况
+    registerNotFound(callback = function(){}){
+        this.routers['404'] = callback;
+    }
+    //用于处理异常情况
+    registerError(callback = function(){}){
+        this.routers['error'] = callback;
+    }
+    //跳转到path
+    assign(path){
+        history.pushState({path},null,path);
+        this.dealPathHandler(path)
+    }
+    //替换为path
+    replace(path){
+        history.replaceState({path},null,path);
+        this.dealPathHandler(path)
+    }
+    //通用处理 path 调用回调函数
+    dealPathHandler(path){
+        let handler;
+        //没有对应path
+        if(!this.routers.hasOwnProperty(path)){
+            handler = this.routers['404'] || function(){};
+        }
+        //有对应path
+        else{
+            handler = this.routers[path];
+        }
+        try{
+            handler.call(this)
+        }catch(e){
+            console.error(e);
+            (this.routers['error'] || function(){}).call(this,e);
+        }
+    }
+}
+```
+
+再做一个例子来演示一下我们刚刚完成的 HistoryRouter
+
+```html
+<body>
+    <div id="nav">
+        <a href="/page1">page1</a>
+        <a href="/page2">page2</a>
+        <a href="/page3">page3</a>
+        <a href="/page4">page4</a>
+        <a href="/page5">page5</a>
+        <button id="btn">page2</button>
+    </div>
+    <div id="container">
+
+    </div>
+</body>
+```
+
+```javascript
+let router = new HistoryRouter();
+let container = document.getElementById('container');
+
+//注册首页回调函数
+router.registerIndex(() => container.innerHTML = '我是首页');
+
+//注册其他页面回到函数
+router.register('/page1', () => container.innerHTML = '我是page1');
+router.register('/page2', () => container.innerHTML = '我是page2');
+router.register('/page3', () => container.innerHTML = '我是page3');
+router.register('/page4', () => {
+    throw new Error('抛出一个异常')
+});
+
+document.getElementById('btn').onclick = () => router.assign('/page2')
+
+
+//注册未找到对应path值时的回调
+router.registerNotFound(() => container.innerHTML = '页面未找到');
+//注册出现异常时的回调
+router.registerError((e) => container.innerHTML = '页面异常，错误消息：<br>' + e.message);
+//加载页面
+router.load();
+```
+
+来看一下效果：
+
+![avatar](./3.gif)
+
+至此，基于 history 方式实现的前端路由，我们已经将基本雏形实现完成了。
+
+但需要注意的是，history 在修改 url 后，虽然页面并不会刷新，但我们在手动刷新，或通过 url 直接进入应用的时候，
+服务端是无法识别这个 url 的。因为我们是单页应用，只有一个 html 文件，服务端在处理其他路径的 url 的时候，就会出现404的情况。
+所以，如果要应用 history 模式，需要在服务端增加一个覆盖所有情况的候选资源：如果 URL 匹配不到任何静态资源，则应该返回单页应用的 html 文件。
+
+接下来，我们来探究一下，何时使用 hash 模式，何时使用 history 模式。
+
 ## hash、history 如何抉择 
 
-已经有 hash 模式了，而且 hash 能兼容到IE8， history 只能兼容到 IE10，为什么还要搞个 history 呢？
-首先，hash 本来是拿来做页面定位的，如果拿来做路由的话，原来的锚点功能就不能用了。其次，hash 的传参是基于 url 的，如果要传递复杂的数据，会有体积的限制，而 history 模式不仅可以在url里放参数，还可以将数据存放在一个特定的对象中。
+hash 模式相比于 history 模式的优点：
 
++ 兼容性更好，可以兼容到IE8
++ 无需服务端配合处理非单页的url地址
 
-hash 锚点功能失效
-hash 兼容性更好，兼容到ie8
-hash 看起来更丑
+hash 模式相比于 history 模式的缺点：
 
-history 需要服务端配合
-history 兼容性不好，只能高版本浏览器
-history 看起来更美观
++ 看起来更丑。
++ 会导致锚点功能失效。
++ 相同 hash 值不会触发动作将记录加入到历史栈中，而 pushState 则可以。
 
+综上所述，当我们不需要兼容老版本IE浏览器，并且可以控制服务端覆盖所有情况的候选资源时，我们可以愉快的使用 history 模式了。
+
+反之，很遗憾，只能使用丑陋的 hash 模式~
+
+## 尾声
+
+本文简单分析并实现了单页路由中的 hash 模式和 history 模式，当然，它与 vue-router、react-router 相比还太过简陋，但它们的内部实现原理和我们现在的实现原理是相同的。
+
+关于 vue-router、react-router 的源码解析，会在以后的文章中逐步推出。
 
 
 
