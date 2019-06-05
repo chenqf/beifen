@@ -125,31 +125,31 @@ module.exports = {
                     name: 'ES6中的Promise',
                     issues: '',
                     over: true,
-                    complete: true
+                    complete: false
                 },
                 {
                     name: '详解typeof操作符',
                     issues: '',
                     over: true,
-                    complete: true
+                    complete: false
                 },
                 {
                     name: '数组的交集并集差集',
                     issues: '',
                     over: true,
-                    complete: true
+                    complete: false
                 },
                 {
                     name: '如何中断forEach循环',
                     issues: '',
                     over: true,
-                    complete: true
+                    complete: false
                 },
                 {
                     name: '立即调用的函数表达式',
                     issues: '',
                     over: true,
-                    complete: true,
+                    complete: false,
                     todo: '重新校验一下语句是否通顺',
                     refer: [
                         'https://medium.com/@vvkchandra/essential-javascript-mastering-immediately-invoked-function-expressions-67791338ddc6'
@@ -164,19 +164,19 @@ module.exports = {
                     name: '防抖函数',
                     issues: '',
                     over: true,
-                    complete: true
+                    complete: false
                 },
                 {
                     name: '节流函数',
                     issues: '',
                     over: true,
-                    complete: true
+                    complete: false
                 },
                 {
                     name: 'JS中的栈内存和堆内存',
                     issues: '',
                     over: true,
-                    complete: true,
+                    complete: false,
                     refer: [
                         'https://juejin.im/post/5c7157f3e51d4526643fac46',
                         'https://github.com/yygmind/blog/issues/14',
@@ -197,25 +197,25 @@ module.exports = {
                         'https://blog.sessionstack.com/how-javascript-works-memory-management-how-to-handle-4-common-memory-leaks-3f28b94cfbec'
                     ],
                     over: true,
-                    complete: true,
+                    complete: false,
                 },
                 {
                     name: '模拟实现call和apply',
                     issues: '',
                     over: true,
-                    complete: true,
+                    complete: false,
                 },
                 {
                     name: '模拟实现bind',
                     issues: '',
                     over: true,
-                    complete: true,
+                    complete: false,
                 },
                 {
                     name: '函数柯里化',
                     issues: '',
                     over: true,
-                    complete: true,
+                    complete: false,
                     refer: [
                         'https://blog.csdn.net/woqutechteam/article/details/80323065',
                         'https://yangbo5207.github.io/wutongluo/ji-chu-jin-jie-xi-lie/ba-3001-ke-li-hua.html',
@@ -244,7 +244,7 @@ module.exports = {
                     name: '数组乱序',
                     issues: '',
                     over: true,
-                    complete: true,
+                    complete: false,
                     todo: '关于插入排序，还需要深入的说明',
                     refer: [
                         'https://github.com/HOUCe/shuffle-array',
@@ -266,7 +266,7 @@ module.exports = {
                 {
                     name: '单页路由解析与实现',
                     issues: '',
-                    over: false,
+                    over: true,
                     complete: false,
                     todo: '',
                     refer: [
@@ -288,13 +288,13 @@ module.exports = {
                     nickName: '一次搞懂Event Loop',
                     issues: '',
                     over: true,
-                    complete: true,
+                    complete: false,
                 },
                 {
                     name: '如何处理图片加载失败',
                     issues: '',
                     over: true,
-                    complete: true,
+                    complete: false,
                 }
             ]
         },
@@ -305,7 +305,7 @@ module.exports = {
                 name: '如何渲染几万条数据并不卡住界面',
                 issues: '',
                 over: true,
-                complete: true,
+                complete: false,
             }]
         },
         {
@@ -315,7 +315,7 @@ module.exports = {
                 name: '彻底弄懂HTTP缓存机制及原理',
                 issues: '',
                 over: true,
-                complete: true,
+                complete: false,
             }]
         },
         // {
@@ -335,7 +335,7 @@ module.exports = {
                 name: 'Async、Await陷阱',
                 issues: '',
                 over: true,
-                complete: true,
+                complete: false,
             }]
         },
     ],
