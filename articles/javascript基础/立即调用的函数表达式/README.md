@@ -335,11 +335,9 @@ console.log(result);
 使用括号可以通过在第一行上对读者进行风格上的暗示，暗示该函数将成为 IIFE ，
 而不必要滚动到函数的最后一行才能确定是否是 IIFE ,因此使用括号可以提高代码的可读性。
 
+## 参考
 
-+ [博客首页](https://github.com/chenqf/blog)
-+ [javascript 基础](https://github.com/chenqf/blog/blob/master/articles/javascript基础)
-+ [javascript 进阶](https://github.com/chenqf/blog/blob/master/articles/javascript进阶)
-+ [浏览器](https://github.com/chenqf/blog/blob/master/articles/浏览器)
-+ [前端性能](https://github.com/chenqf/blog/blob/master/articles/前端性能)
-+ [网络](https://github.com/chenqf/blog/blob/master/articles/网络)
-+ [技术随笔](https://github.com/chenqf/blog/blob/master/articles/技术随笔)
++ [什么是Javascript中的IIFE](https://medium.com/@prashantramnyc/what-is-an-iife-in-javascript-24baf0febf08)
++ [掌握立即调用的函数表达式](https://medium.com/@vvkchandra/essential-javascript-mastering-immediately-invoked-function-expressions-67791338ddc6)
+
+

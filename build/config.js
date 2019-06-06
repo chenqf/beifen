@@ -5,6 +5,10 @@ module.exports = {
         '[JavaScript高级程序设计](https://book.douban.com/subject/10546125/)',
         '[JavaScript语言精粹](https://book.douban.com/subject/3590768/)',
         '[JavaScript权威指南](https://book.douban.com/subject/10549733/)',
+        '[HTTP权威指南](https://book.douban.com/subject/10746113/)',
+        '[图解HTTP](https://book.douban.com/subject/25863515/)',
+        '[JavaScript 函数式编程](https://book.douban.com/subject/26579320/)',
+        '[JS 函数式编程指南](https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/)',
     ],
     下半年目标: [
         '学懂Vue',
