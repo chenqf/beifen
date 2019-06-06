@@ -122,6 +122,12 @@ module.exports = {
                     complete: true
                 },
                 {
+                    name: 'ES6中的箭头函数',
+                    issues: '',
+                    over: true,
+                    complete: false
+                },
+                {
                     name: 'ES6中的Promise',
                     issues: '',
                     over: true,
@@ -355,10 +361,9 @@ module.exports = {
         17157721545, // phone wc
         17128240241,
         17128240148,
-        16739465440,
-        16739465443,
-        16739465445,
-        16739465439,
+        16739465440, // ok
+        16739465443, // ok
+        16739465439, // ok
         16739465441,
         16739465442,
     ],
