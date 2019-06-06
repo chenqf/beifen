@@ -10,6 +10,14 @@ module.exports = {
         '[JavaScript 函数式编程](https://book.douban.com/subject/26579320/)',
         '[JS 函数式编程指南](https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/)',
     ],
+    发布顺序: [
+        '函数记忆',
+        'let const',
+        '立即调用的函数表达式',
+        '箭头函数',
+        '模拟实现call和apply', //权威指南 MDN
+        '模拟实现bind' // 权威指南 MDN
+    ],
     下半年目标: [
         '学懂Vue',
         'typeScript',
@@ -66,14 +74,17 @@ module.exports = {
         '真机调试：https://juejin.im/post/5c947f5251882568396a6773?utm_source=gold_browser_extension',
         '如何发布可在浏览器和节点中使用的包  https://medium.freecodecamp.org/how-to-publish-packages-that-can-be-used-in-browsers-and-node-c51274dca77c',
         '反柯里化',
+        '移动端适配：https://juejin.im/post/5cddf289f265da038f77696c',
         {
+            'Object&Function': [
+                'https://mp.weixin.qq.com/s/yK6rFQdFM62344LE1CeBlA'
+            ],
+            微前端: [
+                'https://microfrontend.cn/'
+            ],
             原型继承: [
                 'https://juejin.im/post/5cee3c69e51d45108b2cae03?utm_source=gold_browser_extension',
                 'ES6 的继承'
-            ],
-            偏函数: [
-                '函数式编程书-部分应用',
-                '犀牛书-不完全函数',
             ],
             veryGood: [
                 'https://medium.com/@vvkchandra/essential-javascript-mastering-immediately-invoked-function-expressions-67791338ddc6'
@@ -87,11 +98,15 @@ module.exports = {
                 'https://github.com/BooheeFE/weekly/issues/30'
             ],
             await: [
+                'https://www.infoq.cn/article/javascript-async-await-the-good-part-pitfalls-and-how-to-use',
                 'https://medium.com/@zellwk/an-introduction-to-javascripts-async-and-await-edb313356677',
                 'https://juejin.im/post/5cb68a40e51d456e303db873',
                 'https://juejin.im/post/59f9ce7a51882554f666220f',
                 'https://juejin.im/post/58ede4c1b123db43cc365551',
                 'https://github.com/dt-fe/weekly/blob/master/55.%E7%B2%BE%E8%AF%BB%E3%80%8Aasync%20await%20%E6%98%AF%E6%8A%8A%E5%8F%8C%E5%88%83%E5%89%91%E3%80%8B.md'
+            ],
+            浏览器渲染原理: [
+                'https://mp.weixin.qq.com/s/G9EnRM5Koz2OoKIC438iRg'
             ],
             virtualDOM: [
                 'https://blog.techbridge.cc/2019/02/04/vdom-from-scratch/',
@@ -113,7 +128,15 @@ module.exports = {
                 '源码解析：https://juejin.im/post/5abb22925188255c4c1050e0',
                 'https://juejin.im/post/5cc53af6f265da038e54b2e6?utm_source=gold_browser_extension'
             ],
+            vue: [
+                'https://juejin.im/post/5cce49036fb9a031eb58a8f9'
+            ],
+            Serverless: [
+                'https://github.com/nodejh/nodejh.github.io/issues/49'
+            ],
             css: [
+                '每个前端工程师都应该了解的图片知识',
+                'https://segmentfault.com/a/1190000018922732',
                 'https://medium.freecodecamp.org/empty-and-blank-53b9e96151cd',
                 '0.5px https://juejin.im/post/5ab65f40f265da2384408a95',
                 'https://www.zcfy.cc/article/stunning-hover-effects-with-css-variables'
@@ -333,6 +356,11 @@ module.exports = {
                 issues: '',
                 over: true,
                 complete: false,
+                mark: [
+                    '还需要再整理',
+                    'https://www.jianshu.com/p/54cc04190252',
+                    'https://zhuanlan.zhihu.com/p/44789005'
+                ]
             }]
         },
         // {
