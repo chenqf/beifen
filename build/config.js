@@ -1,4 +1,11 @@
 module.exports = {
+    书籍链接: [
+        '[深入理解ES6](https://book.douban.com/subject/27072230/)',
+        '[ES6标准入门](https://book.douban.com/subject/27127030/)',
+        '[JavaScript高级程序设计](https://book.douban.com/subject/10546125/)',
+        '[JavaScript语言精粹](https://book.douban.com/subject/3590768/)',
+        '[JavaScript权威指南](https://book.douban.com/subject/10549733/)',
+    ],
     下半年目标: [
         '学懂Vue',
         'typeScript',

@@ -304,7 +304,9 @@ obj1.print4.call(obj2)()
 
 ## 参考
 
-+ https://medium.com/free-code-camp/learn-es6-the-dope-way-part-ii-arrow-functions-and-the-this-keyword-381ac7a32881
-+ https://codeburst.io/javascript-arrow-functions-for-beginners-926947fc0cdc
-+ https://medium.com/free-code-camp/when-and-why-you-should-use-es6-arrow-functions-and-when-you-shouldnt-3d851d7f0b26
-+ https://github.com/yygmind/blog/issues/21
++ [深入理解ES6](https://book.douban.com/subject/27072230/)
++ [ES6标准入门](https://book.douban.com/subject/27127030/)
++ [箭头函数和this关键字](https://medium.com/free-code-camp/learn-es6-the-dope-way-part-ii-arrow-functions-and-the-this-keyword-381ac7a32881)
++ [初学者的箭头函数](https://codeburst.io/javascript-arrow-functions-for-beginners-926947fc0cdc)
++ [什么时候你该使用箭头函数](https://medium.com/free-code-camp/when-and-why-you-should-use-es6-arrow-functions-and-when-you-shouldnt-3d851d7f0b26)
++ [重新认识箭头函数的this](https://github.com/yygmind/blog/issues/21)

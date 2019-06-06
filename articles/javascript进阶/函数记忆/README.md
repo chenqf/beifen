@@ -169,10 +169,8 @@ console.timeEnd('memoize time');
 4. 如何实现:
     + 使用闭包保存住曾经计算过的参数和处理结果
 
-+ [博客首页](https://github.com/chenqf/blog)
-+ [javascript 基础](https://github.com/chenqf/blog/blob/master/articles/javascript基础)
-+ [javascript 进阶](https://github.com/chenqf/blog/blob/master/articles/javascript进阶)
-+ [浏览器](https://github.com/chenqf/blog/blob/master/articles/浏览器)
-+ [前端性能](https://github.com/chenqf/blog/blob/master/articles/前端性能)
-+ [网络](https://github.com/chenqf/blog/blob/master/articles/网络)
-+ [技术随笔](https://github.com/chenqf/blog/blob/master/articles/技术随笔)
+## 参考
+
+[JavaScript语言精粹](https://book.douban.com/subject/3590768/)
+[JavaScript权威指南](https://book.douban.com/subject/10549733/)
+[如何使用函数记忆加快代码速度](https://medium.com/free-code-camp/understanding-memoize-in-javascript-51d07d19430e)

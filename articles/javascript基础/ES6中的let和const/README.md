@@ -213,10 +213,10 @@ foo = {}; // print error: TypeError: Assignment to constant variable.
 不可变的只是这个地址，即不能把foo指向另一个地址，但对象本身是可变的，所以依然可以为其添加新属性。
 
 
-+ [博客首页](https://github.com/chenqf/blog)
-+ [javascript 基础](https://github.com/chenqf/blog/blob/master/articles/javascript基础)
-+ [javascript 进阶](https://github.com/chenqf/blog/blob/master/articles/javascript进阶)
-+ [浏览器](https://github.com/chenqf/blog/blob/master/articles/浏览器)
-+ [前端性能](https://github.com/chenqf/blog/blob/master/articles/前端性能)
-+ [网络](https://github.com/chenqf/blog/blob/master/articles/网络)
-+ [技术随笔](https://github.com/chenqf/blog/blob/master/articles/技术随笔)
+## 参考
+
++ [深入理解ES6](https://book.douban.com/subject/27072230/)
++ [ES6标准入门](https://book.douban.com/subject/27127030/)
++ [ES2015-let&const](https://codeburst.io/javascript-in-3-minutes-es-2015-let-const-876cda7bd7e7)
+
+
