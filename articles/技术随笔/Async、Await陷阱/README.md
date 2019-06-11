@@ -114,10 +114,3 @@ async function getInfoAboutUser() {
 async/await函数的出现，极大的提高了javascript代码的可读性，但是他们并不是魔法，依然有很多未知的问题等待我们去发现。
 
 
-+ [博客首页](https://github.com/chenqf/blog)
-+ [javascript 基础](https://github.com/chenqf/blog/blob/master/articles/javascript基础)
-+ [javascript 进阶](https://github.com/chenqf/blog/blob/master/articles/javascript进阶)
-+ [浏览器](https://github.com/chenqf/blog/blob/master/articles/浏览器)
-+ [前端性能](https://github.com/chenqf/blog/blob/master/articles/前端性能)
-+ [网络](https://github.com/chenqf/blog/blob/master/articles/网络)
-+ [技术随笔](https://github.com/chenqf/blog/blob/master/articles/技术随笔)

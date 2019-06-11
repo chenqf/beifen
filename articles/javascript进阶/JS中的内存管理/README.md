@@ -345,10 +345,3 @@ function removeImage() {
 3. 组织好你的逻辑，避免死循环等造成浏览器卡顿，崩溃的问题。
 
 
-+ [博客首页](https://github.com/chenqf/blog)
-+ [javascript 基础](https://github.com/chenqf/blog/blob/master/articles/javascript基础)
-+ [javascript 进阶](https://github.com/chenqf/blog/blob/master/articles/javascript进阶)
-+ [浏览器](https://github.com/chenqf/blog/blob/master/articles/浏览器)
-+ [前端性能](https://github.com/chenqf/blog/blob/master/articles/前端性能)
-+ [网络](https://github.com/chenqf/blog/blob/master/articles/网络)
-+ [技术随笔](https://github.com/chenqf/blog/blob/master/articles/技术随笔)

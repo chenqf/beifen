@@ -152,14 +152,7 @@ If-None-Match ：
 **浏览器第一次请求：**
 ![avatar](./12.png)
 
-**浏览器再次求：**
+**浏览器再次请求：**
 ![avatar](./13.png)
 
 
-+ [博客首页](https://github.com/chenqf/blog)
-+ [javascript 基础](https://github.com/chenqf/blog/blob/master/articles/javascript基础)
-+ [javascript 进阶](https://github.com/chenqf/blog/blob/master/articles/javascript进阶)
-+ [浏览器](https://github.com/chenqf/blog/blob/master/articles/浏览器)
-+ [前端性能](https://github.com/chenqf/blog/blob/master/articles/前端性能)
-+ [网络](https://github.com/chenqf/blog/blob/master/articles/网络)
-+ [技术随笔](https://github.com/chenqf/blog/blob/master/articles/技术随笔)
