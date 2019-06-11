@@ -171,6 +171,6 @@ console.timeEnd('memoize time');
 
 ## 参考
 
-[JavaScript语言精粹](https://book.douban.com/subject/3590768/)
-[JavaScript权威指南](https://book.douban.com/subject/10549733/)
-[如何使用函数记忆加快代码速度](https://medium.com/free-code-camp/understanding-memoize-in-javascript-51d07d19430e)
++ [JavaScript语言精粹](https://book.douban.com/subject/3590768/)
++ [JavaScript权威指南](https://book.douban.com/subject/10549733/)
++ [如何使用函数记忆加快代码速度](https://medium.com/free-code-camp/understanding-memoize-in-javascript-51d07d19430e)
