@@ -1,105 +1,112 @@
-[
-  {
-    "name": "防抖函数",
-    "todo":"看看木易杨"
-  },
-  {
-    "name": "节流函数",
-    "todo":"看看木易杨"
-  },
-  {
-    "name": "JS中的栈内存和堆内存",
-    "refer": [
-      "https://juejin.im/post/5c7157f3e51d4526643fac46",
-      "https://github.com/yygmind/blog/issues/14",
-      "https://github.com/yygmind/blog/issues/15",
-      "https://www.jianshu.com/p/996671d4dcc4",
-      "https://blog.csdn.net/xdd19910505/article/details/41900693"
-    ]
-  },
-  {
-    "name": "JS中的内存管理",
-    "todo": "内存泄漏 https://github.com/Aaaaaaaty/Blog/issues/17",
-    "refer": [
-      "栈内存和堆内存",
-      "http://obkoro1.com/web_accumulate/accumulate/tool/js%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6.html",
-      "http://www.ruanyifeng.com/blog/2017/04/memory-leak.html",
-      "https://mp.weixin.qq.com/s/op26GEKXEN-yI3IpA9tZQg",
-      "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Memory_Management",
-      "https://blog.sessionstack.com/how-javascript-works-memory-management-how-to-handle-4-common-memory-leaks-3f28b94cfbec"
-    ]
-  },
-  {
-    "name": "模拟实现call和apply"
-  },
-  {
-    "name": "模拟实现bind"
-  },
-  {
-    "name": "函数柯里化",
-    "refer": [
-      "https://blog.csdn.net/woqutechteam/article/details/80323065",
-      "https://yangbo5207.github.io/wutongluo/ji-chu-jin-jie-xi-lie/ba-3001-ke-li-hua.html",
-      "https://www.jianshu.com/p/5e1899fe7d6b",
-      "https://github.com/mqyqingfeng/Blog/issues/42",
-      "https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html"
-    ]
-  },
-  {
-    "name": "数组扁平化",
-    "todo":"加入最新版本的 flat 方法"
-  },
-  {
-    "name": "数组乱序",
-    "todo": "关于插入排序，还需要深入的说明",
-    "refer": [
-      "https://github.com/HOUCe/shuffle-array",
-      "https://mp.weixin.qq.com/s/0j7iMJwaXYt3BD036M8s-w",
-      "https://github.com/mqyqingfeng/Blog/issues/51"
-    ]
-  },
-  {
-    "name": "单页路由解析与实现",
-    "toto":"术语整理，图 试图",
-    "refer": [
-      "https://zhuanlan.zhihu.com/p/31876075",
-      "https://juejin.im/post/5ac61da66fb9a028c71eae1b",
-      "https://github.com/youngwind/blog/issues/109",
-      "https://zhuanlan.zhihu.com/p/37730038?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io",
-      "http://www.bingshangroup.com/blog/2019/05/13/carry/history/",
-      "https://juejin.im/post/5cd8d609e51d456e7b372155?utm_source=gold_browser_extension"
-    ]
-  },
-  {
-    "name": "ES6中的Promise"
-  },
-  {
-    "name": "详解typeof操作符"
-  },
-  {
-    "name": "数组的交集并集差集"
-  },
-  {
-    "name": "如何中断forEach循环"
-  },
-  {
-    "name": "一次搞懂EventLoop"
-  },
-  {
-    "name": "如何处理图片加载失败"
-  },
-  {
-    "name": "如何渲染几万条数据并不卡住界面"
-  },
-  {
-    "name": "彻底弄懂HTTP缓存机制及原理",
-    "todo":"还需要再整理",
-    "mark": [
-      "https://www.jianshu.com/p/54cc04190252",
-      "https://zhuanlan.zhihu.com/p/44789005"
-    ]
-  },
-  {
-    "name": "Async、Await陷阱"
-  }
+[{
+        "name": "ES6中的解构赋值",
+        "todo": [
+            "[深入理解ES6](https://book.douban.com/subject/27072230/)",
+            "[一个简单的解构指南](https://codeburst.io/a-simple-guide-to-destructuring-and-es6-spread-operator-e02212af5831)",
+            "[ES6解构：完整指南](https://codeburst.io/es6-destructuring-the-complete-guide-7f842d08b98f)"
+        ]
+    },
+    {
+        "name": "防抖函数",
+        "todo": "看看木易杨"
+    },
+    {
+        "name": "节流函数",
+        "todo": "看看木易杨"
+    },
+    {
+        "name": "JS中的栈内存和堆内存",
+        "refer": [
+            "https://juejin.im/post/5c7157f3e51d4526643fac46",
+            "https://github.com/yygmind/blog/issues/14",
+            "https://github.com/yygmind/blog/issues/15",
+            "https://www.jianshu.com/p/996671d4dcc4",
+            "https://blog.csdn.net/xdd19910505/article/details/41900693"
+        ]
+    },
+    {
+        "name": "JS中的内存管理",
+        "todo": "内存泄漏 https://github.com/Aaaaaaaty/Blog/issues/17",
+        "refer": [
+            "栈内存和堆内存",
+            "http://obkoro1.com/web_accumulate/accumulate/tool/js%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6.html",
+            "http://www.ruanyifeng.com/blog/2017/04/memory-leak.html",
+            "https://mp.weixin.qq.com/s/op26GEKXEN-yI3IpA9tZQg",
+            "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Memory_Management",
+            "https://blog.sessionstack.com/how-javascript-works-memory-management-how-to-handle-4-common-memory-leaks-3f28b94cfbec"
+        ]
+    },
+    {
+        "name": "模拟实现call和apply"
+    },
+    {
+        "name": "模拟实现bind"
+    },
+    {
+        "name": "函数柯里化",
+        "refer": [
+            "https://blog.csdn.net/woqutechteam/article/details/80323065",
+            "https://yangbo5207.github.io/wutongluo/ji-chu-jin-jie-xi-lie/ba-3001-ke-li-hua.html",
+            "https://www.jianshu.com/p/5e1899fe7d6b",
+            "https://github.com/mqyqingfeng/Blog/issues/42",
+            "https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html"
+        ]
+    },
+    {
+        "name": "数组扁平化",
+        "todo": "加入最新版本的 flat 方法"
+    },
+    {
+        "name": "数组乱序",
+        "todo": "关于插入排序，还需要深入的说明",
+        "refer": [
+            "https://github.com/HOUCe/shuffle-array",
+            "https://mp.weixin.qq.com/s/0j7iMJwaXYt3BD036M8s-w",
+            "https://github.com/mqyqingfeng/Blog/issues/51"
+        ]
+    },
+    {
+        "name": "单页路由解析与实现",
+        "toto": "术语整理，图 试图",
+        "refer": [
+            "https://zhuanlan.zhihu.com/p/31876075",
+            "https://juejin.im/post/5ac61da66fb9a028c71eae1b",
+            "https://github.com/youngwind/blog/issues/109",
+            "https://zhuanlan.zhihu.com/p/37730038?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io",
+            "http://www.bingshangroup.com/blog/2019/05/13/carry/history/",
+            "https://juejin.im/post/5cd8d609e51d456e7b372155?utm_source=gold_browser_extension"
+        ]
+    },
+    {
+        "name": "ES6中的Promise"
+    },
+    {
+        "name": "详解typeof操作符"
+    },
+    {
+        "name": "数组的交集并集差集"
+    },
+    {
+        "name": "如何中断forEach循环"
+    },
+    {
+        "name": "一次搞懂EventLoop"
+    },
+    {
+        "name": "如何处理图片加载失败"
+    },
+    {
+        "name": "如何渲染几万条数据并不卡住界面"
+    },
+    {
+        "name": "彻底弄懂HTTP缓存机制及原理",
+        "todo": "还需要再整理",
+        "mark": [
+            "https://www.jianshu.com/p/54cc04190252",
+            "https://zhuanlan.zhihu.com/p/44789005"
+        ]
+    },
+    {
+        "name": "Async、Await陷阱"
+    }
 ]
