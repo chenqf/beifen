@@ -1,6 +1,6 @@
 [{
         "name": "ES6中的解构赋值",
-        "todo": [
+        "refer": [
             "[深入理解ES6](https://book.douban.com/subject/27072230/)",
             "[一个简单的解构指南](https://codeburst.io/a-simple-guide-to-destructuring-and-es6-spread-operator-e02212af5831)",
             "[ES6解构：完整指南](https://codeburst.io/es6-destructuring-the-complete-guide-7f842d08b98f)"
