@@ -26,7 +26,7 @@ arr.sort(() =>Math.random() - 0.5);
 乍一看，这似乎是一个合理的解决方案。事实上在使用搜索引擎搜索“随机打乱数组”，这种方式会是出现最多的答案。
 
 然而，这种方式并不是真正意思上的乱序，一些元素并没有机会相互比较，
-最终数组元素停留停留位置的概率并不是完全随机的。
+最终数组元素停留位置的概率并不是完全随机的。
 
 来看一个例子：
 ```javascript
@@ -249,11 +249,9 @@ Step3： 理解了前两步，接下来就是依次进行，如此简单。
 ```javascript
 function shuffle(arr) {
     let m = arr.length;
-    while (m){
+    while (m > 1){
         let index = Math.floor(Math.random() * m--);
-        let cur = arr[m];
-        arr[m] = arr[index];
-        arr[index] = cur;
+        [ arr[m] , arr[index] ] = [ arr[index] , arr[m] ]
     }
     return arr;
 }
@@ -265,7 +263,7 @@ function shuffle(arr) {
 test_shuffle(shuffle);
 ```
 
-结果如下： 
+结果如下：
 
 ![avatar](https://raw.githubusercontent.com/chenqf/blog/master/articles/00.数组乱序/12.png)
 
