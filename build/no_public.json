@@ -57,15 +57,6 @@
         "todo": "加入最新版本的 flat 方法"
     },
     {
-        "name": "数组乱序",
-        "todo": "关于插入排序，还需要深入的说明",
-        "refer": [
-            "https://github.com/HOUCe/shuffle-array",
-            "https://mp.weixin.qq.com/s/0j7iMJwaXYt3BD036M8s-w",
-            "https://github.com/mqyqingfeng/Blog/issues/51"
-        ]
-    },
-    {
         "name": "单页路由解析与实现",
         "toto": "术语整理，图 试图",
         "refer": [

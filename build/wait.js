@@ -1,86 +1,86 @@
 module.exports = {
-    迭代器:[
+    迭代器: [
         "https://codeburst.io/a-simple-guide-to-es6-iterators-in-javascript-with-examples-189d052c3d8e"
     ],
-    时间切片:[
+    时间切片: [
         "https://segmentfault.com/a/1190000013524698",
         "https://mp.weixin.qq.com/s?__biz=MzA5NzkwNDk3MQ==&mid=2650589786&idx=1&sn=bf6182de3c40fe9f8912754ae209d817&chksm=8891da7ebfe653681350158cd774eaf2859158924f307516f5eae1b35591e535fe49a6185f21&scene=0&xtrack=1#rd"
     ],
-    函数式编程:[
+    函数式编程: [
         'https://medium.com/front-end-weekly/8-steps-to-turn-imperative-javascript-class-to-a-functional-declarative-code-862964faf46c'
     ],
-    屏幕适配_PC_phone:[
+    屏幕适配_PC_phone: [
 
     ],
-    gzip:[
+    gzip: [
         'https://juejin.im/post/5cb7ee0e51882532fe3440ea'
     ],
-    AST:[
+    AST: [
         'https://github.com/airuikun/blog/issues/4',
         'https://github.com/CodeLittlePrince/blog/issues/19'
     ],
-    骨架屏:[
+    骨架屏: [
         'https://segmentfault.com/a/1190000016689372'
     ],
-    贝塞尔曲线:[
+    贝塞尔曲线: [
         'https://segmentfault.com/a/1190000018502700'
     ],
-    如何管理好10万行代码的前端单页面应用:[
+    如何管理好10万行代码的前端单页面应用: [
         'https://juejin.im/post/59cb0d0b5188257e876a2d27'
     ],
-    使用js创建并下载文件:[
+    使用js创建并下载文件: [
         'https://gaohaoyang.github.io/2016/11/22/js-create-file-and-download/'
     ],
-    '请指出document.onload和document.ready两个事件的区别':[
+    '请指出document.onload和document.ready两个事件的区别': [
         'https://gaohaoyang.github.io/2016/11/22/js-create-file-and-download/'
     ],
-    currentColor:[
+    currentColor: [
         'https://c.51tiangou.com/pages/viewpage.action?pageId=27102148'
     ],
-    前端登录:[
+    前端登录: [
         'https://juejin.im/post/5cc3bcb0f265da03681463a0?utm_source=gold_browser_extension'
     ],
-    AOP:[
+    AOP: [
         'https://juejin.im/post/5cc2e15651882525041c64b5?utm_source=gold_browser_extension https://www.cnblogs.com/Wolfmanlq/p/6036019.html'
     ],
-    现金券最优选中:[],
-    'typeof instanceOf isPrototypeOf() 之间的区别 ':[
+    现金券最优选中: [],
+    'typeof instanceOf isPrototypeOf() 之间的区别 ': [
         'https://juejin.im/post/5c9216716fb9a070ef60a011?utm_source=gold_browser_extension'
     ],
-    重排与重绘:[
+    重排与重绘: [
         'https://mp.weixin.qq.com/s?__biz=MzA5NzkwNDk3MQ==&mid=2650588825&idx=1&sn=9ce03764375441ef0a8eb4fbce702e7a&chksm=8891d6bdbfe65fab0e76b1f86ec807ab0d13dec92951604c59fd1fe23ab0619257bf1dfa32bf&scene=0&xtrack=1#rd'
     ],
-    https:[
+    https: [
         'https://github.com/airuikun/Weekly-FE-Interview/issues/3'
     ],
-    seo:[
+    seo: [
         'https://github.com/airuikun/Weekly-FE-Interview/issues/13'
     ],
-    '1000-div问题':[
+    '1000-div问题': [
         'https://github.com/airuikun/Weekly-FE-Interview/issues/15'
     ],
-    proxy:[
+    proxy: [
         'https://blog.bitsrc.io/a-practical-guide-to-es6-proxy-229079c3c2f0',
         'https://medium.com/@lunasunkaiser/cooler-code-with-es6-proxy-cca297fec900',
         'https://hackernoon.com/introducing-javascript-es6-proxies-1327419ab413'
     ],
-    解构赋值:[
+    解构赋值: [
         'https://medium.com/poka-techblog/destructuring-in-javascript-f4f56d5cbd80'
     ],
-    移动端适配:[
+    移动端适配: [
         'https://juejin.im/post/5cddf289f265da038f77696c'
     ],
-    如何发布可在浏览器和节点中使用的包:[
+    如何发布可在浏览器和节点中使用的包: [
         'https://medium.freecodecamp.org/how-to-publish-packages-that-can-be-used-in-browsers-and-node-c51274dca77c'
     ],
-    真机调试:[
+    真机调试: [
         'https://juejin.im/post/5c947f5251882568396a6773?utm_source=gold_browser_extension'
     ],
-    promise:[
+    promise: [
         'https://github.com/forthealllight/blog/issues/4',
         'https://github.com/YvetteLau/Blog/issues/2   https://github.com/xieranmaya/blog/issues/3'
     ],
-    '2万小球问题':[
+    '2万小球问题': [
         'https://github.com/airuikun/Weekly-FE-Interview/issues/16'
     ],
     'Object&Function': [
@@ -145,5 +145,8 @@ module.exports = {
         'https://medium.freecodecamp.org/empty-and-blank-53b9e96151cd',
         '0.5px https://juejin.im/post/5ab65f40f265da2384408a95',
         'https://www.zcfy.cc/article/stunning-hover-effects-with-css-variables'
+    ],
+    前端代码优化: [
+        'https://mp.weixin.qq.com/s?__biz=MzU3NjczNDk2MA==&mid=2247484300&idx=1&sn=b31eaaed2eeb0de99a386e3d4a0dc2e5&chksm=fd0e1013ca799905e425f3115941aba88183cba87c81a2bcf8f81e504939f9a47f2e5096f4e9&mpshare=1&scene=1&srcid=#rd'
     ]
 }

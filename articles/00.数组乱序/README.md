@@ -277,3 +277,4 @@ test_shuffle(shuffle);
 
 + [如何在Javascript中正确的打乱数组](https://medium.com/@nitinpatel_20236/how-to-shuffle-correctly-shuffle-an-array-in-javascript-15ea3f84bfb)
 + [JavaScript专题之乱序](https://github.com/mqyqingfeng/Blog/issues/51)
++ [乱序数组](https://github.com/HOUCe/shuffle-array)
