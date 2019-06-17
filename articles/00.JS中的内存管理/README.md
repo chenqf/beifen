@@ -344,4 +344,8 @@ function removeImage() {
 2. 在你使用完数据后，及时解除引用（闭包中的变量，dom引用，定时器清除）。
 3. 组织好你的逻辑，避免死循环等造成浏览器卡顿，崩溃的问题。
 
+## 参考
 
++ [JavaScript高级程序设计](https://book.douban.com/subject/10546125/)
++ [JavaScript语言精粹](https://book.douban.com/subject/3590768/)
++ [JavaScript权威指南](https://book.douban.com/subject/10549733/)
