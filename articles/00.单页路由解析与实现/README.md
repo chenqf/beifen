@@ -1,6 +1,5 @@
 # 单页路由解析与实现
 
-
 ## 前言
 
 现代前端项目多为单页Web应用(SPA)，在单页Web应用中路由是其中的重要环节。
@@ -11,14 +10,26 @@
 
 vue-router、react-router 的源码解析，会在以后的文章中逐步推出。
 
-
 ## 什么是 SPA
 
 SPA 是 single page web application 的简称，译为单页Web应用。
 
-简单的说 SPA 就是只有一个WEB项目只有一个 HTML 页面，一旦页面加载完成，SPA 不会因为用户的操作而进行页面的重新加载或跳转。
-取而代之的是利用 JS 动态的变换 HTML 的内容，从而来模拟多页面间的跳转。
+简单的说 SPA 就是一个WEB项目只有一个 HTML 页面，一旦页面加载完成，SPA 不会因为用户的操作而进行页面的重新加载或跳转。
+取而代之的是利用 JS 动态的变换 HTML 的内容，从而来模拟多个视图间跳转。
 
+## 从传统页面到视图
+
+对于初学者来说，理解传统页面与 SPA 视图间的差异是困哪的。
+
+在这里，用两张图，来分别表明传统页面与 SPA 视图间的区别：
+
+![avatar](./1.png)
+
+上图表明了，在传统的网站设计中，每个HTML文件都是一个完成的HTML页面，涵盖了完整的HTML结构。
+
+![avatar](./2.png)
+
+上图表明了，在 SPA 的应用设计中，一个应用只有一个HTML文件，在HTML文件中包含一个占位符（即图中的 container），占位符对应的内容由每个视图来决定，对于 SPA 来说，页面的切换就是视图之间的切换。
 
 ## 前端路由的由来
 
@@ -33,10 +44,9 @@ SPA 的出现大大提高了 WEB 应用的交互体验。在与用户的交互�
 
 前端路由就是为了解决上述问题而出现的。
 
-
 ## 什么是前端路由
 
-简单的说，就是在保证只有一个 HTML 页面，且与用户交互时不刷新和跳转页面的同时，为 SPA 中的每种页面展示形式匹配一个特殊的 url。在刷新、前进、后退和SEO时均通过这个特殊的 url 来实现。
+简单的说，就是在保证只有一个 HTML 页面，且与用户交互时不刷新和跳转页面的同时，为 SPA 中的每个视图展示形式匹配一个特殊的 url。在刷新、前进、后退和SEO时均通过这个特殊的 url 来实现。
 
 为实现这一目标，我们需要做到以下二点：
 
@@ -67,7 +77,6 @@ window.addEventListener('hashchange', function(event){
 
 **接下来我们来实现一个路由对象**
 
-
 创建一个路由对象, 实现 register 方法用于注册每个 hash 值对应的回调函数
 
 ```javascript
@@ -76,7 +85,7 @@ class HashRouter{
         //用于存储不同hash值对应的回调函数
         this.routers = {};
     }
-    //用于注册每个页面
+    //用于注册每个视图
     register(hash,callback = function(){}){
         this.routers[hash] = callback;
     }
@@ -91,7 +100,7 @@ class HashRouter{
         //用于存储不同hash值对应的回调函数
         this.routers = {};
     }
-    //用于注册每个页面
+    //用于注册每个视图
     register(hash,callback = function(){}){
         this.routers[hash] = callback;
     }
@@ -111,7 +120,7 @@ class HashRouter{
         this.routers = {};
         window.addEventListener('hashchange',this.load.bind(this),false)
     }
-    //用于注册每个页面
+    //用于注册每个视图
     register(hash,callback = function(){}){
         this.routers[hash] = callback;
     }
@@ -119,7 +128,7 @@ class HashRouter{
     registerIndex(callback = function(){}){
         this.routers['index'] = callback;
     }
-    //用于调用不同页面的回调函数
+    //用于调用不同视图的回调函数
     load(){
         let hash = location.hash.slice(1),
             handler;
@@ -155,12 +164,12 @@ let container = document.getElementById('container');
 //注册首页回调函数
 router.registerIndex(()=> container.innerHTML = '我是首页');
 
-//注册其他页面回到函数
+//注册其他视图回到函数
 router.register('/page1',()=> container.innerHTML = '我是page1');
 router.register('/page2',()=> container.innerHTML = '我是page2');
 router.register('/page3',()=> container.innerHTML = '我是page3');
 
-//加载页面
+//加载视图
 router.load();
 ```
 
@@ -170,7 +179,7 @@ router.load();
 
 基本的路由功能我们已经实现了，但依然有点小问题
 
-1. 页面切换后，新的 hash 值没有在路由中注册  
+1. 视图切换后，新的 hash 值没有在路由中注册  
 2. hash 值对应的回调函数在执行过程中抛出异常
 
 对应的解决办法如下：
@@ -187,7 +196,7 @@ class HashRouter{
         this.routers = {};
         window.addEventListener('hashchange',this.load.bind(this),false)
     }
-    //用于注册每个页面
+    //用于注册每个视图
     register(hash,callback = function(){}){
         this.routers[hash] = callback;
     }
@@ -195,7 +204,7 @@ class HashRouter{
     registerIndex(callback = function(){}){
         this.routers['index'] = callback;
     }
-    //用于处理页面未找到的情况
+    //用于处理视图未找到的情况
     registerNotFound(callback = function(){}){
         this.routers['404'] = callback;
     }
@@ -203,7 +212,7 @@ class HashRouter{
     registerError(callback = function(){}){
         this.routers['error'] = callback;
     }
-    //用于调用不同页面的回调函数
+    //用于调用不同视图的回调函数
     load(){
         let hash = location.hash.slice(1),
             handler;
@@ -251,13 +260,13 @@ let container = document.getElementById('container');
 //注册首页回调函数
 router.registerIndex(()=> container.innerHTML = '我是首页');
 
-//注册其他页面回到函数
+//注册其他视图回到函数
 router.register('/page1',()=> container.innerHTML = '我是page1');
 router.register('/page2',()=> container.innerHTML = '我是page2');
 router.register('/page3',()=> container.innerHTML = '我是page3');
 router.register('/page4',()=> {throw new Error('抛出一个异常')});
 
-//加载页面
+//加载视图
 router.load();
 //注册未找到对应hash值时的回调
 router.registerNotFound(()=>container.innerHTML = '页面未找到');
@@ -336,7 +345,7 @@ class HistoryRouter{
         //用于存储不同path值对应的回调函数
         this.routers = {};
     }
-    //用于注册每个页面
+    //用于注册每个视图
     register(path,callback = function(){}){
         this.routers[path] = callback;
     }
@@ -344,7 +353,7 @@ class HistoryRouter{
     registerIndex(callback = function(){}){
         this.routers['/'] = callback;
     }
-    //用于处理页面未找到的情况
+    //用于处视图未找到的情况
     registerNotFound(callback = function(){}){
         this.routers['404'] = callback;
     }
@@ -364,7 +373,7 @@ class HistoryRouter{
         //用于存储不同path值对应的回调函数
         this.routers = {};
     }
-    //用于注册每个页面
+    //用于注册每个视图
     register(path,callback = function(){}){
         this.routers[path] = callback;
     }
@@ -372,7 +381,7 @@ class HistoryRouter{
     registerIndex(callback = function(){}){
         this.routers['/'] = callback;
     }
-    //用于处理页面未找到的情况
+    //用于处理视图未找到的情况
     registerNotFound(callback = function(){}){
         this.routers['404'] = callback;
     }
@@ -448,7 +457,7 @@ class HistoryRouter{
         let path = location.pathname;
         this.dealPathHandler(path)
     }
-    //用于注册每个页面
+    //用于注册每个视图
     register(path,callback = function(){}){
         this.routers[path] = callback;
     }
@@ -456,7 +465,7 @@ class HistoryRouter{
     registerIndex(callback = function(){}){
         this.routers['/'] = callback;
     }
-    //用于处理页面未找到的情况
+    //用于处理视图未找到的情况
     registerNotFound(callback = function(){}){
         this.routers['404'] = callback;
     }
@@ -520,7 +529,7 @@ let container = document.getElementById('container');
 //注册首页回调函数
 router.registerIndex(() => container.innerHTML = '我是首页');
 
-//注册其他页面回到函数
+//注册其他视图回到函数
 router.register('/page1', () => container.innerHTML = '我是page1');
 router.register('/page2', () => container.innerHTML = '我是page2');
 router.register('/page3', () => container.innerHTML = '我是page3');
@@ -574,7 +583,6 @@ hash 模式相比于 history 模式的缺点：
 
 关于 vue-router、react-router 的源码解析，会在以后的文章中逐步推出。
 
+## 参考
 
-
-
-
++ [SPA设计与架构：理解单页面Web应用](https://book.douban.com/subject/26918474/)

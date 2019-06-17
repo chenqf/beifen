@@ -9,6 +9,7 @@ module.exports = {
         '[图解HTTP](https://book.douban.com/subject/25863515/)',
         '[JavaScript 函数式编程](https://book.douban.com/subject/26579320/)',
         '[JS 函数式编程指南](https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/)',
+        '[SPA设计与架构：理解单页面Web应用](https://book.douban.com/subject/26918474/)'
     ],
     下半年目标: [
         '学懂Vue',
