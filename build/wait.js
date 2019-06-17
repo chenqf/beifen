@@ -64,9 +64,6 @@ module.exports = {
         'https://medium.com/@lunasunkaiser/cooler-code-with-es6-proxy-cca297fec900',
         'https://hackernoon.com/introducing-javascript-es6-proxies-1327419ab413'
     ],
-    解构赋值: [
-        'https://medium.com/poka-techblog/destructuring-in-javascript-f4f56d5cbd80'
-    ],
     移动端适配: [
         'https://juejin.im/post/5cddf289f265da038f77696c'
     ],

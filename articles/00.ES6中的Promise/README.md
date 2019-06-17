@@ -838,7 +838,7 @@ console.log(4);
 
 结果：3 7 4 1 2 5
 
-##参考
+## 参考
 
 + [深入理解ES6](https://book.douban.com/subject/27072230/)
 + [ES6标准入门](https://book.douban.com/subject/27127030/)
