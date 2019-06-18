@@ -346,6 +346,8 @@ function removeImage() {
 
 ## 参考
 
++ [MDN-内存管理](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Memory_Management)
 + [JavaScript高级程序设计](https://book.douban.com/subject/10546125/)
-+ [JavaScript语言精粹](https://book.douban.com/subject/3590768/)
 + [JavaScript权威指南](https://book.douban.com/subject/10549733/)
++ [JavaScript 内存泄漏教程](http://www.ruanyifeng.com/blog/2017/04/memory-leak.html)
++ [一种有趣的JavaScript内存泄漏](https://blog.meteor.com/an-interesting-kind-of-javascript-memory-leak-8b47d2e7f156)

@@ -131,7 +131,8 @@ module.exports = {
         'https://juejin.im/post/5cc53af6f265da038e54b2e6?utm_source=gold_browser_extension'
     ],
     vue: [
-        'https://juejin.im/post/5cce49036fb9a031eb58a8f9'
+        'https://juejin.im/post/5cce49036fb9a031eb58a8f9',
+        'https://mp.weixin.qq.com/s?__biz=MzU3NjczNDk2MA==&mid=2247484312&idx=1&sn=cd486a3a2e3665488c1c8b7cf9e1ca75&chksm=fd0e1007ca7999116b415e20bc1a50c69a4d9ed6961b78d4cd97a56ea3f854d94096606957a3&mpshare=1&scene=1&srcid=#rd',
     ],
     Serverless: [
         'https://github.com/nodejh/nodejh.github.io/issues/49'
