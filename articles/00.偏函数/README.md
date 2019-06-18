@@ -122,24 +122,10 @@ _fn1(1,4);      // 1 2 3 4 5
 _fn2(4);        // 1 2 3 4 5
 _fn3(3,4);      // 1 2 3 4 5
 _fn4(1,3,4);    // 1 2 3 4 5
-
 ```
-
-## 实际应用
-
-部分应用在我们工作中可使用的地方随处可见，最典型的例子是，对于需要多次使用相同参数调用函数
 
 ## 参考
 
++ [JavaScript权威指南](https://book.douban.com/subject/10549733/)
 + [JavaScript 函数式编程](https://book.douban.com/subject/26579320/)
 + [Currying VS Partial](https://codeburst.io/javascript-currying-vs-partial-application-4db5b2442be8)
-
-
-
-
-
-
-
-
-
-
