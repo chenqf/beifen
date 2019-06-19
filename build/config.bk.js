@@ -53,6 +53,17 @@ module.exports = {
         '变量提升，函数声明变函数表达式',
         '现金券最优选中 动态规划 背包问题',
         '函数组合，函数柯里化',
+        `## 参数顺序
+
+            我们不能部分应用函数，除非我们首先正确地构造它。这里要记住的是我们将要使用的参数的顺序。
+            
+            换句话说，如果它们位于函数的末尾，我们就无法预定义参数。所以我们应该考虑到这一点来构建我们的函数。
+            
+            像Ramda这样的库遵循一种特定的约定，其中每个函数都接收它最后运行的数据，因此可以很容易地部分应用它。
+            
+            但是，有一些方法可以灵活处理参数的顺序。有时您继承了代码库，无法自由修改现有API。
+            
+            或者你可能有一个边缘情况，你需要以不同的顺序提供它们。`,
 
         '拖拽滑动如何实现，禁用浏览器默认行为解决phone中后退问题是否可行？',
         'cookie 和 session https://juejin.im/post/5cd9037ee51d456e5c5babca?utm_source=gold_browser_extension',
@@ -147,65 +158,65 @@ module.exports = {
     logTitle: '个人博客',
     baseUrl: 'https://github.com/chenqf/blog/blob/master/articles',
     publish: [{
-        name: 'javascript 基础', //分类的标题
-        path: 'javascript基础', //分类的路径
-        children: [{
-            name: 'ES6中的let和const',
-            issues: '',
-            over: true,
-            complete: true
+            name: 'javascript 基础', //分类的标题
+            path: 'javascript基础', //分类的路径
+            children: [{
+                    name: 'ES6中的let和const',
+                    issues: '',
+                    over: true,
+                    complete: true
+                },
+                {
+                    name: 'ES6中的箭头函数',
+                    issues: '',
+                    over: true,
+                    complete: false
+                },
+                {
+                    name: 'ES6中的Promise',
+                    issues: '',
+                    over: true,
+                    complete: false
+                },
+                {
+                    name: '详解typeof操作符',
+                    issues: '',
+                    over: true,
+                    complete: false
+                },
+                {
+                    name: '数组的交集并集差集',
+                    issues: '',
+                    over: true,
+                    complete: false
+                },
+                {
+                    name: '如何中断forEach循环',
+                    issues: '',
+                    over: true,
+                    complete: false
+                },
+                {
+                    name: '立即调用的函数表达式',
+                    issues: '',
+                    over: true,
+                    complete: false,
+                    todo: '重新校验一下语句是否通顺',
+                    refer: [
+                        'https://medium.com/@vvkchandra/essential-javascript-mastering-immediately-invoked-function-expressions-67791338ddc6'
+                    ]
+                }
+            ]
         },
-            {
-                name: 'ES6中的箭头函数',
-                issues: '',
-                over: true,
-                complete: false
-            },
-            {
-                name: 'ES6中的Promise',
-                issues: '',
-                over: true,
-                complete: false
-            },
-            {
-                name: '详解typeof操作符',
-                issues: '',
-                over: true,
-                complete: false
-            },
-            {
-                name: '数组的交集并集差集',
-                issues: '',
-                over: true,
-                complete: false
-            },
-            {
-                name: '如何中断forEach循环',
-                issues: '',
-                over: true,
-                complete: false
-            },
-            {
-                name: '立即调用的函数表达式',
-                issues: '',
-                over: true,
-                complete: false,
-                todo: '重新校验一下语句是否通顺',
-                refer: [
-                    'https://medium.com/@vvkchandra/essential-javascript-mastering-immediately-invoked-function-expressions-67791338ddc6'
-                ]
-            }
-        ]
-    },
         {
             name: 'javascript 进阶', //分类的标题
             path: 'javascript进阶', //分类的路径
             children: [{
-                name: '防抖函数',
-                issues: '',
-                over: true,
-                complete: false
-            },
+                    name: '防抖函数',
+                    issues: '',
+                    over: true,
+                    complete: false
+                },
                 {
                     name: '节流函数',
                     issues: '',
@@ -324,12 +335,12 @@ module.exports = {
             name: '浏览器', //分类的标题
             path: '浏览器', //分类的路径
             children: [{
-                name: '一次搞懂EventLoop',
-                nickName: '一次搞懂Event Loop',
-                issues: '',
-                over: true,
-                complete: false,
-            },
+                    name: '一次搞懂EventLoop',
+                    nickName: '一次搞懂Event Loop',
+                    issues: '',
+                    over: true,
+                    complete: false,
+                },
                 {
                     name: '如何处理图片加载失败',
                     issues: '',

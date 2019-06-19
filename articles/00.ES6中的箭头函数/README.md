@@ -201,6 +201,47 @@ f(1,2,3,4,5) // [1,2,3,4,5]
 
 在箭头函数中，不可以使用 yield 命令，因此箭头函数不能用作 Generator 函数。
 
+## 自执行函数
+
+在 ES6 的箭头函数出现之前，自执行函数一般会写成这样：
+
+```javascript
+(function(){
+    console.log(1)
+})()
+```
+
+或者写成这样：
+
+```javascript
+(function(){
+    console.log(1)
+}())
+```
+
+箭头函数当然也可以被用作自执行函数，可以这样写：
+
+```javascript
+(() => {
+    console.log(1)
+})()
+```
+
+但是，令大多数人想不到的是，下面这种写法会报错：
+
+```javascript
+(() => {
+    console.log(1)
+}())
+```
+
+那么，为什么会报错呢？
+
+原因是，箭头函数属于 AssignmentExpression 的一种，当 CallExpression 时，要求左边的表达式是 MemberExpression 或其他 CallExpression。
+
+原理就是这样了，具体可参见[ECMAScript® 2015 规范](https://www.ecma-international.org/ecma-262/6.0/#sec-arrow-function-definitions)
+
+
 
 ## 关于箭头函数的题目
 
@@ -310,3 +351,4 @@ obj1.print4.call(obj2)()
 + [初学者的箭头函数](https://codeburst.io/javascript-arrow-functions-for-beginners-926947fc0cdc)
 + [什么时候你该使用箭头函数](https://medium.com/free-code-camp/when-and-why-you-should-use-es6-arrow-functions-and-when-you-shouldnt-3d851d7f0b26)
 + [重新认识箭头函数的this](https://github.com/yygmind/blog/issues/21)
++ [ECMAScript® 2015 规范](https://www.ecma-international.org/ecma-262/6.0/#sec-arrow-function-definitions)
