@@ -12,13 +12,11 @@
 
 本文会分为三个部分来介绍：
 
-第一部主要介绍箭头函数的基本语法与使用方式，其中关于this的指向问题会着重介绍。
+第一部主要介绍箭头函数的基本语法与使用方式，其中关于**this的指向**问题会着重介绍。
 
-第二部分探究一下箭头函数在自执行函数中的奇怪现象。
+第二部分探究一下箭头函数在**自执行函数**中的奇怪现象。
 
-第三部分将提供一些题目，用于帮助大家理解。
-
-如果觉得关于箭头函数的基础知识已经有足够了解的同学，可以直接进入第二部分。
+第三部分将提供一些**面试题目**，用于帮助大家理解。
 
 ## 什么是箭头函数
 
@@ -399,11 +397,7 @@ f2.bind(obj)() // window_name
 
 ## 关于箭头函数的题目
 
-在面试中关于箭头函数的考察，主要集中在 arguments 关键字的指向和箭头函数的this指向上，下面几道题目，供大家参考一下。
-
-先上题目，由浅入深，答案后面给出。
-
-题目1
+在面试中关于箭头函数的考察，主要集中在 arguments 关键字的指向和箭头函数的this指向上，下面几道题目，由浅入深，供大家参考一下。
 
 ```javascript
 function foo(n) {
@@ -416,7 +410,15 @@ let res = foo(2);
 console.log(res); // 4
 ```
 
-题目2
+<details>
+  <summary><b>答案</b></summary>
+<p>
+## 答案: D
+
+</p>
+</details>
+
+***
 
 ```javascript
 function A() {
@@ -429,7 +431,15 @@ let a = new A()
 a.bar()
 ```
 
-题目3
+<details><summary><b>答案</b></summary>
+<p>
+## 答案: D
+
+</p>
+</details>
+
+***
+
 
 ```javascript
 let res = (function() {
@@ -441,7 +451,14 @@ let res = (function() {
 console.log(res)
 ```
 
-题目4
+<details><summary><b>答案</b></summary>
+<p>
+## 答案: D
+
+</p>
+</details>
+
+***
 
 ```javascript
 window.name = 'window_name';
@@ -476,7 +493,14 @@ obj1.print4().call(obj2)
 obj1.print4.call(obj2)()
 ```
 
-答案如下：
+<details><summary><b>答案</b></summary>
+<p>
+## 答案: D
+
+</p>
+</details>
+
+***
 
 ```javascript
 // 题目1：4
