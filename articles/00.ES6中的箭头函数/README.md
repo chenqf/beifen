@@ -1,8 +1,28 @@
 # ES6中的箭头函数
 
+## 前言
+
+这篇文章，前前后后，整理了一周多的时间，下了很多心思。可能有人会说，一个箭头函数而已，没什么难度的，好的，你是大牛，你是大神，但我相信更多人目前还走在成为大牛，成为大神的路上。我相信，至少一小部分人，看过这篇文章，还是会有些许收获的。
+
+学海无涯苦作舟，共同学习，共同进步，与君共勉。
+
 ## 引言
 
-在 ES6 中，箭头函数是其中最有趣也最受欢迎的新增特性。顾名思义，箭头函数是一种使用 (=>) 定义函数的新语法，它与传统的 ES5 函数有些许不同。
+在 ES6 中，箭头函数是其中最有趣也最受欢迎的新增特性。
+
+本文会分为三个部分来介绍：
+
+第一部主要介绍箭头函数的基本语法与使用方式，其中关于this的指向问题会着重介绍。
+
+第二部分探究一下箭头函数在自执行函数中的奇怪现象。
+
+第三部分将提供一些题目，用于帮助大家理解。
+
+如果觉得关于箭头函数的基础知识已经有足够了解的同学，可以直接进入第二部分。
+
+## 什么是箭头函数
+
+顾名思义，箭头函数是一种使用 (=>) 定义函数的新语法，它与传统的 ES5 函数有些许不同。
 
 这是一个用 ES5 语法编写的函数：
 
@@ -107,60 +127,9 @@ let F = ()=>{};
 console.log(F.prototype) // undefined
 ```
 
-### 没有 this 绑定
-在 ES5 函数表达式中，this关键字根据调用它的上下文绑定到不同的值。但是，对于箭头函数，它this是词法绑定的。
+### 不能用作 Generator 函数
 
-**箭头函数体内的 this 对象，就是定义时所在的对象，而不是使用时所在的对象。**
-
-```javascript
-window.name = 'window_name'
-let obj = {
-    name:'obj_name',
-    f1:function(){
-        return this.name
-    },
-    f2:()=>{
-        return this.name
-    }
-}
-obj.f1(); // obj_name
-obj.f2(); // window_name
-```
-
-上面代码中，obj.f1 是一个普通函数，obj.f2 是一个箭头函数。
-
-当调用 obj.f1() 时，obj.f1 中 this 的指向的是 f1 函数的调用者，也就是 obj，所以返回 'obj_name'。
-
-当调用 obj.f2() 时，由于 obj.f2 是箭头函数，所以 obj.f2 中this 指向的是定义 obj.f2 时的 this 指向，也就是 window，所以返回 'window_name'。
-
-**对箭头函数使用 call、apply、bind 时，不会改变 this 指向，只会传入参数**
-
-```javascript
-window.name = 'window_name';
-
-let f1 = function(){return this.name}
-let f2 = ()=> this.name
-
-let obj = {name:'obj_name'}
-
-f1.call(obj) // obj_name
-f2.call(obj) // window_name
-
-f1.apply(obj) // obj_name
-f2.apply(obj) // window_name
-
-f1.bind(obj)() // obj_name
-f2.bind(obj)() // window_name
-```
-
-上面代码中，声明了普通函数 f1，箭头函数 f2。
-
-普通函数的 this 指向是动态可变的，所以在对 f1 使用 call、apply、bind 时，f1 内部的 this 指向会发生改变。
-
-箭头函数的 this 指向在其定义时就已确定，永远不会发生改变，所以在对 f2 使用 call、apply、bind 时，会忽略传入的上下文参数。
-
-
-**this指向的固定化，并不是因为箭头函数内部有绑定this的机制，实际原因是箭头函数根本没有自己的this，导致内部的this就是外层代码块的this**
+在箭头函数中，不可以使用 yield 命令，因此箭头函数不能用作 Generator 函数。
 
 ### 没有 arguments、super、new.target
 
@@ -197,9 +166,196 @@ let f = (...args)=>console.log(args)
 f(1,2,3,4,5) // [1,2,3,4,5]
 ```
 
-### 不能用作 Generator 函数
+### 没有 this 绑定
 
-在箭头函数中，不可以使用 yield 命令，因此箭头函数不能用作 Generator 函数。
+在理解箭头函数中的this指向问题之前，我们先来回看在 ES5 中的一个例子：
+
+```javascript
+var obj = {
+  value:0,
+  fn:function(){
+    this.value ++
+  }
+}
+obj.fn();
+console.log(obj.value); // 1
+```
+
+这段代码很简单，在每次调用 obj.fn() 时，期望的是将 obj.value 加 1。
+
+现在我们将代码修改一下：
+
+```javascript
+var obj = {
+  value:0,
+  fn:function(){
+    var f = function(){
+      this.value ++
+    }
+    f();
+  }
+}
+obj.fn();
+console.log(obj.value); // 0
+```
+
+我们将代码修改了一下，在 obj.fn 方法内增加了一个函数 f ，并将 obj.value 加 1 的动作放到了函数 f 中。但是由于 javascript 语言设计上的一个错误，函数 f 中的 this 并不是 方法 obj.fn 中的 this，导致我们没法获取到 obj.value 。
+
+为了解决此类问题，在 ES5 中，我们通常会将外部函数中的 this 赋值给一个临时变量（通常命名为 that、_this、self），在内层函数中若希望使用外层函数的 this 时，通过这个临时变量来获取。修改代码如下：
+
+```javascript
+var obj = {
+  value:0,
+  fn:function(){
+    // 本人喜欢定义为 _this，也有很多人喜欢定义成 that 或 self
+    var _this = this;
+    var f = function(){
+      _this.value ++
+    }
+    f();
+  }
+}
+obj.fn();
+console.log(obj.value); // 1
+```
+
+从这个例子中，我们知道了在 ES5 中如何解决内部函数获取外部函数 this 的办法。
+
+然后我们来看看箭头函数相对于 ES5 中的函数来说，它的 this 指向有和不同。
+
+先看一段定义，来源于[ES6标准入门](https://book.douban.com/subject/27127030/)
+
+> **箭头函数体内的 this 对象就是定义时所在的对象，而不是使用时所在的对象。**
+
+那么，如何来理解这句话呢？
+
+我们尝试用[babel](https://www.babeljs.cn/)来将如下代码转换成 ES5 格式的代码，看看它都做了什么。
+
+```javascript
+function fn(){
+  let f = ()=>{
+    console.log(this)
+  }
+}
+```
+
+来看看转化后的结果，直接上图：
+
+![avatar](./1.png)
+
+我们发现了什么，居然和我们之前在 ES5 中解决内层函数获取外层函数 this 的方法一样，定义一个临时变量 _this ~
+
+那么，箭头函数自己的 this 哪里去了?
+
+答案是，箭头函数根本没有自己的 this ！
+
+那么，我们可以总结一下，将晦涩难懂的定义转化成白话文：
+
++ 箭头函数的外层如果有普通函数，那么箭头函数的 this 就是外层普通函数的this
++ 箭头函数的外层如果没有普通函数，那么箭头函数的 this 就是全局变量
+
+让我们用几个例子，来验证一下我们总结的规则：
+
+```javascript
+let obj = {
+    fn:function(){
+        console.log('我是普通函数',this === obj)
+        return ()=>{
+            console.log('我是箭头函数',this === obj)
+        }
+    }
+}
+
+console.log(obj.fn()())
+
+// 我是普通函数 true
+// 我是箭头函数 true
+```
+
+从上面的例子，我们能够看出，箭头函数的 this 与外层函数的 this 是相等的。
+
+在看一个多层箭头函数嵌套的例子：
+
+```javascript
+let obj = {
+    fn:function(){
+        console.log('我是普通函数',this === obj)
+        return ()=>{
+            console.log('第一个箭头函数',this === obj)
+            return ()=>{
+                console.log('第二个箭头函数',this === obj)
+                return ()=>{
+                    console.log('第三个箭头函数',this === obj)
+                }
+            }
+        }
+    }
+}
+
+console.log(obj.fn()()()())
+// 我是普通函数 true
+// 第一个箭头函数 true
+// 第二个箭头函数 true
+// 第三个箭头函数 true
+```
+
+在这个例子中，我们能够知道，对于箭头函数来说，箭头函数的 this 与外层的第一个普通函数的 this 相等，与嵌套了几层箭头函数无关。
+
+再来看一个没有外层函数的例子：
+
+```javascript
+let obj = {
+    fn:()=>{
+        console.log(this === window);
+    }
+}
+
+console.log(obj.fn())
+
+// true
+```
+
+这个例子，证明了，在箭头函数外层没有普通函数时，箭头函数的 this 与全局对象相等。
+
+需要注意的是，浏览器环境下全局对象为 window，node 环境下全局对象为 global，验证的时候需要区分一下。
+
+### 箭头函数碰上 call、apply、bind
+
+看到这里，相信大家已经知道了，箭头函数中根本没有自己的 this ,那么当箭头函数碰到 call、apply、bind 时，会发生什么呢？
+
+我们知道，call 和 apply 的作用是改变函数 this 的指向，传递参数，并将函数执行，
+而 bind 的作用是生成一个绑定 this 并预设函数参数的新函数。
+
+然而由于箭头函数根本没有自己的 this ，所以：
+
++ 当对箭头函数使用 call 或 apply 方法时，只会传入参数并调用函数，并不会改变箭头函数中 this 的指向；
++ 当对箭头函数使用 bind 方法时，只会返回一个预设参数的新函数，并不会绑定新函数的 this 指向。
+
+我们来验证一下：
+
+```javascript
+window.name = 'window_name';
+
+let f1 = function(){return this.name}
+let f2 = ()=> this.name
+
+let obj = {name:'obj_name'}
+
+f1.call(obj) // obj_name
+f2.call(obj) // window_name
+
+f1.apply(obj) // obj_name
+f2.apply(obj) // window_name
+
+f1.bind(obj)() // obj_name
+f2.bind(obj)() // window_name
+```
+
+上面代码中，声明了普通函数 f1，箭头函数 f2。
+
+普通函数的 this 指向是动态可变的，所以在对 f1 使用 call、apply、bind 时，f1 内部的 this 指向会发生改变。
+
+箭头函数的 this 指向在其定义时就已确定，永远不会发生改变，所以在对 f2 使用 call、apply、bind 时，会忽略传入的上下文参数。
 
 ## 自执行函数
 
@@ -237,11 +393,9 @@ f(1,2,3,4,5) // [1,2,3,4,5]
 
 那么，为什么会报错呢？
 
-原因是，箭头函数属于 AssignmentExpression 的一种，当 CallExpression 时，要求左边的表达式是 MemberExpression 或其他 CallExpression。
+这个问题，曾困扰了我很久，直到我翻阅了[ECMAScript® 2015 规范](https://www.ecma-international.org/ecma-262/6.0/#sec-arrow-function-definitions)，从中得知箭头函数是属于 AssignmentExpression 的一种，而函数调用属于 CallExpression，规范中要求当 CallExpression 时，左边的表达式必须是 MemberExpression 或其他的 CallExpression，而箭头函数不属于这两种表达式，所以在编译时就会报错。
 
 原理就是这样了，具体可参见[ECMAScript® 2015 规范](https://www.ecma-international.org/ecma-262/6.0/#sec-arrow-function-definitions)
-
-
 
 ## 关于箭头函数的题目
 
@@ -347,8 +501,4 @@ obj1.print4.call(obj2)()
 
 + [深入理解ES6](https://book.douban.com/subject/27072230/)
 + [ES6标准入门](https://book.douban.com/subject/27127030/)
-+ [箭头函数和this关键字](https://medium.com/free-code-camp/learn-es6-the-dope-way-part-ii-arrow-functions-and-the-this-keyword-381ac7a32881)
-+ [初学者的箭头函数](https://codeburst.io/javascript-arrow-functions-for-beginners-926947fc0cdc)
-+ [什么时候你该使用箭头函数](https://medium.com/free-code-camp/when-and-why-you-should-use-es6-arrow-functions-and-when-you-shouldnt-3d851d7f0b26)
-+ [重新认识箭头函数的this](https://github.com/yygmind/blog/issues/21)
 + [ECMAScript® 2015 规范](https://www.ecma-international.org/ecma-262/6.0/#sec-arrow-function-definitions)
