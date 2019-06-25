@@ -123,7 +123,7 @@ console.log(m.a) //此时m.a的值是多少，是10？还是15？
 但只是引用类型的一个地址指针而已，实际指向的是同一个对象，
 所以修改 n.a 的值后，相应的 m.a 也就发生了改变。
 
-从下图可以清洗的看到变量是如何复制并修改的。
+从下图可以清晰的看到变量是如何复制并修改的。
 
 ![avatar](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/栈内存和堆内存/5.png)
 
