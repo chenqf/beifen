@@ -103,7 +103,7 @@ console.log(a); // 此时a的值是多少，是30？还是20？
 在这个例子中，a、b 都是基本类型，它们的值是存储在栈内存中的，a、b 分别有各自独立的栈空间，
 所以修改了 b 的值以后，a 的值并不会发生变化。
 
-从下图可以清洗的看到变量是如何复制并修改的。
+从下图可以清晰的看到变量是如何复制并修改的。
 
 ![avatar](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/栈内存和堆内存/4.png)
 
