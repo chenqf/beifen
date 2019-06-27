@@ -158,6 +158,7 @@ function A() {
   }
   return B;
 }
+let res = A();
 ```
 
 函数 A 返回了一个函数 B，并且函数 B 中使用了函数 A 的变量，函数 B 就被称为闭包。
