@@ -6,7 +6,6 @@
 函数柯里化在许多应用程序中已经变得很普遍。
 了解它们是什么，它们如何工作以及如何充分利用它们非常重要。
 
-
 ## 什么是柯里化（ curry）
 
 在数学和计算机科学中，柯里化是一种将使用多个参数的一个函数转换成一系列使用一个参数的函数的技术。
@@ -48,6 +47,7 @@ B(3)    // print : 6
 而我们Javascript实际应用中的柯里化函数，可以传递给函数一个或多个参数。
 
 来看这个例子：
+
 ```javascript
 //普通函数
 function fn(a,b,c,d,e) {
@@ -65,7 +65,6 @@ _fn(1)(2)(3)(4)(5); // print: 1,2,3,4,5
 对于已经柯里化后的 _fn 函数来说，当接收的参数数量与原函数的形参数量相同时，执行原函数；
 当接收的参数数量小于原函数的形参数量时，返回一个函数用于接收剩余的参数，直至接收的参数数量与形参数量一致，执行原函数。
 
-
 当我们知道柯里化是什么了的时候，我们来看看柯里化到底有什么用？
 
 ## 柯里化的用途
@@ -76,6 +75,7 @@ _fn(1)(2)(3)(4)(5); // print: 1,2,3,4,5
 
 我们工作中会遇到各种需要通过正则检验的需求，比如校验电话号码、校验邮箱、校验身份证号、校验密码等，
 这时我们会封装一个通用函数 checkByRegExp ,接收两个参数，校验的正则对象和待校验的字符串
+
 ```javascript
 function checkByRegExp(regExp,string) {
     return regExp.text(string);  
@@ -89,6 +89,7 @@ checkByRegExp(/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/, 'test@163.com'); // 校验邮�
 但是我们考虑这样一个问题，如果我们需要校验多个电话号码或者校验多个邮箱呢？
 
 我们可能会这样做：
+
 ```javascript
 checkByRegExp(/^1\d{10}$/, '18642838455'); // 校验电话号码
 checkByRegExp(/^1\d{10}$/, '13109840560'); // 校验电话号码
@@ -105,6 +106,7 @@ checkByRegExp(/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/, 'test@gmail.com'); // 校验邮
 我们才能知道我们校验的是电话号码还是邮箱，还是别的什么。
 
 此时，我们可以借助柯里化对 checkByRegExp 函数进行封装，以简化代码书写，提高代码可读性。
+
 ```javascript
 //进行柯里化
 let _check = curry(checkByRegExp);
@@ -121,7 +123,8 @@ checkEmail('test@163.com'); // 校验邮箱
 checkEmail('test@qq.com'); // 校验邮箱
 checkEmail('test@gmail.com'); // 校验邮箱
 ```
-再来看看结果柯里化封装后，我们的代码是不是变得又简洁又直观了呢。
+
+再来看看通过柯里化封装后，我们的代码是不是变得又简洁又直观了呢。
 
 经过柯里化后，我们生成了两个函数 checkCellPhone 和 checkEmail，
 checkCellPhone 函数只能验证传入的字符串是否是电话号码，
@@ -132,6 +135,7 @@ checkEmail 函数只能验证传入的字符串是否是邮箱，
 我们再来看一个例子
 
 假定我们有这样一段数据：
+
 ```javascript
 let list = [
     {
@@ -142,13 +146,17 @@ let list = [
     }
 ]
 ```
+
 我们需要获取数据中的所有 name 属性的值，常规思路下，我们会这样实现:
+
 ```javascript
 let names = list.map(function(item) {
   return item.name;
 })
 ```
+
 那么我们如何用柯里化的思维来实现呢
+
 ```javascript
 let prop = curry(function(key,obj) {
     return obj[key];
@@ -173,10 +181,12 @@ let names = list.map(prop('name'))
 我们已经知道了，当柯里化函数接收到足够参数后，就会执行原函数，那么我们如何去确定何时达到足够的参数呢？
 
 我们有两种思路：
+
 1. 通过函数的 length 属性，获取函数的形参个数，形参的个数就是所需的参数个数
 2. 在调用柯里化工具函数时，手动指定所需的参数个数
 
 我们将这两点结合以下，实现一个简单 curry 函数：
+
 ```javascript
 /**
  * 中转函数
@@ -206,9 +216,10 @@ function curry(fn,len = fn.length) {
 ```
 
 我们来验证一下：
+
 ```javascript
 let _fn = curry(function(a,b,c,d,e){
-	  console.log(a,b,c,d,e)
+    console.log(a,b,c,d,e)
 });
 
 _fn(1,2,3,4,5);     // print: 1,2,3,4,5
@@ -225,7 +236,7 @@ curry 函数已经实现了我们的目标，但是目前柯里化函数的传�
 
 ```javascript
 let _fn = curry(function(a,b,c,d,e){
-	  console.log(a,b,c,d,e)
+    console.log(a,b,c,d,e)
 });
 
 _fn(1, 2, 3, 4, 5);                 // print: 1,2,3,4,5
@@ -237,6 +248,7 @@ _fn(_, 2)(_, _, 4)(1)(3)(5);        // print: 1,2,3,4,5
 ```
 
 直接上代码：
+
 ```javascript
 /**
  * 中转函数
@@ -285,9 +297,9 @@ function _curry(fn,length,holder,args,holders){
 }
 
 /**
- * @param  fn 	  		待柯里化的函数
- * @param  length 		需要的参数个数，默认为函数的形参个数
- * @param  holder 		占位符，默认当前柯里化函数
+ * @param  fn           待柯里化的函数
+ * @param  length       需要的参数个数，默认为函数的形参个数
+ * @param  holder       占位符，默认当前柯里化函数
  * @return {Function}   柯里化后的函数
  */
 function curry(fn,length = fn.length,holder = curry){
@@ -295,7 +307,8 @@ function curry(fn,length = fn.length,holder = curry){
 }
 ```
 
-验证一下：
+验证一下：；
+
 ```javascript
 let fn = function(a, b, c, d, e) {
     console.log([a, b, c, d, e]);
@@ -313,4 +326,3 @@ _fn(_, 2)(_, _, 4)(1)(3)(5);        // print: 1,2,3,4,5
 ```
 
 至此，我们已经完整实现了一个 curry 函数~~
-
