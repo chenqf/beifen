@@ -34,7 +34,7 @@ container.addEventListener('mousemove',updateCount);
 ```
 我们来看一下效果：           
 
-![avatar](./1.gif)
+![](./1.gif)
 
 我们可以看到，鼠标从左侧滑到右侧，我们绑定的事件执行了119多次
 
@@ -79,7 +79,7 @@ const debounce = function (func,wait = 50) {
 container.addEventListener('mousemove',debounce(updateCount,100));
 ```
 
-![avatar](./2.gif)
+![](./2.gif)
 
 我们可以看到，不管我们怎么移动，我们绑定的回调事件都是在鼠标停止后100ms后才会触发。
 
@@ -123,7 +123,7 @@ const debounce = function (func,wait = 50,immediate = false) {
 };
 ```
 
-![avatar](./3.gif)
+![](./3.gif)
 
 ### 返回值
 此时要注意，用户传入的函数可能是有返回值的，但是当immediate为false的时候，因为使用了setTimeout，函数的返回值永远为undefined,所以我们只在immediate为true的时候返回函数的返回值
@@ -232,7 +232,7 @@ let action = debounce(updateCount,10000,true);
 container.addEventListener('mousemove',action);
 button.addEventListener('click',action.cancel);
 ```
-![avatar](4.gif)
+![](4.gif)
  
 至此我们已经完成时限了一个 debounce 函数
 

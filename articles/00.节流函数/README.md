@@ -42,7 +42,7 @@ container.addEventListener('mousemove',updateCount);
 ```
 我们来看一下效果：           
 
-![avatar](./1.gif)
+![](./1.gif)
 
 我们可以看到，鼠标从左侧滑到右侧，我们绑定的事件执行了119次
 
@@ -78,7 +78,7 @@ let action = throttle(updateCount,1000);
 
 container.addEventListener('mousemove',action);
 ```
-![avatar](./2.gif)
+![](./2.gif)
 
 此时当鼠标移入的时候，事件立即执行，在鼠标移动的过程中，每隔1000ms事件执行一次，旦在最后鼠标停止移动后，事件不会被执行        
 此时会有这样的两个问题：
@@ -113,7 +113,7 @@ let action = throttle(updateCount,2000);
 container.addEventListener('mousemove',action);
 ```
 
-![avatar](./3.gif)
+![](./3.gif)
 
 我们可以看到，当鼠标移入的时候，时间不会立即执行，等待2000ms后执行了一次，此后2000ms执行一次，当鼠标移除后，前一次触发事件的时间2000ms后还会触发一次事件。
 
@@ -163,7 +163,7 @@ let action = throttle(updateCount,2000);
 
 container.addEventListener('mousemove',action);
 ```
-![avatar](./4.gif)
+![](./4.gif)
 
 我们可以看到，当鼠标移入时，事件立即执行，之后每间隔2000ms后，事件均会执行，当鼠标离开时，前一次事件触发2000ms后，事件最后会再一次执行
 

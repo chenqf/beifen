@@ -55,7 +55,7 @@ console.log(age);       // 22
 
 用一张图来解释一下其中的解构过程：
 
-![avatar](./1.jpeg)
+![](./1.jpeg)
 
 ### 非同名变量赋值
 
@@ -156,7 +156,7 @@ console.log(houseNo,city);// 221 , London
 
 用一张图来解释一下其中的解构过程：
 
-![avatar](./2.jpeg)
+![](./2.jpeg)
 
 ### 默认值
 

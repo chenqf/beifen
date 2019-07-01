@@ -8,7 +8,7 @@
 
 > 欢迎关注微信公众号`【前端小黑屋】`，每周1-3篇精品优质文章推送，助你走上进阶之旅
 
-![avatar](https://user-gold-cdn.xitu.io/2019/7/1/16bac295d25e37db?w=258&h=258&f=jpeg&s=27497)
+![](https://user-gold-cdn.xitu.io/2019/7/1/16bac295d25e37db?w=258&h=258&f=jpeg&s=27497)
 
 
 
@@ -22,4 +22,4 @@
 
 > 欢迎关注微信公众号`【前端小黑屋】`，每周1-3篇精品优质文章推送，助你走上进阶之旅
 
-![avatar](https://user-gold-cdn.xitu.io/2019/7/1/16bac295d25e37db?w=258&h=258&f=jpeg&s=27497)
+![](https://user-gold-cdn.xitu.io/2019/7/1/16bac295d25e37db?w=258&h=258&f=jpeg&s=27497)
