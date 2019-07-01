@@ -21,7 +21,7 @@ ES5 只有全局作用域和函数作用域，没有块级作用域。
 for(var i = 0; i<10; i++){
     //...
 }
-console.log(i); // 输出 10
+console.log(i); // 10
 ```
 
 对于有块级作用域的语言来说，for 语句初始化变量的表达式所定义的变量，只会存在于循环的环境中。
@@ -33,11 +33,11 @@ console.log(i); // 输出 10
 
 ```javascript
 var a = 1;
-console.log(a); //print : 1
+console.log(a); // 1
 var a = 2;
-console.log(a); //print : 2
+console.log(a); // 2
 var a = 3;
-console.log(a); //print : 3
+console.log(a); // 3
 ```
 
 在大多数语言中，在同一个作用域多次声明同一个变量是非法的，但是在 ES5 中使用 var 命令重复声明的没有任何问题的。
@@ -72,15 +72,17 @@ var value;
 if (flg) {
     value = 1;
 }
-console.log(value); // flg 为true 的时候，输出 1；flg 为false 的时候，输出 undefined
+console.log(value);
+// flg 为true 的时候，输出 1；
+// flg 为false 的时候，输出 undefined
 ```
 
 **第二个例子：**
 
 ```javascript
-console.log(tmp); // print : undefined
+console.log(tmp); //  undefined
 var tmp = 1;
-console.log(tmp); // print : 1
+console.log(tmp); //  1
 ```
 
 初学者可能认为我们第一次打印 tmp 的时候应该抛出异常，因为此时 tmp 还没有声明。其实不然，因为 ES5 中的 var 命令存在变量提升，会将变量创建和初始化阶段提升至作用域顶部，将变量的赋值阶段保留在当前位置。
@@ -98,7 +100,7 @@ ES6 中新增了块级作用域，并且块级作用域可以任意嵌套
     let a = 1;
     console.log(a); // print: 1
 }
-console.log(a); // print error：ReferenceError: a is not defined
+console.log(a); // error：ReferenceError: a is not defined
 ```
 
 这个例子中，通过 let 命令声明的变量 a 仅在块级作用域内生效，所以在块级作用域外引用变量 a 会提示未定义。
@@ -108,8 +110,8 @@ console.log(a); // print error：ReferenceError: a is not defined
 ```javascript
 let a = 1;
 const b = 1;
-console.log(window.a); // print: undefined
-console.log(window.b); // print: undefined
+console.log(window.a); // undefined
+console.log(window.b); // undefined
 ```
 
 let 和 const 命令在全局作用域下创建变量，并不会绑定至全局对象中。
@@ -120,11 +122,11 @@ let 和 const 命令在全局作用域下创建变量，并不会绑定至全局
 
 ```javascript
 // var 的情况
-console.log(foo); // 输出undefined
+console.log(foo); // undefined
 var foo = 2;
 
 // let 的情况
-console.log(bar); // 报错ReferenceError
+console.log(bar); // ReferenceError
 let bar = 2;
 ```
 
@@ -138,12 +140,12 @@ let 和 const 不允许在相同作用域内，重复声明同一个变量。
 
 ```javascript
 let a = 1;
-var a = 2; //print error : Identifier 'a' has already been declared
+var a = 2; //error : Identifier 'a' has already been declared
 ```
 
 ```javascript
 let a = 1;
-let a = 2; // print error: Identifier 'a' has already been declared
+let a = 2; //error: Identifier 'a' has already been declared
 ```
 
 在函数体中重新声明形参，同样报错
@@ -151,7 +153,8 @@ let a = 2; // print error: Identifier 'a' has already been declared
 ```javascript
 function fn(params){
     let params = 1;
-} // print error: Identifier 'params' has already been declared
+}
+//error: Identifier 'params' has already been declared
 ```
 
 ### 改进：暂时性死区
@@ -161,7 +164,7 @@ function fn(params){
 let 和 const 声明的变量不会被提升到作用域顶部，如果在声明之前访问这些变量，会导致报错。
 
 ```javascript
-console.log(x); // print error: ReferenceError: value is not defined
+console.log(x); //error: ReferenceError: value is not defined
 let x = 1;
 ```
 
@@ -174,7 +177,7 @@ let x = 1;
 ```javascript
 let name = 'tom';
 function fn(){
-    console.log(name); // print error : ReferenceError: name is not defined
+    console.log(name); //error : ReferenceError: name is not defined
     let name = 'jack'
 }
 fn();
@@ -195,13 +198,13 @@ const 声明的是一个只读常量，一旦声明，常量的值就不能改�
 
 ```javascript
 const x = 1;
-x = 2; // print error: TypeError: Assignment to constant variable.
+x = 2; //error: TypeError: Assignment to constant variable.
 ```
 
 const 声明的时候必须立即初始化，不能等到以后赋值，只声明不赋值，就会报错。
 
 ```javascript
-const y; // print error:SyntaxError: Missing initializer in const declaration
+const y; //error:SyntaxError: Missing initializer in const declaration
 ```
 
 const 实际上保证的并不是变量的值不可改动，而是变量指向的内存地址所保存的数据不可变更。
@@ -215,7 +218,7 @@ const foo = {};
 foo.prop = 123;
 foo.prop // 123
 
-foo = {}; // print error: TypeError: Assignment to constant variable. 
+foo = {}; //error: TypeError: Assignment to constant variable. 
 ```
 
 上面代码中，常量foo储存的是一个地址，这个地址指向一个对象。不可变的只是这个地址，即不能把foo指向另一个地址，但对象本身是可变的，所以依然可以为其添加新属性。
