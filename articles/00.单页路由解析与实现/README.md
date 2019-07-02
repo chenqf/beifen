@@ -19,15 +19,15 @@ SPA 是 single page web application 的简称，译为单页Web应用。
 
 ## 从传统页面到视图
 
-对于初学者来说，理解传统页面与 SPA 视图间的差异是困哪的。
+对于初学者来说，理解传统页面与 SPA 视图间的差异是困难的。
 
 在这里，用两张图，来分别表明传统页面与 SPA 视图间的区别：
 
-![](./1.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/前端路由/1.png)
 
 上图表明了，在传统的网站设计中，每个HTML文件都是一个完成的HTML页面，涵盖了完整的HTML结构。
 
-![](./2.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/前端路由/2.png)
 
 上图表明了，在 SPA 的应用设计中，一个应用只有一个HTML文件，在HTML文件中包含一个占位符（即图中的 container），占位符对应的内容由每个视图来决定，对于 SPA 来说，页面的切换就是视图之间的切换。
 
@@ -175,7 +175,7 @@ router.load();
 
 来看一下效果：
 
-![](./1.gif)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/前端路由/1.gif)
 
 基本的路由功能我们已经实现了，但依然有点小问题
 
@@ -276,9 +276,9 @@ router.registerError((e)=>container.innerHTML = '页面异常，错误消息：<
 
 来看一下效果：
 
-![](./2.gif)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/前端路由/2.gif)
 
-至此，基于 hash 方式实现的前端路由，我们已经将基本雏形实现完成了，当然，它与 vue-router、react-router 相比还太过简陋，但它们的内部实现原理和我们现在的实现原理是相同的。
+至此，基于 hash 方式实现的前端路由，我们已经将基本雏形实现完成了。
 
 接下来我们来介绍前端路由的另一种模式：history 模式。
 
@@ -550,7 +550,7 @@ router.load();
 
 来看一下效果：
 
-![](./3.gif)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/前端路由/3.gif)
 
 至此，基于 history 方式实现的前端路由，我们已经将基本雏形实现完成了。
 
@@ -579,9 +579,7 @@ hash 模式相比于 history 模式的缺点：
 
 ## 尾声
 
-本文简单分析并实现了单页路由中的 hash 模式和 history 模式，当然，它与 vue-router、react-router 相比还太过简陋，但它们的内部实现原理和我们现在的实现原理是相同的。
-
-关于 vue-router、react-router 的源码解析，会在以后的文章中逐步推出。
+本文简单分析并实现了单页路由中的 hash 模式和 history 模式，当然，它与 vue-router、react-router 相比还太过简陋，关于 vue-router、react-router 的源码解析，会在以后的文章中逐步推出。
 
 ## 参考
 
