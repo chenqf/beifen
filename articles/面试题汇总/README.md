@@ -1,8 +1,6 @@
 
 # 题目汇总
 
-#### 题目1
-
 ```javascript
 function foo(n) {
   var f = () => arguments[0] + n;
@@ -11,7 +9,7 @@ function foo(n) {
 
 let res = foo(2);
 
-console.log(res); // 问 输出结果
+console.log(res);// 问 输出结果
 ```
 
 <details>
@@ -26,8 +24,6 @@ console.log(res); // 问 输出结果
 
 ***
 
-#### 题目2
-
 ```javascript
 function A() {
   this.foo = 1
@@ -39,7 +35,7 @@ let a = new A()
 a.bar() // 问 输出结果
 ```
 
-<details><summary><b>答案</b></summary>
+<details><summary><b>答案及解析</b></summary>
 
 <p>
 
@@ -53,8 +49,6 @@ a.bar() // 问 输出结果
 
 ***
 
-#### 题目3
-
 ```javascript
 let res = (function pt() {
   return (() => this.x).bind({ x: 'inner' })();
@@ -63,7 +57,7 @@ let res = (function pt() {
 console.log(res)  // 问 输出结果
 ```
 
-<details><summary><b>答案</b></summary>
+<details><summary><b>答案及解析</b></summary>
 <p>
 
 答案：'outer'
@@ -84,8 +78,6 @@ console.log(res)  // 问 输出结果
 
 ***
 
-#### 题目4
-
 ```javascript
 window.name = 'window_name';
 
@@ -96,11 +88,12 @@ let obj1 = {
 
 let obj2 = {name:'obj2_name'}
 
-obj1.print()  // 问 输出结果
-obj1.print.call(obj2)  // 问 输出结果
+// 问 输出结果
+obj1.print()
+obj1.print.call(obj2)
 ```
 
-<details><summary><b>答案</b></summary>
+<details><summary><b>答案及解析</b></summary>
 <p>
 
 答案：'window_name'  'window_name'
@@ -114,8 +107,6 @@ obj1.print.call(obj2)  // 问 输出结果
 
 ***
 
-#### 题目5
-
 ```javascript
 let obj1 = {
     name:'obj1_name',
@@ -126,13 +117,13 @@ let obj1 = {
 
 let obj2 = {name:'obj2_name'}
 
-
-obj1.print()() // 问 输出结果
-obj1.print().call(obj2) // 问 输出结果
-obj1.print.call(obj2)() // 问 输出结果
+// 问 输出结果
+obj1.print()()
+obj1.print().call(obj2)
+obj1.print.call(obj2)()
 ```
 
-<details><summary><b>答案</b></summary>
+<details><summary><b>答案及解析</b></summary>
 <p>
 答案: 'obj1_name' 'obj1_name' 'obj2_name'
 
@@ -147,19 +138,7 @@ obj1.print.call(obj2)() // 问 输出结果
 </p>
 </details>
 
-
-
-
-TODO 
-
-
-
-
-
-
-
-
-### 题目一
+***
 
 ```javascript
 const promise = new Promise((resolve, reject) => {
@@ -171,11 +150,21 @@ promise.then(() => {
   console.log(3)
 })
 console.log(4)
+
+//问 输出顺序
 ```
 
-结果：1 2 4 3
+<details><summary><b>答案及解析</b></summary>
+<p>
+答案: 1 2 4 3
 
-### 题目二
+new Promise(fn) 时 fn 在Promise构造函数中同步执行，所以先输出 1 和 2。
+then 方法注册的回调函数在下一次 Event Loop 中执行。
+
+</p>
+</details>
+
+***
 
 ```javascript
 const promise = new Promise((resolve, reject) => {
@@ -191,11 +180,21 @@ promise
   .catch((err) => {
     console.log(err)
   })
+
+//问 输出结果
 ```
 
-结果：success1
+<details><summary><b>答案及解析</b></summary>
+<p>
+答案: success1
 
-### 题目三
+promise对象只有三种状态：pending (等待态)、fulfilled (完成态)、rejected (拒绝态)。pending 可以迁移至 fulfilled 或 rejected，但状态为 fulfilled 或 rejected 时，不可再进行转化，并且终值确定。题目中调用 resolve('success1') 时，状态已经确定为 fulfilled，并且终值为 success1。
+
+
+</p>
+</details>
+
+***
 
 ```javascript
 Promise.resolve(1)
@@ -209,22 +208,98 @@ Promise.resolve(1)
   .then((data) => {
     console.log(data)
   })
+
+//问 输出结果及顺序
 ```
 
-结果：1 2
+<details><summary><b>答案及解析</b></summary>
+<p>
+答案: 1 2
 
-### 题目四
+Promise.resolve(1) 方法返回一个状态为 fulfilled 终值为 1 的promise对象。
+promise 对象的 then 方法返回一个新的 promise 对象，新 promise 对象的状态取决于 then 方法中回调函数执行时是否出现异常，未出现异常时状态为 fulfilled 终值为函数的返回值。
+</p>
+</details>
+
+***
 
 ```javascript
 Promise.resolve(1)
   .then(2)
   .then(Promise.resolve(3))
   .then(console.log)
+
+// 问 输出结果
 ```
 
-结果：1
+<details><summary><b>答案及解析</b></summary>
+<p>
+答案: 1
 
-### 题目五
+promise 对象的then方法只能接收函数类型的参数，若不为函数，则会出现穿透现象，题中前两个 then 方法的入参都不是函数，所以穿透至第三个 then 方法。
+</p>
+</details>
+
+***
+
+```javascript
+let a,b,result;
+result = ((a = 1) || (b = 2))
+
+console.log(a,b,result); // 问 输出结果
+```
+
+<details><summary><b>答案及解析</b></summary>
+<p>
+答案: 1 undefined 1
+
+`||`运算符先计算左侧的表达式，如果结算结果为真，那么返回这个真值，如果结果为假，才计算右侧的表达式。`=`为赋值运算符，返回赋给左操作数的值。本题中`||`运算符的左表达式为`a = 1`，返回结果为 1，数字 1 转换为 boolean 值为 true, `||`运算符不会再计算右侧的表达式`b = 2`。
+</p>
+</details>
+
+***
+
+```javascript
+let foo = 1;
+(function foo(){
+    foo = 2;
+    console.log(foo); // 问 输出结果
+})()
+
+(function foo(){
+    'use strict';
+    foo = 2;
+    console.log(foo); // 问 输出结果
+})()
+```
+
+<details><summary><b>答案及解析</b></summary>
+<p>
+答案: foo(){...} TypeError
+
+题中立即执行函数拥有一个函数名 foo，用于指代其本身,非严格模式可对其进行赋值操作，但不会修改其指向的内容，严格模式下不允许对其修改。
+</p>
+</details>
+
+***
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*** 
 
 ```javascript
 new Promise((resolve,reject)=>{
