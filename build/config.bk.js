@@ -66,6 +66,7 @@ module.exports = {
             或者你可能有一个边缘情况，你需要以不同的顺序提供它们。`,
 
         '拖拽滑动如何实现，禁用浏览器默认行为解决phone中后退问题是否可行？',
+        '深拷贝浅拷贝',
         'cookie 和 session https://juejin.im/post/5cd9037ee51d456e5c5babca?utm_source=gold_browser_extension',
         '深度好文，https://juejin.im/post/5cb0315f518825215e61ec14?utm_source=gold_browser_extension',
         'await 在forEach 中 https://juejin.im/post/5cb1d5a3f265da03587bed99?utm_source=gold_browser_extension',
@@ -89,6 +90,10 @@ module.exports = {
         {
             'Object&Function': [
                 'https://mp.weixin.qq.com/s/yK6rFQdFM62344LE1CeBlA'
+            ],
+            '深浅拷贝':[
+                'https://juejin.im/post/5c20509bf265da611b585bec',
+                'https://github.com/mqyqingfeng/Blog/issues/32'  
             ],
             微前端: [
                 'https://microfrontend.cn/'
