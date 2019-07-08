@@ -189,6 +189,15 @@ let names = list.map(prop('name'))
 
 ```javascript
 /**
+ * 将函数柯里化
+ * @param fn    待柯里化的原函数
+ * @param len   所需的参数个数，默认为原函数的形参个数
+ */
+function curry(fn,len = fn.length) {
+    return _curry.call(this,fn,len)
+}
+
+/**
  * 中转函数
  * @param fn    待柯里化的原函数
  * @param len   所需的参数个数
@@ -203,15 +212,6 @@ function _curry(fn,len,...args) {
             return _curry.call(this,fn,len,..._args)
         }
     }
-}
-
-/**
- * 将函数柯里化
- * @param fn    待柯里化的原函数
- * @param len   所需的参数个数，默认为原函数的形参个数
- */
-function curry(fn,len = fn.length) {
-    return _curry.call(this,fn,len)
 }
 ```
 
@@ -228,28 +228,35 @@ _fn(1,2)(3,4)(5);   // print: 1,2,3,4,5
 _fn(1)(2)(3)(4)(5); // print: 1,2,3,4,5
 ```
 
-curry 函数已经实现了我们的目标，但是目前柯里化函数的传参顺序必须是从左至右，
-根据形参的顺序依次传入，那么我们不想根据这个顺序传递呢？
+我们常用的工具库 lodash 也提供了 curry 方法，并且增加了非常好玩的 placeholder 功能，通过占位符的方式来改变传入参数的顺序。
 
 比如说，我们传入一个占位符，本次调用传递的参数略过占位符，
 占位符所在的位置由下次调用的参数来填充，比如这样：
 
-```javascript
-let _fn = curry(function(a,b,c,d,e){
-    console.log(a,b,c,d,e)
-});
+直接看一下官网的例子：
 
-_fn(1, 2, 3, 4, 5);                 // print: 1,2,3,4,5
-_fn(_, 2, 3, 4, 5)(1);              // print: 1,2,3,4,5
-_fn(1, _, 3, 4, 5)(2);              // print: 1,2,3,4,5
-_fn(1, _, 3)(_, 4,_)(2)(5);         // print: 1,2,3,4,5
-_fn(1, _, _, 4)(_, 3)(2)(5);        // print: 1,2,3,4,5
-_fn(_, 2)(_, _, 4)(1)(3)(5);        // print: 1,2,3,4,5
-```
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/柯里化/1.png)
+
+接下来我们来思考，如何实现占位符的功能。
+
+对于 lodash 的 curry 函数来说，curry 函数挂载在 lodash 对象上，所以将 lodash 对象当做默认占位符来使用。
+
+而我们的自己实现的 curry 函数，本身并没有挂载在任何对象上，所以将 curry 函数当做默认占位符
+
+使用占位符，目的是改变参数传递的顺序，所以在 curry 函数实现中，每次需要记录是否使用了占位符，并且记录占位符所代表的参数位置。
 
 直接上代码：
 
 ```javascript
+/**
+ * @param  fn           待柯里化的函数
+ * @param  length       需要的参数个数，默认为函数的形参个数
+ * @param  holder       占位符，默认当前柯里化函数
+ * @return {Function}   柯里化后的函数
+ */
+function curry(fn,length = fn.length,holder = curry){
+    return _curry.call(this,fn,length,holder,[],[])
+}
 /**
  * 中转函数
  * @param fn            柯里化的原函数
@@ -296,15 +303,6 @@ function _curry(fn,length,holder,args,holders){
     }
 }
 
-/**
- * @param  fn           待柯里化的函数
- * @param  length       需要的参数个数，默认为函数的形参个数
- * @param  holder       占位符，默认当前柯里化函数
- * @return {Function}   柯里化后的函数
- */
-function curry(fn,length = fn.length,holder = curry){
-    return _curry.call(this,fn,length,holder,[],[])
-}
 ```
 
 验证一下：；
