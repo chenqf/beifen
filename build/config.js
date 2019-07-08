@@ -41,12 +41,14 @@ module.exports = {
         17128240154, // 搜狗高速浏览器
         17128240034, // phone qq
         17157721545, // phone wc
+
         17128240148, // ok
         16739465443, // ok
         17128240241, // ok
         16739465439, // ok https://www.pdflibr.com/?page=7
         16739465440, // ok https://www.pdflibr.com/?page=6
         16739465442, // ok https://www.pdflibr.com/?page=6
+        
         16510985245,//https://sms.bilulanlv.com/message/16510985245.html
         18866478645,
         18866478984,//http://www.z-sms.com/

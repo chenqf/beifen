@@ -35,6 +35,7 @@ module.exports = {
     座右铭: 'https://juejin.im/post/5ce2055f5188251cf708b3d2?utm_source=gold_browser_extension 不关注细节',
     架构好文: 'https://juejin.im/post/5cea1f705188250640005472?utm_source=gold_browser_extension',
     wait: [
+        'FPS https://www.cnblogs.com/coco1s/archive/2017/12/13/8029582.html',
         '迭代器 https://codeburst.io/a-simple-guide-to-es6-iterators-in-javascript-with-examples-189d052c3d8e',
         '时间切片 https://mp.weixin.qq.com/s?__biz=MzA5NzkwNDk3MQ==&mid=2650589786&idx=1&sn=bf6182de3c40fe9f8912754ae209d817&chksm=8891da7ebfe653681350158cd774eaf2859158924f307516f5eae1b35591e535fe49a6185f21&scene=0&xtrack=1#rd',
         '函数式编程 https://medium.com/front-end-weekly/8-steps-to-turn-imperative-javascript-class-to-a-functional-declarative-code-862964faf46c',
