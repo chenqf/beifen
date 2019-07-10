@@ -1,46 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-<style>
-    #nav {
-        text-align: center;
-    }
-    
-    #nav a {
-        color: #007fff;
-        cursor: pointer;
-        margin: 5px;
-        text-decoration: none;
-    }
-    
-    #container {
-        padding: 20px;
-        margin-top: 20px;
-        height: 200px;
-        border: 1px solid #333;
-    }
-</style>
-
 <body>
-    <div id="nav">
-        <a href="/page1">page1</a>
-        <a href="/page2">page2</a>
-        <a href="/page3">page3</a>
-        <a href="/page4">page4</a>
-        <a href="/page5">page5</a>
-        <button id="btn">page2</button>
-    </div>
-    <div id="container">
-
-    </div>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+                .register('./sw.js', {scope: '/'})
+                .then(registration => {
+                    console.log('ServiceWorker 注册成功！作用域为: ',registration.scope)
+                })
+                .catch(err => {
+                    console.log('ServiceWorker 注册失败: ', err)
+                });
+        }
+    </script>
+    <img src="https://pic2.zhimg.com/v2-7ef94ca64a482a63e6e8817f4279a399_1200x500.jpg">
 </body>
-<!-- <script src="./main.js" type="module"></script> -->
-<script src="./main.js"></script>
-
 </html>
