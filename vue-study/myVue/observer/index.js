@@ -1,31 +1,12 @@
-import Depend from './Depend.js';
 
+import {
+    def,
+    hasOwn,
+    isObject,
+} from '../util/index.js'
 
-const arrayProto = Array.prototype;
-const arrayMethods = Object.create(arrayProto);
-const arrayMethodNames = ['push','pop','shift','unshift','reverse','sort','splice','fill'];
-
-arrayMethodNames.forEach(method=>{
-    let original = arrayProto[method];
-    Object.defineProperty(arrayMethods,method,{
-        configurable:true,
-        enumerable:true,
-        writable:true,
-        value:function(...args){
-            let result = original.apply(this,args);
-            let ob = this.__ob__;
-            let inserted = [];
-            if(method === 'push' || method === 'shift'){
-                inserted = args;
-            }else if(method === 'splice'){
-                inserted = args.slice(2);
-            }
-            ob.observeArray(inserted);
-            ob.dep.notify();
-            return result;
-        }
-    })
-})
+import Dep from './dep.js';
+import arrayMethods from './array.js'
 
 
 
@@ -33,7 +14,7 @@ export default class Observer {
     constructor(value) {
         this.value = value;
         //数组收集依赖 getter 和 方法拦截器都可以取到
-        this.dep = new Depend();
+        this.dep = new Dep();
         def(value,'__ob__',this);
         if (Array.isArray(value)) {
             Object.setPrototypeOf(value,arrayMethods)
@@ -54,25 +35,15 @@ export default class Observer {
 }
 
 
-function def(obj,key,val){
-    Object.defineProperty(obj,key,{
-        value:val,
-        enumerable:false,
-        writable:true,
-        configurable:true,
-    })
-}
-
-
 function defineReactive(obj, key, val) {
-    if (typeof val === 'object') {
+    if (isObject(val)) {
         new Observer(val)
     }
 
     let childOb = observe(val);
 
     //对象收集依赖 getter setter 都能够取到
-    let dep = new Depend();
+    let dep = new Dep();
     Object.defineProperty(obj, key, {
         enumerable: true,
         configurable: true,
@@ -94,11 +65,11 @@ function defineReactive(obj, key, val) {
 }
 
 function observe(value,asRootData){
-    if(typeof value !== 'object'){
+    if(!isObject(value)){
         return ;
     }
     let ob;
-    if(value.hasOwnProperty('__ob__') && value.__ob__ instanceof Observer){
+    if(hasOwn(value,'__ob__') && value.__ob__ instanceof Observer){
         ob = value.__ob__;
     }else{
         ob = new Observer(value)

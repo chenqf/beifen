@@ -1,5 +1,8 @@
 
 
+
+
+
 export default class Depend{
     constructor(){
         this.subs = [];
