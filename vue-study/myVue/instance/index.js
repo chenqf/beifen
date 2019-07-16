@@ -25,8 +25,13 @@ export default class Vue{
         this.$data = data;
 
     }
-    $watch(expOrFn,cb){
-        let watcher = new Watcher(this,expOrFn,cb)
+    $watch(expOrFn,cb,options = {}){
+        let vm = this;
+        let {immediate = false} = options;
+        let watcher = new Watcher(vm,expOrFn,cb,options)
+        if(immediate){
+            cb.call(vm,watcher.value);
+        }
         return function unwatch(){
             watcher.teardown();
         }

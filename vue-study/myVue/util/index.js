@@ -41,6 +41,10 @@ export function isObject(obj) {
     return typeof obj === 'object' && obj !== null;
 }
 
+export function isFn(val){
+    return typeof val === 'function'
+}
+
 export function hasOwn(obj, key) {
     return obj.hasOwnProperty(key)
 }

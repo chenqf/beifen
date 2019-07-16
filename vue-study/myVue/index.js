@@ -21,8 +21,3 @@ vm.$watch('d',function(newVal,oldVal){
     console.log('new:',newVal);
     console.log('old',oldVal);
 })
-
-vm.$watch('e.f.g',function(newVal,oldVal){
-    console.log('new:',newVal);
-    console.log('old',oldVal);
-})

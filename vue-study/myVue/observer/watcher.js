@@ -1,14 +1,14 @@
 
 import {
-    parsePath
+    parsePath, isFn
 } from '../util/index.js'
 
 
 
 export default class Watcher{
-    constructor(vm,expOrFn,cb){
+    constructor(vm,expOrFn,cb,options){
         this.vm = vm;
-        if(typeof expOrFn === 'function'){
+        if(isFn){
             this.getter = expOrFn;
         }else{
             this.getter = parsePath(expOrFn);
