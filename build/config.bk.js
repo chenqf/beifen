@@ -126,6 +126,9 @@ module.exports = {
                 'https://mp.weixin.qq.com/s/G9EnRM5Koz2OoKIC438iRg'
             ],
             virtualDOM: [
+                'React 希望在資料更新時，能夠直接重新渲染頁面，不用主動去探究是數據的哪部份發生變化，要對應去更新頁面哪一部分的 DOM。但頁面重新渲染的成本可是更高，所以才需要 Virtual DOM 作為緩衝，透過資料更新後，重新繪製 Virtual DOM，與實體 DOM 進行 Diff，最後再把差異部分 Patch 上去，這不僅修正了重新渲染的成本問題，也降低了 data 與 view 交互更新的複雜度，提高了 developer 的開發體驗。',
+                'https://juejin.im/post/5c8e5e4951882545c109ae9c#heading-12',
+                'https://www.zhihu.com/question/31809713/answer/53544875',
                 'https://blog.techbridge.cc/2019/02/04/vdom-from-scratch/',
                 'https://juejin.im/post/5b10dd36e51d4506e04cf802'
             ],
