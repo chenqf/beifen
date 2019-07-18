@@ -46,3 +46,13 @@
 
 
 
+## 捐助
+
+为什么要捐助？一篇好文章可以帮助你节省大量的时间，而你的时间是相当宝贵的。
+
+向文章的作者提供小额捐助，可以鼓励作者写出更好的文章。
+
+<div>
+    <img width="180px" src="https://raw.githubusercontent.com/chenqf/frontEndBlog/master/wc.png"/>
+    <img width="180px" src="https://raw.githubusercontent.com/chenqf/frontEndBlog/master/zhi.png"/>
+</div>
