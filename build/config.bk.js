@@ -53,7 +53,7 @@ module.exports = {
         'AOP https://juejin.im/post/5cc2e15651882525041c64b5?utm_source=gold_browser_extension https://www.cnblogs.com/Wolfmanlq/p/6036019.html',
         '变量提升，函数声明变函数表达式',
         '现金券最优选中 动态规划 背包问题',
-        '函数组合，函数柯里化',
+        '函数组合（https://medium.com/free-code-camp/pipe-and-compose-in-javascript-5b04004ac937），函数柯里化',
         `## 参数顺序
 
             我们不能部分应用函数，除非我们首先正确地构造它。这里要记住的是我们将要使用的参数的顺序。

@@ -6,8 +6,6 @@
 
 我们希望有一种降级处理的方式，可以在图片加载失败后显示一张我们预先设定好的默认图片
 
-
-
 ## 监听图片的 error 事件
 
 由于图片加载失败后，会抛出一个 error 事件，我们可以通过监听 error 事件的方式来对图片进行降级处理
@@ -15,16 +13,18 @@
 ```html
 <img id="img" src="//xxx.xxx.xxx/img.png">
 ```
+
 ```javascript
 let img = document.getElementById('img');
 img.addEventListener('error',function(e){
-	e.target.str = '//xxx.xxx.xxx/default.png'; // 为当前图片设定默认图
+    e.target.str = '//xxx.xxx.xxx/default.png'; // 为当前图片设定默认图
 })
 ```
 
 这种方式，确实实现了对异常图片的降级处理，但每张图片都需要通过 JS 进行获取，并且监听 error 事件，对于大量图片的情况并不适用
 
 为此，我们可以使用内联事件来监听 error 事件
+
 ```html
 <img src="//xxx.xxx.xxx/img.png" onerror="this.src = '//xxx.xxx.xxx/default.png'">
 ```
@@ -41,6 +41,7 @@ img.addEventListener('error',function(e){
 我们希望的是，能够在全局监听 error 事件，在实际实现之前，先来看一下浏览器中的事件流
 
 DOM2级事件规定事件流包含三个阶段：
+
 + 事件捕获阶段
 + 处于目标阶段
 + 事件冒泡阶段
@@ -53,10 +54,10 @@ DOM2级事件规定事件流包含三个阶段：
 
 ```javascript
 window.addEventListener('error',function(e){
-	// 当前异常是由图片加载异常引起的
-	if( e.target.tagName.toUpperCase() === 'IMG' ){
-		e.target.src = '//xxx.xxx.xxx/default.jpg';
-	}
+    // 当前异常是由图片加载异常引起的
+    if( e.target.tagName.toUpperCase() === 'IMG' ){
+        e.target.src = '//xxx.xxx.xxx/default.jpg';
+    }
 },true)
 ```
 
@@ -64,22 +65,21 @@ window.addEventListener('error',function(e){
 被无限触发，所以我们可以设定一个计数器，当达到期望的错误次数时停止对图片赋予默认图片的操作，改为提供一个Base64的图片
 
 实现起来也很简单，如下：
+
 ```javascript
 window.addEventListener('error',function(e){
     let target = e.target, // 当前dom节点
-        tagName = target.tagName,       
+        tagName = target.tagName,
         times = Number(target.dataset.times) || 0, // 以失败的次数，默认为0
         allTimes = 3; // 总失败次数，此时设定为3
-	// 当前异常是由图片加载异常引起的
-	if( tagName.toUpperCase() === 'IMG' ){
-	    if(times >= allTimes){
-	        target.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-	    }else{
-	        target.dataset.times = times + 1;
-	        target.src = '//xxx.xxx.xxx/default.jpg';
-	    }
-	}
+    // 当前异常是由图片加载异常引起的
+    if( tagName.toUpperCase() === 'IMG' ){
+        if(times >= allTimes){
+            target.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+        }else{
+            target.dataset.times = times + 1;
+            target.src = '//xxx.xxx.xxx/default.jpg';
+        }
+    }
 },true)
 ```
-
-
