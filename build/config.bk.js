@@ -35,6 +35,7 @@ module.exports = {
     座右铭: 'https://juejin.im/post/5ce2055f5188251cf708b3d2?utm_source=gold_browser_extension 不关注细节',
     架构好文: 'https://juejin.im/post/5cea1f705188250640005472?utm_source=gold_browser_extension',
     wait: [
+        '前端工程化：https://juejin.im/post/5d47cbb06fb9a06af6299430',
         'FPS https://www.cnblogs.com/coco1s/archive/2017/12/13/8029582.html',
         '迭代器 https://codeburst.io/a-simple-guide-to-es6-iterators-in-javascript-with-examples-189d052c3d8e',
         '时间切片 https://mp.weixin.qq.com/s?__biz=MzA5NzkwNDk3MQ==&mid=2650589786&idx=1&sn=bf6182de3c40fe9f8912754ae209d817&chksm=8891da7ebfe653681350158cd774eaf2859158924f307516f5eae1b35591e535fe49a6185f21&scene=0&xtrack=1#rd',
@@ -65,6 +66,28 @@ module.exports = {
             但是，有一些方法可以灵活处理参数的顺序。有时您继承了代码库，无法自由修改现有API。
             
             或者你可能有一个边缘情况，你需要以不同的顺序提供它们。`,
+        `1.最通俗易懂的MVVM原理
+        链接：https://pan.baidu.com/s/1FidCaXdgO4JX-7dxOhPj3Q 
+        提取码：ibbv
+        2.vue之封装自己的树组件
+        链接：https://pan.baidu.com/s/1KggzanfhJpkeaED8Ju2O4w 
+        提取码：x2qs
+        3.Vue单元测试最佳实践
+        链接：https://pan.baidu.com/s/1Fh0TJTMOxhuKteCamKC9MA 
+        提取码：x0hh
+        4.vue之封装自己的日历组件-高级篇
+        链接：https://pan.baidu.com/s/1bwwjaboe11M78LPX4HaD2w 
+        提取码：j4dp
+        5.从零实现React
+        链接：https://pan.baidu.com/s/12EGxmIlJE42KBbZF4CAYdA 
+        提取码：hylw 
+        6.jenkin持续集成
+        链接：https://pan.baidu.com/s/16GBPbUo71RsroughN-AuhQ 
+        提取码：t4ht 
+        7.从零实现KOA
+        链接：https://pan.baidu.com/s/1jamrcQ-7aUYHQ63iSSHGTA 
+        提取码：1txi
+        `,
 
         '拖拽滑动如何实现，禁用浏览器默认行为解决phone中后退问题是否可行？',
         '深拷贝浅拷贝',
