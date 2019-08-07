@@ -21,7 +21,7 @@
 
 > 欢迎关注微信公众号`【前端小黑屋】`，每周1-3篇精品优质文章推送，助你走上进阶之旅
 
-![](https://user-gold-cdn.xitu.io/2019/7/1/16bac295d25e37db?w=258&h=258&f=jpeg&s=27497)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/gongzhonghao.jpg)
 
 
 
@@ -29,6 +29,7 @@
 
 ## 掘金文章列表
 
++ [「前端进阶」如何优雅的处理图片异常](https://juejin.im/post/5d3e4304f265da1b8608cee5)
 + [「前端进阶」单页路由解析与实现](https://juejin.im/post/5d2d19ccf265da1b7f29b05f)
 + [「前端进阶」彻底弄懂函数柯里化](https://juejin.im/post/5d2299faf265da1bb67a3b65)
 + [「前端进阶」JS中的栈内存堆内存](https://juejin.im/post/5d116a9df265da1bb47d717b)
@@ -41,6 +42,19 @@
 
 
 
+
+## 参考
+
++ [深入理解ES6](https://book.douban.com/subject/27072230/)
++ [ES6标准入门](https://book.douban.com/subject/27127030/)
++ [JavaScript高级程序设计](https://book.douban.com/subject/10546125/)
++ [JavaScript语言精粹](https://book.douban.com/subject/3590768/)
++ [JavaScript权威指南](https://book.douban.com/subject/10549733/)
++ [HTTP权威指南](https://book.douban.com/subject/10746113/)
++ [图解HTTP](https://book.douban.com/subject/25863515/)
++ [JavaScript 函数式编程](https://book.douban.com/subject/26579320/)
++ [JS 函数式编程指南](https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/)
++ [JavaScript ES6函数式编程](https://book.douban.com/subject/30180100/)
 
 
 

@@ -267,6 +267,27 @@ function pipe(...fns){
 
 与`组合`相比，有些人更喜欢`管道`。这只是个人偏好，与底层实现无关。重点是`pipe`和`compose`做同样的是事情，只是数据流放行不同而已！我们可以在代码中使用`pipe`或`compose`，但不要同时使用，因为这会在团队成员中引起混淆。如果要使用，请坚持只用一种组合的风格。
 
+## 系列文章推荐
+
++ [「前端进阶」单页路由解析与实现](https://juejin.im/post/5d2d19ccf265da1b7f29b05f)
++ [「前端进阶」彻底弄懂函数柯里化](https://juejin.im/post/5d2299faf265da1bb67a3b65)
++ [「前端进阶」JS中的栈内存堆内存](https://juejin.im/post/5d116a9df265da1bb47d717b)
++ [「前端进阶」JS中的内存管理](https://juejin.im/post/5d0706a6f265da1bc23f77a9)
++ [「前端进阶」数组乱序](https://juejin.im/post/5d004ad95188257c6b518056)
+
+## 参考
+
++ [JavaScript ES6函数式编程](https://book.douban.com/subject/30180100/)
+
+## 写在最后
+
++ 文中如有错误，欢迎在评论区指正，如果这篇文章帮到了你，欢迎`点赞`和`关注`
++ 本文同步首发与[github](https://github.com/chenqf/frontEndBlog)，可在[github](https://github.com/chenqf/frontEndBlog)中找到更多精品文章，欢迎`Watch` & `Star ★`
++ 后续文章参见：[计划](https://github.com/chenqf/frontEndBlog/blob/master/PLAN.md)
+
+> 欢迎关注微信公众号`【前端小黑屋】`，每周1-3篇精品优质文章推送，助你走上进阶之旅
+
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/gongzhonghao.jpg)
 
 
 
