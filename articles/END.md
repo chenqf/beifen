@@ -17,7 +17,7 @@
 ## 写在最后
 
 + 如果你觉得这篇文章稍有收获，点个`再看`，让更多的人也能看到这篇文章~
-+ 关注我的Github:https://github.com/chenqf/frontEndBlog,查看更多精品原创文章~
++ 关注我的`Github`:https://github.com/chenqf/frontEndBlog,查看更多精品原创文章~
 
 > 欢迎关注微信公众号`【前端小黑屋】`，每周1-3篇精品优质文章推送，助你走上进阶之旅
 

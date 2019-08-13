@@ -288,14 +288,3 @@ function pipe(...fns){
 > 欢迎关注微信公众号`【前端小黑屋】`，每周1-3篇精品优质文章推送，助你走上进阶之旅
 
 ![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/gongzhonghao.jpg)
-
-
-
-
-
-
-
-
-
-
-
