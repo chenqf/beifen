@@ -47,13 +47,7 @@ module.exports = {
         17128240241, // ok
         16739465439, // ok https://www.pdflibr.com/?page=7
         16739465440, // ok https://www.pdflibr.com/?page=6
-
-
-
-
-
-
-        
+    
         16739465442, // ok https://www.pdflibr.com/?page=6
         16510985245,//https://sms.bilulanlv.com/message/16510985245.html
         18866478645,
@@ -61,14 +55,14 @@ module.exports = {
 
         18866674071,//http://www.z-sms.com/ -
         18866478984,
-        18866674219,
-        18866674052,
+        18866674052, 
         18866478549,
         16734065669,
         16734065683,
         16734065662,
         16734065325,
         16734065668,
+        18866674219, // x
         
     ],
     pay: {
