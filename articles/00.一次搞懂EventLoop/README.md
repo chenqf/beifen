@@ -207,7 +207,7 @@ console.log('world');
 // 宏任务-->渲染-->宏任务-->渲染-->渲染．．．
 ```
 
-主代码块，setTimeout，setInterval等，都属于宏任务
+主代码块、setTimeout、setInterval、setImmediate、I/O操作等，都属于`宏任务`
 
 **第一个例子：**
 
@@ -259,6 +259,10 @@ Promise.resolve().then(()=>{
 });
 console.log(3);
 ```
+
+执行一下，再看效果：
+
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/EventLoop/10.gif)
 
 控制台输出 1 3 2 , 是因为 promise 对象的 then 方法的回调函数是异步执行，所以 2 最后输出
 
