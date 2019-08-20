@@ -51,7 +51,8 @@ module.exports = {
     
         16739465442, // ok https://www.pdflibr.com/?page=6
         16510985245,//https://sms.bilulanlv.com/message/16510985245.html
-        18866478645,
+        18866478645, // X
+        
 
 
         18866674071,//http://www.z-sms.com/ -
