@@ -7,7 +7,7 @@
 
 ## CPU
 
-![CPU](./1.png)
+![CPU](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/EventLoop/1.png)
 
 计算机的核心是CPU，它承担了所有的计算任务。
 
@@ -15,7 +15,7 @@
 
 ## 进程
 
-![进程](./2.png)
+![进程](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/EventLoop/2.png)
 
 假定工厂的电力有限，一次只能供给一个车间使用。
 也就是说，一个车间开工的时候，其他车间都必须停工。
@@ -27,7 +27,7 @@ CPU使用时间片轮转进度算法来实现同时运行多个进程。
 
 ## 线程
 
-![线程](3.png)
+![线程](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/EventLoop/3.png)
 
 一个车间里，可以有很多工人，共享车间所有的资源，他们协同完成一个任务。
 
@@ -50,7 +50,7 @@ CPU使用时间片轮转进度算法来实现同时运行多个进程。
 
 而对于浏览器来说，浏览器就是多进程的，我们可以在 windows 下打开控制管理器:
 
-![浏览器是多进程的](4.png)
+![浏览器是多进程的](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/EventLoop/4.png)
 
 如上图，我们可以看到一个IE浏览器启动了三个进程。
 
@@ -136,7 +136,7 @@ CPU使用时间片轮转进度算法来实现同时运行多个进程。
 + 事件触发线程管理一个`任务队列`，异步任务触发条件达成，将回调事件放到`任务队列`中
 + `执行栈`中所有同步任务执行完毕，此时JS引擎线程空闲，系统会读取`任务队列`，将可运行的异步任务回调事件添加到`执行栈`中，开始执行
 
-![](5.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/EventLoop/5.png)
 
 在前端开发中我们会通过`setTimeout/setInterval`来指定定时任务，会通过`XHR/fetch`发送网络请求，
 接下来简述一下`setTimeout/setInterval`和`XHR/fetch`到底做了什么事
@@ -154,7 +154,7 @@ CPU使用时间片轮转进度算法来实现同时运行多个进程。
 
 用一张图来解释：
 
-![](6.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/EventLoop/6.png)
 
 再用代码来解释一下：
 
@@ -220,7 +220,7 @@ document.body.style = 'background:grey';
 
 我们可以将这段代码放到浏览器的控制台执行以下，看一下效果：
 
-![](7.gif)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/EventLoop/7.gif)
 
 我们会看到的结果是，页面背景会在瞬间变成白色，以上代码属于同一次`宏任务`，所以全部执行完才触发`页面渲染`，渲染时`GUI线程`会将所有UI改动优化合并，所以视觉效果上，只会看到页面变成灰色。
 
@@ -235,7 +235,7 @@ setTimeout(function(){
 
 执行一下，再看效果：
 
-![](8.gif)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/EventLoop/8.gif)
 
 我会看到，页面先显示成蓝色背景，然后瞬间变成了黑色背景，这是因为以上代码属于两次`宏任务`，第一次`宏任务`执行的代码是将背景变成蓝色，然后触发渲染，将页面变成蓝色，再触发第二次宏任务将背景变成黑色。
 
@@ -297,4 +297,10 @@ setTimeout(() => {
 + 当前`宏任务`执行完毕，开始检查渲染，然后`GUI线程`接管渲染
 + 渲染完毕后，`JS线程`继续接管，开始下一个`宏任务`（从事件队列中获取）
 
-![](9.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/EventLoop/9.png)
+
+
+## 参考
+
++ [WebKit技术内幕](https://book.douban.com/subject/25910556/)
++ [进程与线程的一个简单解释](http://www.ruanyifeng.com/blog/2013/04/processes_and_threads.html)

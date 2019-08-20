@@ -1,5 +1,6 @@
 module.exports = {
     书籍链接: [
+        '[WebKit技术内幕](https://book.douban.com/subject/25910556/)',
         '[深入理解ES6](https://book.douban.com/subject/27072230/)',
         '[ES6标准入门](https://book.douban.com/subject/27127030/)',
         '[JavaScript高级程序设计](https://book.douban.com/subject/10546125/)',
