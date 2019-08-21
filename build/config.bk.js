@@ -121,7 +121,8 @@ module.exports = {
                 'https://github.com/mqyqingfeng/Blog/issues/32'  
             ],
             微前端: [
-                'https://microfrontend.cn/'
+                'https://microfrontends.cn/',
+                'https://zhuanlan.zhihu.com/p/78362028',
             ],
             原型继承: [
                 'https://juejin.im/post/5cee3c69e51d45108b2cae03?utm_source=gold_browser_extension',
