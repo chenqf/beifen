@@ -7,7 +7,11 @@
 
 > 欢迎关注微信公众号`【前端小黑屋】`，每周1-3篇精品优质文章推送，助你走上进阶之旅
 
-![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/gongzhonghao.jpg)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/gongzhonghao_sou.png)
+
+> 同时欢迎加我好友，回复`加群`，拉你入群，和我一起学前端~
+
+![](https://user-gold-cdn.xitu.io/2019/8/21/16cb2f7ddf918f64?w=268&h=268&f=png&s=44354)
 
 
 
