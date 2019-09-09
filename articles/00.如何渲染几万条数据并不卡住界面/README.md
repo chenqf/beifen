@@ -226,7 +226,34 @@ function loop(curTotal,curIndex){
 loop(total,index);
 ```
 
+## 系列文章推荐
+
++ [「前端进阶」从多线程到Event Loop全面梳理](https://juejin.im/post/5d5b4c2df265da03dd3d73e5)
++ [「前端进阶」如何优雅的处理图片异常](https://juejin.im/post/5d3e4304f265da1b8608cee5)
++ [「前端进阶」单页路由解析与实现](https://juejin.im/post/5d2d19ccf265da1b7f29b05f)
++ [「前端进阶」彻底弄懂函数柯里化](https://juejin.im/post/5d2299faf265da1bb67a3b65)
++ [「前端进阶」JS中的栈内存堆内存](https://juejin.im/post/5d116a9df265da1bb47d717b)
++ [「前端进阶」JS中的内存管理](https://juejin.im/post/5d0706a6f265da1bc23f77a9)
++ [「前端进阶」数组乱序](https://juejin.im/post/5d004ad95188257c6b518056)
+
+
 ## 参考
 
 [Web 动画帧率（FPS）计算](https://www.cnblogs.com/coco1s/archive/2017/12/13/8029582.html)
 [requestAnimationFrame 知多少](https://www.cnblogs.com/onepixel/p/7078617.html)
+
+
+## 写在最后
+
++ 文中如有错误，欢迎在评论区指正，如果这篇文章帮到了你，欢迎`点赞`和`关注`
++ 本文同步首发与[github](https://github.com/chenqf/frontEndBlog)，可在[github](https://github.com/chenqf/frontEndBlog)中找到更多精品文章，欢迎`Watch` & `Star ★`
++ 后续文章参见：[计划](https://github.com/chenqf/frontEndBlog/blob/master/PLAN.md)
+
+> 欢迎关注微信公众号`【前端小黑屋】`，每周1-3篇精品优质文章推送，助你走上进阶之旅
+
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/gongzhonghao_sou.png)
+
+> 同时欢迎加我好友，回复`加群`，拉你入群，和我一起学前端~
+
+![](https://user-gold-cdn.xitu.io/2019/8/21/16cb2f7ddf918f64?w=268&h=268&f=png&s=44354)
+
