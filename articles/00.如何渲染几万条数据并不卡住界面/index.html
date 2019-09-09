@@ -11,33 +11,33 @@
 <script>
 //需要插入的容器
 let ul = document.getElementById('container');
-// 插入二十万条数据
-let total = 200000;
+// 插入十万条数据
+let total = 100000;
 // 一次插入 20 条
 let once = 20;
 //总页数
 let page = total/once
 //每条记录的索引
 let index = 0;
-//循环插入
-while(total){
+//循环加载数据
+function loop(curTotal,curIndex){
+    if(curTotal <= 0){
+        return false;
+    }
     //每页多少条
-    let pageCount = Math.min(total , once);
-    //异步渲染
-    (function(pageCount,index,total){
-        window.requestAnimationFrame(function(){
-            for(let i = 0; i < pageCount; i++){
-                let li = document.createElement('li');
-                li.innerText = index + i + ' : ' + ~~(Math.random() * total)
-                ul.appendChild(li)
-            }
-        })
-    })(pageCount,index,total)
-    //修改剩余条数
-    total = total - pageCount;
-    //修改起始索引
-    index = index + pageCount;
+    let pageCount = Math.min(curTotal , once);
+    window.requestAnimationFrame(function(){
+        let fragment = document.createDocumentFragment();
+        for(let i = 0; i < pageCount; i++){
+            let li = document.createElement('li');
+            li.innerText = curIndex + i + ' : ' + ~~(Math.random() * total)
+            fragment.appendChild(li)
+        }
+        ul.appendChild(fragment)
+        loop(curTotal - pageCount,curIndex + pageCount)
+    })
 }
+loop(total,index);
 </script>
 </body>
 </html>

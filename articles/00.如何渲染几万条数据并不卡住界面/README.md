@@ -1,4 +1,4 @@
-# 如何高性能的渲染二十万条数据
+# 如何高性能的渲染十万条数据
 
 ## 前言
 
@@ -13,8 +13,8 @@
 ```javascript
 // 记录任务开始时间
 let now = Date.now();
-// 插入二十万条数据
-const total = 200000;
+// 插入十万条数据
+const total = 100000;
 // 获取容器
 let ul = document.getElementById('container');
 // 将数据插入容器中
@@ -32,7 +32,7 @@ setTimeout(()=>{
 // print: 总运行时间： 2844
 ```
 
-我们对二十万条记录进行循环操作，JS的运行时间为`187ms`，还是蛮快的，但是最终渲染完成后的总时间确是`2844ms`。
+我们对十万条记录进行循环操作，JS的运行时间为`187ms`，还是蛮快的，但是最终渲染完成后的总时间确是`2844ms`。
 
 简单说明一下，为何两次`console.log`的结果时间差异巨大，并且是如何简单来统计`JS运行时间`和`总渲染时间`：
 
@@ -59,34 +59,33 @@ setTimeout(()=>{
 ```javascript
 //需要插入的容器
 let ul = document.getElementById('container');
-// 插入二十万条数据
-let total = 200000;
+// 插入十万条数据
+let total = 100000;
 // 一次插入 20 条
 let once = 20;
 //总页数
 let page = total/once
 //每条记录的索引
 let index = 0;
-//循环插入
-while(total){
+//循环加载数据
+function loop(curTotal,curIndex){
+    if(curTotal <= 0){
+        return false;
+    }
     //每页多少条
-    let pageCount = Math.min(total , once);
-    //异步渲染
-    (function(pageCount,index,total){
-        setTimeout(()=>{
-            for(let i = 0; i < pageCount; i++){
-                let li = document.createElement('li');
-                li.innerText = index + i + ' : ' + ~~(Math.random() * total)
-                ul.appendChild(li)
-            }
-        },0)
-    })(pageCount,index,total)
-    //修改剩余条数
-    total = total - pageCount;
-    //修改起始索引
-    index = index + pageCount;
+    let pageCount = Math.min(curTotal , once);
+    setTimeout(()=>{
+        for(let i = 0; i < pageCount; i++){
+            let li = document.createElement('li');
+            li.innerText = curIndex + i + ' : ' + ~~(Math.random() * total)
+            ul.appendChild(li)
+        }
+        loop(curTotal - pageCount,curIndex + pageCount)
+    },0)
 }
+loop(total,index);
 ```
+
 用一个gif图来看一下效果
 
 ![](1.gif)
@@ -143,33 +142,31 @@ while(total){
 ```javascript
 //需要插入的容器
 let ul = document.getElementById('container');
-// 插入二十万条数据
-let total = 200000;
+// 插入十万条数据
+let total = 100000;
 // 一次插入 20 条
 let once = 20;
 //总页数
 let page = total/once
 //每条记录的索引
 let index = 0;
-//循环插入
-while(total){
+//循环加载数据
+function loop(curTotal,curIndex){
+    if(curTotal <= 0){
+        return false;
+    }
     //每页多少条
-    let pageCount = Math.min(total , once);
-    //异步渲染
-    (function(pageCount,index,total){
-        window.requestAnimationFrame(function(){
-            for(let i = 0; i < pageCount; i++){
-                let li = document.createElement('li');
-                li.innerText = index + i + ' : ' + ~~(Math.random() * total)
-                ul.appendChild(li)
-            }
-        })
-    })(pageCount,index,total)
-    //修改剩余条数
-    total = total - pageCount;
-    //修改起始索引
-    index = index + pageCount;
+    let pageCount = Math.min(curTotal , once);
+    window.requestAnimationFrame(function(){
+        for(let i = 0; i < pageCount; i++){
+            let li = document.createElement('li');
+            li.innerText = curIndex + i + ' : ' + ~~(Math.random() * total)
+            ul.appendChild(li)
+        }
+        loop(curTotal - pageCount,curIndex + pageCount)
+    })
 }
+loop(total,index);
 ```
 
 看下效果
@@ -198,33 +195,35 @@ while(total){
 ```
 
 ```javascript
-// 插入十万条数据
-const total = 100000 ;
-// 一次插入 20 条，如果觉得性能不好就减少
-const once = 20 ;
-// 渲染数据总共需要几次
-const loopCount = total / once ;
-let countOfRender = 0 ;
+//需要插入的容器
 let ul = document.getElementById('container');
-function add() {
-    // 优化性能，插入不会造成回流
-    const fragment = document.createDocumentFragment();
-    for (let i = 0; i < once; i++) {
-        const li = document.createElement('li');
-        li.innerText = countOfRender * once + i + ' : ' + Math.floor(Math.random() * total);
-        ul.appendChild(li);
-        fragment.appendChild(li)
+// 插入十万条数据
+let total = 100000;
+// 一次插入 20 条
+let once = 20;
+//总页数
+let page = total/once
+//每条记录的索引
+let index = 0;
+//循环加载数据
+function loop(curTotal,curIndex){
+    if(curTotal <= 0){
+        return false;
     }
-    ul.appendChild(fragment);
-    countOfRender += 1;
-    loop()
+    //每页多少条
+    let pageCount = Math.min(curTotal , once);
+    window.requestAnimationFrame(function(){
+        let fragment = document.createDocumentFragment();
+        for(let i = 0; i < pageCount; i++){
+            let li = document.createElement('li');
+            li.innerText = curIndex + i + ' : ' + ~~(Math.random() * total)
+            fragment.appendChild(li)
+        }
+        ul.appendChild(fragment)
+        loop(curTotal - pageCount,curIndex + pageCount)
+    })
 }
-function loop() {
-    if (countOfRender < loopCount) {
-        window.requestAnimationFrame(add)
-    }
-}
-loop()
+loop(total,index);
 ```
 
 ## 参考
