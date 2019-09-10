@@ -88,7 +88,7 @@ loop(total,index);
 
 用一个gif图来看一下效果
 
-![](1.gif)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%B8%B2%E6%9F%93/1.gif)
 
 我们可以看到，页面加载的时间已经非常快了，每次刷新时可以很快的看到第一屏的所有数据，但是当我们快速滚动页面的时候，会发现页面出现闪屏或白屏的现象
 
@@ -171,7 +171,7 @@ loop(total,index);
 
 看下效果
 
-![](2.gif)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%B8%B2%E6%9F%93/2.gif)
 
 我们可以看到，页面加载的速度很快，并且滚动的时候，也很流畅没有出现闪烁丢帧的现象。
 
@@ -236,11 +236,10 @@ loop(total,index);
 + [「前端进阶」JS中的内存管理](https://juejin.im/post/5d0706a6f265da1bc23f77a9)
 + [「前端进阶」数组乱序](https://juejin.im/post/5d004ad95188257c6b518056)
 
-
 ## 参考
 
-[Web 动画帧率（FPS）计算](https://www.cnblogs.com/coco1s/archive/2017/12/13/8029582.html)
-[requestAnimationFrame 知多少](https://www.cnblogs.com/onepixel/p/7078617.html)
++ [Web 动画帧率（FPS）计算](https://www.cnblogs.com/coco1s/archive/2017/12/13/8029582.html)
++ [requestAnimationFrame 知多少](https://www.cnblogs.com/onepixel/p/7078617.html)
 
 
 ## 写在最后
