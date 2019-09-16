@@ -1,5 +1,3 @@
-# 如何高性能的渲染十万条数据
-
 ## 前言
 
 在实际工作中，我们很少会遇到一次性需要向页面中插入数十万条数据的情况，但是为了丰富我们的知识体系，我们有必要了解并清楚当遇到大量数据时，如何才能在不卡主页面的情况下渲染数据，以及其中背后的原理。
@@ -40,7 +38,7 @@ setTimeout(()=>{
 + 第一个`console.log`的触发时间是在页面进行渲染之前，此时得到的间隔时间为JS运行所需要的时间
 + 第二个`console.log`是放到 setTimeout 中的，它的触发时间是在渲染完成，在下一次`Event Loop`中执行的
 
-[关于Event Loop的详细内容请参见这面文章-->](https://juejin.im/post/5d5b4c2df265da03dd3d73e5)
+[关于Event Loop的详细内容请参见这篇文章-->](https://juejin.im/post/5d5b4c2df265da03dd3d73e5)
 
 依照两次`console.log`的结果，可以得出结论：
 
@@ -88,7 +86,7 @@ loop(total,index);
 
 用一个gif图来看一下效果
 
-![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%B8%B2%E6%9F%93/1.gif)
+![](https://user-gold-cdn.xitu.io/2019/9/10/16d18aa76affbeb0?w=414&h=706&f=gif&s=409006)
 
 我们可以看到，页面加载的时间已经非常快了，每次刷新时可以很快的看到第一屏的所有数据，但是当我们快速滚动页面的时候，会发现页面出现闪屏或白屏的现象
 
@@ -171,7 +169,7 @@ loop(total,index);
 
 看下效果
 
-![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%B8%B2%E6%9F%93/2.gif)
+![](https://user-gold-cdn.xitu.io/2019/9/10/16d18aa76abe9fe3?w=414&h=706&f=gif&s=565890)
 
 我们可以看到，页面加载的速度很快，并且滚动的时候，也很流畅没有出现闪烁丢帧的现象。
 
@@ -187,6 +185,10 @@ loop(total,index);
 > 可以使用`document.createDocumentFragment`方法或者构造函数来创建一个空的`DocumentFragment`
 
 从MDN的说明中，我们得知`DocumentFragments`是DOM节点，但并不是DOM树的一部分，可以认为是存在内存中的，所以将子元素插入到文档片段时不会引起页面回流。
+
+当`append`元素到`document`中时，被`append`进去的元素的样式表的计算是同步发生的，此时调用 getComputedStyle 可以得到样式的计算值。
+而`append`元素到`documentFragment` 中时，是不会计算元素的样式表，所以`documentFragment` 性能更优。当然现在浏览器的优化已经做的很好了，
+当`append`元素到`document`中后，没有访问 getComputedStyle 之类的方法时，现代浏览器也可以把样式表的计算推迟到脚本执行之后。
 
 最后修改代码如下：
 
@@ -226,6 +228,10 @@ function loop(curTotal,curIndex){
 loop(total,index);
 ```
 
+## 最后
+
+本文更多的是提供一个思路，通过时间分片的方式来同时加载大量简单DOM。对于复杂DOM的情况，一般会用到虚拟列表的方式来实现，关于这一问题，会持续整理，敬请期待。
+
 ## 系列文章推荐
 
 + [「前端进阶」从多线程到Event Loop全面梳理](https://juejin.im/post/5d5b4c2df265da03dd3d73e5)
@@ -235,6 +241,7 @@ loop(total,index);
 + [「前端进阶」JS中的栈内存堆内存](https://juejin.im/post/5d116a9df265da1bb47d717b)
 + [「前端进阶」JS中的内存管理](https://juejin.im/post/5d0706a6f265da1bc23f77a9)
 + [「前端进阶」数组乱序](https://juejin.im/post/5d004ad95188257c6b518056)
+
 
 ## 参考
 
@@ -250,7 +257,7 @@ loop(total,index);
 
 > 欢迎关注微信公众号`【前端小黑屋】`，每周1-3篇精品优质文章推送，助你走上进阶之旅
 
-![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/gongzhonghao_sou.png)
+![](https://user-gold-cdn.xitu.io/2019/9/10/16d18aa76b8ad582?w=2800&h=800&f=jpeg&s=157942)
 
 > 同时欢迎加我好友，回复`加群`，拉你入群，和我一起学前端~
 
