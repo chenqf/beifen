@@ -11,7 +11,7 @@
 
 微软曾在browserchoice.eu上做过一个关于不同浏览器使用情况的调查，微软会在页面中以随机顺序向用户显示不同的浏览器。
 
-![](https://raw.githubusercontent.com/chenqf/blog/master/articles/00.数组乱序/0.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/数组乱序/0.png)
 
 然而每个浏览器出现的位置并不是随机的。IE在最后一个位置出现的概率大概是50%，Chrome在大部分情况下都会出现在浏览器列表的前三位。
 
@@ -84,7 +84,7 @@ test_shuffle 函数定义了一个长度为 10 的数组 ['a', 'b', 'c', 'd', 'e
 
 结果如下： 
 
-![](https://raw.githubusercontent.com/chenqf/blog/master/articles/00.数组乱序/1.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/数组乱序/1.png)
 
 从这个表格中我们能够看出，每个元素在每个位置出现的概率相差很大，比如元素 a ，
 在索引0的位置上出现了 19415 次，在索引4 的位置上只出现了 7026 次，
@@ -129,7 +129,7 @@ function insertSort(list = []) {
 
 我们来个简单的示意图：
 
-![](https://raw.githubusercontent.com/chenqf/blog/master/articles/00.数组乱序/1.gif)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/数组乱序/1.gif)
 
 我们来具体分析下 ['a', 'b', 'c'] 这个数组乱序的结果，需要注意的是，由于数组长度小于10，所以 sort 函数内部是使用插入排序实现的。
 
@@ -158,7 +158,7 @@ values.sort(function(){
 
 另外一种情况 ['b','a','c'] 与之分析类似，我们将最终的结果汇总成一个表格：
 
-![](https://raw.githubusercontent.com/chenqf/blog/master/articles/00.数组乱序/14.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/数组乱序/14.png)
 
 
 ## 改造 sort 和 Math.random() 的结合方式
@@ -199,7 +199,7 @@ test_shuffle(shuffle)
 ```
 结果如下：
 
-![](https://raw.githubusercontent.com/chenqf/blog/master/articles/00.数组乱序/2.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/数组乱序/2.png)
 
 从表格中我们可以看出，每个元素在每个位置出现的次数已经相差不大。
 
@@ -215,34 +215,34 @@ test_shuffle(shuffle)
 
 首先我们有一个已经排好序的数组
 
-![](https://raw.githubusercontent.com/chenqf/blog/master/articles/00.数组乱序/3.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/数组乱序/3.png)
 
 Step1： 第一步需要做的就是，从数组末尾开始，选取最后一个元素。
 
-![](https://raw.githubusercontent.com/chenqf/blog/master/articles/00.数组乱序/4.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/数组乱序/4.png)
 
 在数组一共9个位置中，随机产生一个位置，该位置元素与最后一个元素进行交换。
 
-![](https://raw.githubusercontent.com/chenqf/blog/master/articles/00.数组乱序/5.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/数组乱序/5.png)
 
-![](https://raw.githubusercontent.com/chenqf/blog/master/articles/00.数组乱序/6.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/数组乱序/6.png)
 
-![](https://raw.githubusercontent.com/chenqf/blog/master/articles/00.数组乱序/7.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/数组乱序/7.png)
 
 Step2： 上一步中，我们已经把数组末尾元素进行随机置换。
 接下来，对数组倒数第二个元素动手。
 在除去已经排好的最后一个元素位置以外的8个位置中，
 随机产生一个位置，该位置元素与倒数第二个元素进行交换。
 
-![](https://raw.githubusercontent.com/chenqf/blog/master/articles/00.数组乱序/8.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/数组乱序/8.png)
 
-![](https://raw.githubusercontent.com/chenqf/blog/master/articles/00.数组乱序/9.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/数组乱序/9.png)
 
-![](https://raw.githubusercontent.com/chenqf/blog/master/articles/00.数组乱序/10.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/数组乱序/10.png)
 
 Step3： 理解了前两步，接下来就是依次进行，如此简单。
 
-![](https://raw.githubusercontent.com/chenqf/blog/master/articles/00.数组乱序/11.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/数组乱序/11.png)
 
 
 接下来我们用代码来实现一下 Fisher–Yates
@@ -263,9 +263,9 @@ function shuffle(arr) {
 test_shuffle(shuffle);
 ```
 
-结果如下：
+结果如下： 
 
-![](https://raw.githubusercontent.com/chenqf/blog/master/articles/00.数组乱序/12.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/数组乱序/12.png)
 
 从表格中我们可以看出，每个元素在每个位置出现的次数相差不大，说明这种方式满足了随机性的要求。
 
