@@ -83,7 +83,7 @@ document.getElementById('button').addEventListener('click',function(){
 假设我们屏幕的`可见区域`的高度为`500px`,而列表项的高度为`50px`，且滚动发生，滚动条距顶部的位置为`150px`,则我们可得知在`可见区域`内的列表项为`第4项`至`第13项`。
 
 
-
+![](./virtual-list-2.png)
 
 
 ## 实现
