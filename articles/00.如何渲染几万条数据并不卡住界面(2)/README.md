@@ -74,42 +74,189 @@ document.getElementById('button').addEventListener('click',function(){
 
 `虚拟列表`其实是按需显示的一种实现，即只对`可见区域`进行渲染，对`非可见区域`中的数据不渲染或部分渲染的技术，从而达到极高的渲染性能。
 
-假设我们屏幕的`可见区域`的高度为`500px`,而列表项的高度为`50px`，则此时我们在屏幕中最多只能看到10个列表项，那么在首次渲染的时候，不管列表项数共有多少条，我们只需加载10条即可。
+假设有1万条记录需要同时渲染，我们屏幕的`可见区域`的高度为`500px`,而列表项的高度为`50px`，则此时我们在屏幕中最多只能看到10个列表项，那么在首次渲染的时候，我们只需加载10条即可。
 
-![](./virtual-list-1.png)
+![首次加载](./virtual-list-1.png)
 
-当滚动发生时，通过计算当前滚动值得知此时在屏幕`可见区域`应该显示的列表项。
+说完首次加载，再分析一下当滚动发生时，我们可以通过计算当前滚动值得知此时在屏幕`可见区域`应该显示的列表项。
 
-假设我们屏幕的`可见区域`的高度为`500px`,而列表项的高度为`50px`，且滚动发生，滚动条距顶部的位置为`150px`,则我们可得知在`可见区域`内的列表项为`第4项`至`第13项`。
+假设滚动发生，滚动条距顶部的位置为`150px`,则我们可得知在`可见区域`内的列表项为`第4项`至`第13项。
 
-
-![](./virtual-list-2.png)
-
+![滚动后](./virtual-list-2.png)
 
 ## 实现
 
-## 列表项固定高度
+虚拟列表的实现，实际上就是在首屏加载的时候，只加载`可视区域`内需要的列表项，当滚动发生时，动态通过计算获得`可视区域`内的列表项，并将`非可视区域`内存在的列表项删除。
 
-## 缓存计算结果
++ 计算当前`可视区域`起始数据索引(`startIndex`)
++ 计算当前`可视区域`结束数据索引(`endIndex`)
++ 计算当前`可视区域的`数据，并渲染到页面中
++ 计算`startIndex`对应的数据在整个列表中的偏移位置`startOffset`并设置到列表上
+
+![](./virtual-list-3.png)
+
+由于只是对`可视区域`内的列表项进行渲染，所以为了保持列表容器的高度并可正常的触发滚动，将Html结构设计成如下结构：
+
+```html
+<div class="infinite-list-container">
+    <div class="infinite-list-phantom"></div>
+    <div class="infinite-list">
+      <!-- item-1 -->
+      <!-- item-2 -->
+      <!-- ...... -->
+      <!-- item-n -->
+    </div>
+</div>
+```
+
++ `infinite-list-container` 为`可视区域`的容器
++ `infinite-list-phantom` 为容器内的占位，高度为总列表高度，用于形成滚动条
++ `infinite-list` 为列表项的`渲染区域`
+
+接着，监听`infinite-list-container`的`scroll`事件，获取滚动位置`scrollTop`
+
++ 假定`可视区域`高度固定，称之为`screenHeight`
++ 假定`列表每项`高度固定，称之为`itemSize`
++ 假定`列表数据`称之为`listData`
++ 假定`当前滚动位置`称之为`scrollTop`
+
+则可推算出：
+
++ 列表总高度`listHeight` = listData.length * itemSize
++ 可显示的列表项数`visibleCount` = Math.ceil(screenHeight / itemSize)
++ 数据的起始索引`startIndex` = Math.floor(scrollTop / itemSize)
++ 数据的结束索引`endIndex` = startIndex + visibleCount
++ 列表显示数据为`visibleData` = listData.slice(startIndex,endIndex)
++ 列表顶部偏移量`startOffset` = scrollTop - (scrollTop % itemSize);
+
+[点击查看在线DEMO](https://jsfiddle.net/chenqf/1f26d7ya)，简易代码如下：
+
+[点击查看在线DEMO](https://codesandbox.io/s/listview-1-sudt3)，简易代码如下：
+
+```html
+<template>
+  <div ref="list"
+    class="infinite-list-container"
+    @scroll="scrollEvent($event)"
+  >
+    <div class="infinite-list-phantom" :style="{ height:listHeight + 'px' }"></div>
+    <div class="infinite-list" :style="{ transform: getTransform }">
+      <div
+        class="infinite-list-item"
+        v-for="item in visibleData"
+        :key="item.value"
+        :style="{ height: itemSize + 'px',lineHeight: itemSize + 'px' }"
+      >{{ item.value }}</div>
+    </div>
+  </div>
+</template>
+```
+
+```javascript
+//组件
+export default {
+  props: {
+    //所有列表数据
+    listData:{
+      type:Array,
+      default:[]
+    },
+    //每项高度
+    itemSize: {
+      type: Number,
+      default: 50
+    }
+  },
+  computed:{
+    //列表总高度
+    listHeight(){
+      return this.listData.length * this.itemSize;
+    },
+    //可显示的列表项数
+    visibleCount(){
+      //可视区域高度
+      let screenHeight = this.$el.clientHeight;
+      return Math.ceil(screenHeight / this.itemSize);
+    },
+    //需要显示的数据
+    visibleData(){
+      return this.listData.slice(this.start, Math.min(this.end,this.listData.length));
+    },
+    //偏移量对应的style
+    getTransform(){
+      //获取偏移量
+      const startOffset = this.scrollTop - (this.scrollTop % this.itemSize);
+      return `translate3d(0,${startOffset}px,0)`;
+    }
+  },
+  mounted() {
+    this.scrollEvent();
+  },
+  data() {
+    return {
+      start: 0,
+      end: null,
+      scrollTop:0
+    };
+  },
+  methods: {
+    scrollEvent() {
+      //当前滚动位置
+      this.scrollTop = this.$refs.list.scrollTop;
+      //获取起始索引
+      this.start = Math.floor(this.scrollTop / this.itemSize);
+      //获取结束索引
+      this.end = this.start + this.visibleCount;
+    }
+  }
+};
+```
+
+演示效果：
+
+![](2.gif)
 
 ## 列表项动态高度
 
-## 
+在之前的实现中，列表项的高度是固定的，所以可以轻易
+
+
+## 缓存计算结果
+
+## 预留区域
+
+
+## 问题
+
+你可能会发现无限滚动在移动端很常见，但是可见区域渲染并不常见，这个主要是因为 iOS 上 UIWebView 的 onscroll 事件并不能实时触发。笔者曾尝试过使用 iScroll 来实现类似可视区域渲染，虽然初次渲染慢的问题可以解决，但是会出现滚动时体验不佳的问题（会有白屏时间）。
+
+requestIdleCallback
+
+onscroll Safari 触发不及时， requestIdleCallback Safari 不支持
+
+onscroll
+
+requestIdleCallback -> requestAnimationFrame -> setTimeout
+
+translate3d(0,y,0)  translateY(y)
 
 
 
 
 
 
+https://bvaughn.github.io/react-virtualized/#/components/List
+
+
++ IOS 问题：https://zhuanlan.zhihu.com/p/26022258 
+
++ 例子：https://zhuanlan.zhihu.com/p/34585166
+
++ 新API ResizeObserver  IntersctionOberver  estimatedSize 
 
 
 
-
-
-
-
-
-
+虚拟列表还有个很极端的问题，就是浏览器的 Top 值和 height 都有一个极限的值，react-virtualize 的实现中，滚动都会修改列表中所有元素的 top 值，然后实现一个类似于放大镜的效果，在元素渲染时销毁后不会堆叠高度，不知道怎么才能优化得那么顺畅。
 
 
 
