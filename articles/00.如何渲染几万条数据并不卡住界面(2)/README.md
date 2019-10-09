@@ -135,18 +135,15 @@ document.getElementById('button').addEventListener('click',function(){
 
 ```html
 <template>
-  <div ref="list"
-    class="infinite-list-container"
-    @scroll="scrollEvent($event)"
-  >
-    <div class="infinite-list-phantom" :style="{ height:listHeight + 'px' }"></div>
+  <div ref="list" class="infinite-list-container" @scroll="scrollEvent($event)">
+    <div class="infinite-list-phantom" :style="{ height: listHeight + 'px' }"></div>
     <div class="infinite-list" :style="{ transform: getTransform }">
-      <div
-        class="infinite-list-item"
-        v-for="item in visibleData"
+      <div ref="items"
+        class="infinite-list-item" 
+        v-for="item in visibleData" 
         :key="item.value"
         :style="{ height: itemSize + 'px',lineHeight: itemSize + 'px' }"
-      >{{ item.value }}</div>
+        >{{ item.value }}</div>
     </div>
   </div>
 </template>
@@ -163,8 +160,7 @@ export default {
     },
     //每项高度
     itemSize: {
-      type: Number,
-      default: 50
+      type: Number
     }
   },
   computed:{
@@ -174,9 +170,7 @@ export default {
     },
     //可显示的列表项数
     visibleCount(){
-      //可视区域高度
-      let screenHeight = this.$el.clientHeight;
-      return Math.ceil(screenHeight / this.itemSize);
+      return Math.ceil(this.screenHeight / this.itemSize);
     },
     //需要显示的数据
     visibleData(){
@@ -187,15 +181,24 @@ export default {
       //获取偏移量
       const startOffset = this.scrollTop - (this.scrollTop % this.itemSize);
       return `translate3d(0,${startOffset}px,0)`;
+    },
+    //获取起始索引
+    start(){
+      return Math.floor(this.scrollTop / this.itemSize);
+    },
+    //获取结束索引
+    end(){
+      return this.start + this.visibleCount;
     }
   },
   mounted() {
-    this.scrollEvent();
+    this.screenHeight = this.$el.clientHeight;
   },
   data() {
     return {
-      start: 0,
-      end: null,
+      //可视区域高度
+      screenHeight:0,
+      //滚动位移量
       scrollTop:0
     };
   },
@@ -203,10 +206,6 @@ export default {
     scrollEvent() {
       //当前滚动位置
       this.scrollTop = this.$refs.list.scrollTop;
-      //获取起始索引
-      this.start = Math.floor(this.scrollTop / this.itemSize);
-      //获取结束索引
-      this.end = this.start + this.visibleCount;
     }
   }
 };
@@ -220,7 +219,39 @@ export default {
 
 在之前的实现中，列表项的高度是固定的，因为高度固定，所以可以很轻易的获取列表项的整体高度以及滚动时的显示数据与对应的偏移量。而实际应用的时候，当列表中包含图片和文本之类的可变内容，会导致列表项的高度并不相同。
 
-接下来，我们来
+在虚拟列表中应用动态高度的解决方案一般有如下三种：
+
+> 1.对组件属性`itemSize`进行扩展，支持传递类型为`数字`、`数组`、`函
+数`
+
++ 可以是一个固定值，如 100，此时列表项是固高的
++ 可以是一个包含所有列表项高度的数据，如 [50, 20, 100, 80, ...]
++ 可以是一个根据列表项索引返回其高度的函数：(index: number): number
+
+这种方式虽然有比较好的灵活度，但仅适用于可以预先知道或通过计算得知列表项高度的情况，依然无法解决列表项高度由内容撑开的情况。
+
+> 2.将列表项`渲染到屏幕外`，对其高度进行测量并缓存，然后再将其渲染至可视区域内。
+
+由于预先渲染至屏幕外，再渲染至屏幕内，这导致渲染成本增加一倍，这对于数百万用户在低端移动设备上使用的产品来说是不切实际的。
+
+> 3.以`预估高度`先行渲染，然后获取真实高度并缓存。
+
+目前是`Tweet`的实现方案，可以避免前两种方案的不足。
+
+接下来，来看如何实现：
+
+定义组件属性`estimatedItemSize`,用于接收传递的`预估高度`
+
+```javascript
+props: {
+  //预估高度
+  estimatedItemSize:{
+    type:Number
+  }
+}
+```
+
+
 
 
 ## 缓存计算结果
