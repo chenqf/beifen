@@ -139,8 +139,8 @@ document.getElementById('button').addEventListener('click',function(){
     <div class="infinite-list-phantom" :style="{ height: listHeight + 'px' }"></div>
     <div class="infinite-list" :style="{ transform: getTransform }">
       <div ref="items"
-        class="infinite-list-item" 
-        v-for="item in visibleData" 
+        class="infinite-list-item"
+        v-for="item in visibleData"
         :key="item.value"
         :style="{ height: itemSize + 'px',lineHeight: itemSize + 'px' }"
         >{{ item.value }}</div>
@@ -156,7 +156,7 @@ export default {
     //所有列表数据
     listData:{
       type:Array,
-      default:[]
+      default:()=>[]
     },
     //每项高度
     itemSize: {
@@ -219,6 +219,10 @@ export default {
 
 在之前的实现中，列表项的高度是固定的，因为高度固定，所以可以很轻易的获取列表项的整体高度以及滚动时的显示数据与对应的偏移量。而实际应用的时候，当列表中包含图片和文本之类的可变内容，会导致列表项的高度并不相同。
 
+比如这种情况：
+
+![](./3.jpg)
+
 在虚拟列表中应用动态高度的解决方案一般有如下三种：
 
 > 1.对组件属性`itemSize`进行扩展，支持传递类型为`数字`、`数组`、`函
@@ -236,9 +240,9 @@ export default {
 
 > 3.以`预估高度`先行渲染，然后获取真实高度并缓存。
 
-目前是`Tweet`的实现方案，可以避免前两种方案的不足。
+目前是`Tweet`的实现方案，也是我选择的实现方式，可以避免前两种方案的不足。
 
-接下来，来看如何实现：
+接下来，来看如何简易的实现：
 
 定义组件属性`estimatedItemSize`,用于接收传递的`预估高度`
 
@@ -252,6 +256,35 @@ props: {
 ```
 
 
+
+
+
+
+通过[faker.js](https://github.com/marak/Faker.js/) 来创建一些随机数据
+
+```javascript
+data(){
+  let data = [];
+  for (let id = 0; id < 10000; id++) {
+    data.push({
+      "id": id,
+      value: faker.lorem.sentences() // 长文本
+    })
+  }
+  return {
+    data
+  };
+}
+```
+
+预估高度 estimatedItemSize
+
+新增缓存对象 cache:{
+        knownSize:0,//已渲染过的列表项的高度总和(单位PX)
+        knownNum:0,//已渲染过的列表项数
+      },
+
+列表总高度 listHeight
 
 
 ## 缓存计算结果
