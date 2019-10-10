@@ -6,6 +6,63 @@
 
 虚拟DOM简而言之就是，用JS去按照DOM结构来实现的树形结构对象，一般称之为虚拟节点(VNode)
 
+> 例1
+
+```html
+<div class="container" style="color:red">
+<div>
+```
+
+```javascript
+let VNode = {
+    tag: 'div',
+    data:{
+        class:'container',
+        style:{
+            color:'red'
+        }
+    },
+    children:[]
+}
+```
+
+> 例2
+
+```html
+我是文本
+```
+
+```javascript
+let VNode = {
+    tag:null,
+    children:'我是文本'
+}
+```
+
+> 例3
+
+```html
+<div class="container">
+    <!-- 子元素1 -->
+    <!-- 子元素2 -->
+<div>
+```
+
+```javascript
+let VNode = {
+    tag: 'div',
+    data:{
+        class:'container'
+    },
+    children:[
+        VNode1, // 对应子元素1
+        VNode2  // 对应子元素2
+    ]
+}
+```
+
+> 完整的例子：
+
 ```html
 <div class="container">
     <h1 style="color:red">标题</h1>
@@ -18,12 +75,13 @@
 ```javascript
 let VNode = {
     tag: 'div',
+    data:{
+        class:'container'
+    },
     children:[
         {
             tag:'h1',
-            data:{
-                class:'container'
-            },
+            data：null,
             children:{
                 data: {
                     style:{
@@ -48,7 +106,6 @@ let VNode = {
     ]
 }
 ```
-
 
 ### 什么是h函数
 
@@ -142,7 +199,7 @@ function render(VNode,container){
 ```javascript
 let container = document.getElementById('container');
 
-let VNode = h('div', 
+let VNode = h('div',
     {
         style: {
             background: '#0084ff1a',
@@ -209,7 +266,7 @@ function render(VNode,container){
 既然容器节点的属性存储了prevVNode，那么我们就可以在调用render函数时，通过判断是否有vNode这个属性，来判断是挂载还是更新。
 
 ```javascript
-function function(vNode,container){
+function render(vNode,container){
     const prevVNode = container.vNode;
     //之前没有-挂载
     if(prevVNode === null || prevVNode === undefined){
