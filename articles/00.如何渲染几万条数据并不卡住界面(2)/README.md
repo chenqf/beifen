@@ -127,7 +127,10 @@ document.getElementById('button').addEventListener('click',function(){
 + 数据的起始索引`startIndex` = Math.floor(scrollTop / itemSize)
 + 数据的结束索引`endIndex` = startIndex + visibleCount
 + 列表显示数据为`visibleData` = listData.slice(startIndex,endIndex)
-+ 列表顶部偏移量`startOffset` = scrollTop - (scrollTop % itemSize);
+
+当滚动后，由于`渲染区域`相对于`可视区域`已经发生了偏移，此时我需要获取一个偏移量`startOffset`，通过样式控制将`渲染区域`偏移至`可视区域`中。
+
++ 偏移量`startOffset` = scrollTop - (scrollTop % itemSize);
 
 [点击查看在线DEMO](https://jsfiddle.net/chenqf/1f26d7ya)，简易代码如下：
 
@@ -139,8 +142,8 @@ document.getElementById('button').addEventListener('click',function(){
     <div class="infinite-list-phantom" :style="{ height: listHeight + 'px' }"></div>
     <div class="infinite-list" :style="{ transform: getTransform }">
       <div ref="items"
-        class="infinite-list-item"
-        v-for="item in visibleData"
+        class="infinite-list-item" 
+        v-for="item in visibleData" 
         :key="item.value"
         :style="{ height: itemSize + 'px',lineHeight: itemSize + 'px' }"
         >{{ item.value }}</div>
@@ -150,7 +153,6 @@ document.getElementById('button').addEventListener('click',function(){
 ```
 
 ```javascript
-//组件
 export default {
   props: {
     //所有列表数据
@@ -172,40 +174,42 @@ export default {
     visibleCount(){
       return Math.ceil(this.screenHeight / this.itemSize);
     },
-    //需要显示的数据
-    visibleData(){
-      return this.listData.slice(this.start, Math.min(this.end,this.listData.length));
-    },
     //偏移量对应的style
     getTransform(){
-      //获取偏移量
-      const startOffset = this.scrollTop - (this.scrollTop % this.itemSize);
-      return `translate3d(0,${startOffset}px,0)`;
+      return `translate3d(0,${this.startOffset}px,0)`;
     },
-    //获取起始索引
-    start(){
-      return Math.floor(this.scrollTop / this.itemSize);
-    },
-    //获取结束索引
-    end(){
-      return this.start + this.visibleCount;
+    //获取真实显示列表数据
+    visibleData(){
+      return this.listData.slice(this.start, Math.min(this.end,this.listData.length));
     }
   },
   mounted() {
     this.screenHeight = this.$el.clientHeight;
+    this.start = 0;
+    this.end = this.start + this.visibleCount;
   },
   data() {
     return {
       //可视区域高度
       screenHeight:0,
-      //滚动位移量
-      scrollTop:0
+      //偏移量
+      startOffset:0,
+      //起始索引
+      start:0,
+      //结束索引
+      end:null,
     };
   },
   methods: {
     scrollEvent() {
       //当前滚动位置
-      this.scrollTop = this.$refs.list.scrollTop;
+      let scrollTop = this.$refs.list.scrollTop;
+      //此时的开始索引
+      this.start = Math.floor(scrollTop / this.itemSize);
+      //此时的结束索引
+      this.end = this.start + this.visibleCount;
+      //此时的偏移量
+      this.startOffset = scrollTop - (scrollTop % this.itemSize);
     }
   }
 };
@@ -217,7 +221,7 @@ export default {
 
 ## 列表项动态高度
 
-在之前的实现中，列表项的高度是固定的，因为高度固定，所以可以很轻易的获取列表项的整体高度以及滚动时的显示数据与对应的偏移量。而实际应用的时候，当列表中包含图片和文本之类的可变内容，会导致列表项的高度并不相同。
+在之前的实现中，列表项的高度是固定的，因为高度固定，所以可以很轻易的获取列表项的整体高度以及滚动时的显示数据与对应的偏移量。而实际应用的时候，当列表中包含文本之类的可变内容，会导致列表项的高度并不相同。
 
 比如这种情况：
 
@@ -240,7 +244,7 @@ export default {
 
 > 3.以`预估高度`先行渲染，然后获取真实高度并缓存。
 
-目前是`Tweet`的实现方案，也是我选择的实现方式，可以避免前两种方案的不足。
+这是我选择的实现方式，可以避免前两种方案的不足。
 
 接下来，来看如何简易的实现：
 
@@ -255,36 +259,102 @@ props: {
 }
 ```
 
+在组件数据中定义`cache`，用于列表项渲染后存储每一项的位置信息，并存储已渲染过的列表项数及高度总和。
 
+```javascript
+data(){
+  return {
+    cache:{
+      positions:[
+        // {
+        //   top:顶部距离列表头的距离
+        //   bottom:底部距离列表头的距离
+        //   height:实际高度（bottom - top）
+        // }
+      ],
+      knownSize:0,//已渲染过的列表项的高度总和(单位PX)
+      knownNum:0,//已渲染过的列表项数
+    }
+  }
+}
+```
 
+由于列表项高度不定，所以将获取列表总高度的计算方法变更：
 
+```javascript
+//列表总高度
+listHeight(){
+  return this.cache.knownSize + (this.listData.length - this.cache.knownNum) * this.estimatedItemSize
+}
+```
 
+由于需要在渲染完成后，获取列表每项的位置信息并缓存，所以使用钩子函数`updated`来实现：
+
+```javascript
+updated(){
+  let items = Array.from(this.$refs.items);
+  let scrollTop = this.$refs.list.scrollTop;
+  items.forEach((el,i)=>{
+      let rect = el.getBoundingClientRect();
+      let top = rect.top + scrollTop;
+      let bottom = rect.bottom + scrollTop;
+      let height = bottom - top;
+      //当前节点在总列表中的索引
+      let index = this.start + i;
+      //当前节点不存在缓存
+      if(!this.cache.positions[index]){
+          //修改已知的列表项总高度
+          this.cache.knownSize = this.cache.knownSize + height;
+          //修改已知的列表项数量
+          this.cache.knownNum ++ ;
+          //缓存节点的位置信息
+          this.cache.positions[index] = {
+            id:el.id,
+            index,
+            top,
+            bottom,
+            height
+          }
+      }
+  })
+}
+```
+
+滚动后获取列表开始索引的方法修改为通过缓存获取：
+
+```javascript
+getStartIndex(scrollTop = 0){
+  let item = this.cache.positions.find(i => i && i.bottom > scrollTop);
+  return item.index;
+}
+```
+
+滚动后将偏移量的获取方式变更：
+
+```javascript
+scrollEvent() {
+  //...省略
+  if(this.start >= 1){
+    this.startOffset = this.cache.positions[this.start - 1].bottom
+  }else{
+    this.startOffset = 0;
+  }
+}
+```
 
 通过[faker.js](https://github.com/marak/Faker.js/) 来创建一些随机数据
 
 ```javascript
-data(){
-  let data = [];
-  for (let id = 0; id < 10000; id++) {
-    data.push({
-      "id": id,
-      value: faker.lorem.sentences() // 长文本
-    })
-  }
-  return {
-    data
-  };
+let data = [];
+for (let id = 0; id < 10000; id++) {
+  data.push({
+    id,
+    value: faker.lorem.sentences() // 长文本
+  })
 }
 ```
 
-预估高度 estimatedItemSize
-
-新增缓存对象 cache:{
-        knownSize:0,//已渲染过的列表项的高度总和(单位PX)
-        knownNum:0,//已渲染过的列表项数
-      },
-
-列表总高度 listHeight
+演示效果如下
 
 
 ## 缓存计算结果
@@ -308,6 +378,10 @@ translate3d(0,y,0)  translateY(y)
 
 
 
+明天看：react-virtualized 实现方式
+https://github.com/dwqs/blog/issues/71
+https://github.com/dwqs/blog/issues/72
+https://github.com/dwqs/blog/issues/73
 
 
 
@@ -318,7 +392,7 @@ https://bvaughn.github.io/react-virtualized/#/components/List
 
 + 例子：https://zhuanlan.zhihu.com/p/34585166
 
-+ 新API ResizeObserver  IntersctionOberver  estimatedSize 
++ 新API ResizeObserver  IntersectionObserver  estimatedSize 
 
 
 
