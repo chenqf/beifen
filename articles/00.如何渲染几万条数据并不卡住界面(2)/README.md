@@ -142,8 +142,9 @@ document.getElementById('button').addEventListener('click',function(){
     <div class="infinite-list-phantom" :style="{ height: listHeight + 'px' }"></div>
     <div class="infinite-list" :style="{ transform: getTransform }">
       <div ref="items"
-        class="infinite-list-item" 
-        v-for="item in visibleData" 
+        class="infinite-list-item"
+        v-for="item in visibleData"
+        :id="item.value"
         :key="item.value"
         :style="{ height: itemSize + 'px',lineHeight: itemSize + 'px' }"
         >{{ item.value }}</div>
@@ -378,6 +379,33 @@ translate3d(0,y,0)  translateY(y)
 
 
 
+------------
+
+childrenToDisplay  
+
+// 如果 stop 小于总个数，则一直累加计算 start 之后的元素的偏移量
+// 直到其值不小于 maxOffset，此时 stop 便对应可视区域的最后一个可见元素
+
+// 根据索引获取对应元素的大小(高度或宽度)
+let size = this._cellSizeGetter({index: i});
+
+缓存最后一个被计算过的元素索引 this.lastMeasuredIndex = -1;
+
+findNearestItem 找到附近的列表项索引值
+
+will-change: transform
+
+通过 RAF 判断是否在滚动
+
+正在滚动时， pointerEvents:'none'
+
+
+计算边界值之后，然后分别计算水平和垂直方向需要调整的偏移值，因为上文已经说过，浏览器对元素的大小是有一个极限值的，ScalingCellSizeAndPositionManager 类实例的 _maxScrollSize 属性保存了这个极限值(Chrome 是 1.67771e7，其它浏览器是 1500000)。如果通过 getTotalSize 方法得到的预估大小超过了极限值，则需要进行偏移差的调整；如果小于极限值，则不需要调整，对应的计算结果就是 0。
+
+
+
+----------------
+
 明天看：react-virtualized 实现方式
 https://github.com/dwqs/blog/issues/71
 https://github.com/dwqs/blog/issues/72
@@ -424,3 +452,6 @@ https://bvaughn.github.io/react-virtualized/#/components/List
 
 ![](https://user-gold-cdn.xitu.io/2019/8/21/16cb2f7ddf918f64?w=268&h=268&f=png&s=44354)
 
+
+
+overflow: auto; will-change: transform; height: 600px; width: 100%;
