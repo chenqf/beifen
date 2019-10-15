@@ -6,7 +6,7 @@
 
 ## 为什么需要使用虚拟列表
 
-假设我们的长列表需要展示10000条记录，我们同时将10000条记录渲染到页面中，先来看看需要花费多场时间：
+假设我们的长列表需要展示10000条记录，我们同时将10000条记录渲染到页面中，先来看看需要花费多长时间：
 
 ```html
 <button id="button">button</button><br>
@@ -131,8 +131,6 @@ document.getElementById('button').addEventListener('click',function(){
 当滚动后，由于`渲染区域`相对于`可视区域`已经发生了偏移，此时我需要获取一个偏移量`startOffset`，通过样式控制将`渲染区域`偏移至`可视区域`中。
 
 + 偏移量`startOffset` = scrollTop - (scrollTop % itemSize);
-
-[点击查看在线DEMO](https://jsfiddle.net/chenqf/1f26d7ya)，简易代码如下：
 
 [点击查看在线DEMO](https://codesandbox.io/s/listview-1-sudt3)，简易代码如下：
 
