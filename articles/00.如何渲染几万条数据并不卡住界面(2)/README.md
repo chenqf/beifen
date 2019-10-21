@@ -132,7 +132,7 @@ document.getElementById('button').addEventListener('click',function(){
 
 + 偏移量`startOffset` = scrollTop - (scrollTop % itemSize);
 
-[点击查看在线DEMO](https://codesandbox.io/s/listview-1-sudt3)，简易代码如下：
+[点击查看在线DEMO](https://codesandbox.io/s/virtuallist-1-rp8pi)，简易代码如下：
 
 ```html
 <template>
@@ -142,10 +142,9 @@ document.getElementById('button').addEventListener('click',function(){
       <div ref="items"
         class="infinite-list-item"
         v-for="item in visibleData"
-        :id="item.value"
-        :key="item.value"
+        :key="item.id"
         :style="{ height: itemSize + 'px',lineHeight: itemSize + 'px' }"
-        >{{ item.value }}</div>
+      >{{ item.value }}</div>
     </div>
   </div>
 </template>
@@ -153,6 +152,7 @@ document.getElementById('button').addEventListener('click',function(){
 
 ```javascript
 export default {
+  name:'VirtualList',
   props: {
     //所有列表数据
     listData:{
@@ -161,7 +161,8 @@ export default {
     },
     //每项高度
     itemSize: {
-      type: Number
+      type: Number,
+      default:200
     }
   },
   computed:{
@@ -171,7 +172,7 @@ export default {
     },
     //可显示的列表项数
     visibleCount(){
-      return Math.ceil(this.screenHeight / this.itemSize);
+      return Math.ceil(this.screenHeight / this.itemSize)
     },
     //偏移量对应的style
     getTransform(){
@@ -247,7 +248,7 @@ export default {
 
 接下来，来看如何简易的实现：
 
-定义组件属性`estimatedItemSize`,用于接收传递的`预估高度`
+定义组件属性`estimatedItemSize`,用于接收`预估高度`
 
 ```javascript
 props: {
@@ -258,32 +259,39 @@ props: {
 }
 ```
 
-在组件数据中定义`cache`，用于列表项渲染后存储每一项的位置信息，并存储已渲染过的列表项数及高度总和。
+定义`positions`，用于列表项渲染后存储每一项的高度以及位置信息，
 
 ```javascript
-data(){
-  return {
-    cache:{
-      positions:[
-        // {
-        //   top:顶部距离列表头的距离
-        //   bottom:底部距离列表头的距离
-        //   height:实际高度（bottom - top）
-        // }
-      ],
-      knownSize:0,//已渲染过的列表项的高度总和(单位PX)
-      knownNum:0,//已渲染过的列表项数
+this.positions = [
+  // {
+  //   top:0,
+  //   bottom:100,
+  //   height:100
+  // }
+];
+```
+
+并在初始时根据`estimatedItemSize`对`positions`进行初始化。
+
+```javascript
+initPositions(){
+  this.positions = this.listData.map((item,index)=>{
+    return {
+      index,
+      height:this.estimatedItemSize,
+      top:index * this.estimatedItemSize,
+      bottom:(index + 1) * this.estimatedItemSize
     }
-  }
+  })
 }
 ```
 
-由于列表项高度不定，所以将获取列表总高度的计算方法变更：
+由于列表项高度不定，并且我们维护了`positions`，用于记录每一项的位置，而列表的高度实际就等于列表中最后一项的底部距离列表顶部的位置。
 
 ```javascript
 //列表总高度
 listHeight(){
-  return this.cache.knownSize + (this.listData.length - this.cache.knownNum) * this.estimatedItemSize
+  return this.positions[this.positions.length - 1].bottom;
 }
 ```
 
@@ -291,30 +299,22 @@ listHeight(){
 
 ```javascript
 updated(){
-  let items = Array.from(this.$refs.items);
-  let scrollTop = this.$refs.list.scrollTop;
-  items.forEach((el,i)=>{
-      let rect = el.getBoundingClientRect();
-      let top = rect.top + scrollTop;
-      let bottom = rect.bottom + scrollTop;
-      let height = bottom - top;
-      //当前节点在总列表中的索引
-      let index = this.start + i;
-      //当前节点不存在缓存
-      if(!this.cache.positions[index]){
-          //修改已知的列表项总高度
-          this.cache.knownSize = this.cache.knownSize + height;
-          //修改已知的列表项数量
-          this.cache.knownNum ++ ;
-          //缓存节点的位置信息
-          this.cache.positions[index] = {
-            id:el.id,
-            index,
-            top,
-            bottom,
-            height
-          }
+  let nodes = this.$refs.items;
+  nodes.forEach((node)=>{
+    let rect = node.getBoundingClientRect();
+    let height = rect.height;
+    let index = +node.id.slice(1)
+    let oldHeight = this.positions[index].height;
+    let dValue = oldHeight - height;
+    //存在差值
+    if(dValue){
+      this.positions[index].bottom = this.positions[index].bottom - dValue;
+      this.positions[index].height = height;
+      for(let k = index + 1;k<this.positions.length; k++){
+        this.positions[k].top = this.positions[k-1].bottom;
+        this.positions[k].bottom = this.positions[k].bottom - dValue;
       }
+    }
   })
 }
 ```
@@ -323,7 +323,7 @@ updated(){
 
 ```javascript
 getStartIndex(scrollTop = 0){
-  let item = this.cache.positions.find(i => i && i.bottom > scrollTop);
+  let item = this.positions.find(i => i && i.bottom > scrollTop);
   return item.index;
 }
 ```
@@ -334,7 +334,7 @@ getStartIndex(scrollTop = 0){
 scrollEvent() {
   //...省略
   if(this.start >= 1){
-    this.startOffset = this.cache.positions[this.start - 1].bottom
+    this.startOffset = this.positions[this.start - 1].bottom
   }else{
     this.startOffset = 0;
   }
@@ -353,10 +353,20 @@ for (let id = 0; id < 10000; id++) {
 }
 ```
 
-演示效果如下
+[点击查看在线DEMO](https://codesandbox.io/s/virtuallist2-1bqk6),演示效果如下:
 
+![](4.gif)
 
-## 缓存计算结果
+从演示效果上看，我们实现了基于文字内容动态撑高列表项情况下的虚拟列表，但是我们可能会发现，当滚动过快时，会出现短暂的白屏现象。
+
+为了解决白屏现象现象，需要保证在滚动中列表中有内容显示，所以将屏幕分为三个区域：
+
++ 可视区域上方：`above`
++ 可视区域：`screen`
++ 可视区域下方：`below`
+
+![](./virtual-list-4.png)
+
 
 ## 预留区域
 
