@@ -236,7 +236,7 @@ export default {
 + 可以是一个包含所有列表项高度的数据，如 [50, 20, 100, 80, ...]
 + 可以是一个根据列表项索引返回其高度的函数：(index: number): number
 
-这种方式虽然有比较好的灵活度，但仅适用于可以预先知道或通过计算得知列表项高度的情况，依然无法解决列表项高度由内容撑开的情况。
+这种方式虽然有比较好的灵活度，但仅适用于可以预先知道或可以通过计算得知列表项高度的情况，依然无法解决列表项高度由内容撑开的情况。
 
 > 2.将列表项`渲染到屏幕外`，对其高度进行测量并缓存，然后再将其渲染至可视区域内。
 
@@ -359,7 +359,7 @@ for (let id = 0; id < 10000; id++) {
 
 从演示效果上看，我们实现了基于文字内容动态撑高列表项情况下的虚拟列表，但是我们可能会发现，当滚动过快时，会出现短暂的白屏现象。
 
-为了解决白屏现象现象，需要保证在滚动中列表中有内容显示，所以将屏幕分为三个区域：
+为了使页面平滑滚动，我们还需要在可见区域的上方和下方渲染额外的项目，在滚动时给予一些缓冲，所以将屏幕分为三个区域：
 
 + 可视区域上方：`above`
 + 可视区域：`screen`
@@ -367,9 +367,47 @@ for (let id = 0; id < 10000; id++) {
 
 ![](./virtual-list-4.png)
 
+定义组件属性`bufferScale`,用于接收`缓冲区数据`与`可视区数据`的`比例`
 
-## 预留区域
+```javascript
+props: {
+  //缓冲区比例
+  bufferScale:{
+    type:Number,
+    default:1
+  }
+}
+```
 
+可视区上方渲染条数`aboveCount`获取方式如下：
+
+```javascript
+aboveCount(){
+  return Math.min(this.start,this.bufferScale * this.visibleCount)
+}
+```
+
+可视区下方渲染条数`belowCount`获取方式如下：
+
+```javascript
+belowCount(){
+  return Math.min(this.listData.length - this.end,this.bufferScale * this.visibleCount);
+}
+```
+
+真实渲染数据`visibleData`获取方式如下：
+
+```javascript
+visibleData(){
+  let start = this.start - this.aboveCount;
+  let end = this.end + this.belowCount;
+  return this._listData.slice(start, end);
+}
+```
+
+[点击查看在线DEMO](https://codesandbox.io/s/virtuallist-3-i3h9v),演示效果如下:
+
+![](./5.gif)
 
 ## 问题
 
