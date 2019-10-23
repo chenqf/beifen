@@ -33,7 +33,7 @@ document.getElementById('button').addEventListener('click',function(){
     },0)
 
     // print JS运行时间： 38
-    // print 总运行时间： 957
+    // print 总运行时间： 957 
   })
 ```
 
@@ -410,6 +410,12 @@ visibleData(){
 ![](./5.gif)
 
 ## 问题
+
+
+
+
+
+
 
 你可能会发现无限滚动在移动端很常见，但是可见区域渲染并不常见，这个主要是因为 iOS 上 UIWebView 的 onscroll 事件并不能实时触发。笔者曾尝试过使用 iScroll 来实现类似可视区域渲染，虽然初次渲染慢的问题可以解决，但是会出现滚动时体验不佳的问题（会有白屏时间）。
 
