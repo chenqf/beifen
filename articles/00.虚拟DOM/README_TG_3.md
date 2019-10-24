@@ -69,3 +69,52 @@ React对于Key的说明：
 
 ## 无Key的Diff
 
+在没有key的时候，为了能够复用原有的dom，所以我们需要通过新旧子节点的顺序来进行比对。
+
+当新旧子节点长度相同时：
+
+![](./7.png)
+
+当新子节点长度大于旧子节点长度：
+
+![](./8.png)
+
+当新子节点长度小于旧子节点长度：
+
+![](./9.png)
+
+
+简单代码：
+
+```javascript
+const noKeyDiff = function(prevChildren,nextChildren,container){
+    //旧长度
+    let prevLen = prevChildren.length;
+    //新长度
+    let nextLen = nextChildren.length;
+    //最小长度
+    let commonLen = Math.min(prevLen,nextLen);
+    //长度相同
+    for(let i = 0;i<commonLen;i++){
+        patch(prevChildren[i],nextChildren[i],container)
+    }
+    //新长大于旧长，挂载
+    if(nextLen > prevLen){
+        for(let i = commonLen; i<nextLen; i++){
+            mount(nextChildren[i],container);
+        }
+    }
+    //新长小于旧长，删除
+    else if(prevLen > nextLen){
+        for(let i = commonLen; i<prevLen; i++){
+            removeChild(container,prevChildren[i].el)
+        }
+    }
+}
+```
+
+## 无key的好处
+
+> 对于简单DOM的情况，性能更好~
+
+因为至于一次循环，就处理了所有的新旧子节点，当key存在的时候，无论使用何种diff优化算法，都不可避免的需要进行多重循环来进行key的比对。
