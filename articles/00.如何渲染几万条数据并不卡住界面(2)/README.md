@@ -132,7 +132,7 @@ document.getElementById('button').addEventListener('click',function(){
 
 + 偏移量`startOffset` = scrollTop - (scrollTop % itemSize);
 
-[点击查看在线DEMO](https://codesandbox.io/s/virtuallist-1-rp8pi)，简易代码如下：
+[点击查看在线DEMO及完整代码](https://codesandbox.io/s/virtuallist-1-rp8pi)，简易代码如下：
 
 ```html
 <template>
@@ -322,10 +322,42 @@ updated(){
 滚动后获取列表开始索引的方法修改为通过缓存获取：
 
 ```javascript
+//获取列表起始索引
 getStartIndex(scrollTop = 0){
   let item = this.positions.find(i => i && i.bottom > scrollTop);
   return item.index;
 }
+```
+
+由于我们的缓存数据，本身就是有顺序的，所以获取开始索引的方法可以考虑通过二分查找的方式来降低检索次数：
+
+```javascript
+//获取列表起始索引
+getStartIndex(scrollTop = 0){
+  //二分法查找
+  return this.binarySearch(this.positions,scrollTop)
+},
+//二分法查找
+binarySearch(list,value){
+  let start = 0;
+  let end = list.length - 1;
+  let tempIndex = null;
+  while(start <= end){
+    let midIndex = parseInt((start + end)/2);
+    let midValue = list[midIndex].bottom;
+    if(midValue === value){
+      return midIndex + 1;
+    }else if(midValue < value){
+      start = midIndex + 1;
+    }else if(midValue > value){
+      if(tempIndex === null || tempIndex > midIndex){
+        tempIndex = midIndex;
+      }
+      end = end - 1;
+    }
+  }
+  return tempIndex;
+},
 ```
 
 滚动后将偏移量的获取方式变更：
@@ -353,7 +385,7 @@ for (let id = 0; id < 10000; id++) {
 }
 ```
 
-[点击查看在线DEMO](https://codesandbox.io/s/virtuallist2-1bqk6),演示效果如下:
+[点击查看在线DEMO及完整代码](https://codesandbox.io/s/virtuallist2-1bqk6),演示效果如下:
 
 ![](4.gif)
 
@@ -405,90 +437,30 @@ visibleData(){
 }
 ```
 
-[点击查看在线DEMO](https://codesandbox.io/s/virtuallist-3-i3h9v),演示效果如下:
+[点击查看在线DEMO及完整代码](https://codesandbox.io/s/virtuallist-3-i3h9v),演示效果如下:
 
 ![](./5.gif)
 
-## 问题
+## 面向未来
 
+在前文中我们使用监听scroll事件的方式来触发可视区域中数据的更新，当滚动发生后，scroll事件会频繁触发，很多时候会造成重复计算的问题，从性能上来说无疑存在浪费的情况。
 
+可以使用[IntersectionObserver](https://developer.mozilla.org/zh-CN/docs/Web/API/IntersectionObserver)替换监听scroll事件，`IntersectionObserver`可以监听目标元素是否出现在可视区域内，在监听的回调事件中执行可视区域数据的更新，并且`IntersectionObserver`的监听回调是异步触发，不随着目标元素的滚动而触发，性能消耗极低。
 
+## 遗留问题
 
+我们虽然实现了根据列表项动态高度下的虚拟列表，但如果列表项中包含图片，并且列表高度由图片撑开，由于图片会发送网络请求，此时无法保证我们在获取列表项真实高度时图片是否已经加载完成，从而造成计算不准确的情况。
 
+这种情况下，如果我们能监听列表项的大小变化就能获取其真正的高度了。我们可以使用[ResizeObserver](https://developer.mozilla.org/zh-CN/docs/Web/API/ResizeObserver)来监听列表项内容区域的高度改变，从而实时获取每一列表项的高度。
 
-
-你可能会发现无限滚动在移动端很常见，但是可见区域渲染并不常见，这个主要是因为 iOS 上 UIWebView 的 onscroll 事件并不能实时触发。笔者曾尝试过使用 iScroll 来实现类似可视区域渲染，虽然初次渲染慢的问题可以解决，但是会出现滚动时体验不佳的问题（会有白屏时间）。
-
-requestIdleCallback
-
-onscroll Safari 触发不及时， requestIdleCallback Safari 不支持
-
-onscroll
-
-requestIdleCallback -> requestAnimationFrame -> setTimeout
-
-translate3d(0,y,0)  translateY(y)
-
-
-
-------------
-
-childrenToDisplay  
-
-// 如果 stop 小于总个数，则一直累加计算 start 之后的元素的偏移量
-// 直到其值不小于 maxOffset，此时 stop 便对应可视区域的最后一个可见元素
-
-// 根据索引获取对应元素的大小(高度或宽度)
-let size = this._cellSizeGetter({index: i});
-
-缓存最后一个被计算过的元素索引 this.lastMeasuredIndex = -1;
-
-findNearestItem 找到附近的列表项索引值
-
-will-change: transform
-
-通过 RAF 判断是否在滚动
-
-正在滚动时， pointerEvents:'none'
-
-
-计算边界值之后，然后分别计算水平和垂直方向需要调整的偏移值，因为上文已经说过，浏览器对元素的大小是有一个极限值的，ScalingCellSizeAndPositionManager 类实例的 _maxScrollSize 属性保存了这个极限值(Chrome 是 1.67771e7，其它浏览器是 1500000)。如果通过 getTotalSize 方法得到的预估大小超过了极限值，则需要进行偏移差的调整；如果小于极限值，则不需要调整，对应的计算结果就是 0。
-
-
-
-----------------
-
-明天看：react-virtualized 实现方式
-https://github.com/dwqs/blog/issues/71
-https://github.com/dwqs/blog/issues/72
-https://github.com/dwqs/blog/issues/73
-
-
-
-https://bvaughn.github.io/react-virtualized/#/components/List
-
-
-+ IOS 问题：https://zhuanlan.zhihu.com/p/26022258 
-
-+ 例子：https://zhuanlan.zhihu.com/p/34585166
-
-+ 新API ResizeObserver  IntersectionObserver  estimatedSize 
-
-
-
-虚拟列表还有个很极端的问题，就是浏览器的 Top 值和 height 都有一个极限的值，react-virtualize 的实现中，滚动都会修改列表中所有元素的 top 值，然后实现一个类似于放大镜的效果，在元素渲染时销毁后不会堆叠高度，不知道怎么才能优化得那么顺畅。
-
-
-
-
-
-
-## 系列文章推荐
+不过遗憾的是，在撰写本文的时候，仅有少数[浏览器支持](https://www.caniuse.com/#search=ResizeObserver)`ResizeObserver`。
 
 ## 参考
 
 + [浅说虚拟列表的实现原理](https://github.com/dwqs/blog/issues/70)
-
++ [react-virtualized组件的虚拟列表实现](https://github.com/dwqs/blog/issues/72)
++ [React和无限列表](https://itsze.ro/blog/2017/04/09/infinite-list-and-react.html)
++ [再谈前端虚拟列表的实现](https://zhuanlan.zhihu.com/p/34585166)
 
 ## 写在最后
 
@@ -503,7 +475,3 @@ https://bvaughn.github.io/react-virtualized/#/components/List
 > 同时欢迎加我好友，回复`加群`，拉你入群，和我一起学前端~
 
 ![](https://user-gold-cdn.xitu.io/2019/8/21/16cb2f7ddf918f64?w=268&h=268&f=png&s=44354)
-
-
-
-overflow: auto; will-change: transform; height: 600px; width: 100%;
