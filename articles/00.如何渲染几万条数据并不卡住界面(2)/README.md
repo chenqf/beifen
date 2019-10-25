@@ -132,7 +132,7 @@ document.getElementById('button').addEventListener('click',function(){
 
 + 偏移量`startOffset` = scrollTop - (scrollTop % itemSize);
 
-[点击查看在线DEMO及完整代码](https://codesandbox.io/s/virtuallist-1-rp8pi)，简易代码如下：
+最终的`简易代码`如下：
 
 ```html
 <template>
@@ -214,6 +214,8 @@ export default {
   }
 };
 ```
+
+[点击查看在线DEMO及完整代码](https://codesandbox.io/s/virtuallist-1-rp8pi)
 
 演示效果：
 
