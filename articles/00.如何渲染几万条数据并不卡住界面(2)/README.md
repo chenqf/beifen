@@ -49,7 +49,7 @@ document.getElementById('button').addEventListener('click',function(){
 
 然后，我们通过`Chrome`的`Performance`工具来详细的分析这段代码的性能瓶颈在哪里：
 
-![](1.gif)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/虚拟列表/1.gif)
 
 从`Performance`可以看出，代码从执行到渲染结束，共消耗了`960.8ms`,其中的主要时间消耗如下：
 
@@ -93,7 +93,7 @@ document.getElementById('button').addEventListener('click',function(){
 + 计算当前`可视区域的`数据，并渲染到页面中
 + 计算`startIndex`对应的数据在整个列表中的偏移位置`startOffset`并设置到列表上
 
-![](./virtual-list-3.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/虚拟列表//virtual-list-3.png)
 
 由于只是对`可视区域`内的列表项进行渲染，所以为了保持列表容器的高度并可正常的触发滚动，将Html结构设计成如下结构：
 
@@ -217,7 +217,7 @@ export default {
 
 演示效果：
 
-![](2.gif)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/虚拟列表/2.gif)
 
 ## 列表项动态高度
 
@@ -225,7 +225,7 @@ export default {
 
 比如这种情况：
 
-![](./3.jpg)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/虚拟列表//3.jpg)
 
 在虚拟列表中应用动态高度的解决方案一般有如下三种：
 
@@ -387,7 +387,7 @@ for (let id = 0; id < 10000; id++) {
 
 [点击查看在线DEMO及完整代码](https://codesandbox.io/s/virtuallist2-1bqk6),演示效果如下:
 
-![](4.gif)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/虚拟列表/4.gif)
 
 从演示效果上看，我们实现了基于文字内容动态撑高列表项情况下的虚拟列表，但是我们可能会发现，当滚动过快时，会出现短暂的白屏现象。
 
@@ -397,7 +397,7 @@ for (let id = 0; id < 10000; id++) {
 + 可视区域：`screen`
 + 可视区域下方：`below`
 
-![](./virtual-list-4.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/虚拟列表//virtual-list-4.png)
 
 定义组件属性`bufferScale`,用于接收`缓冲区数据`与`可视区数据`的`比例`
 
@@ -439,7 +439,7 @@ visibleData(){
 
 [点击查看在线DEMO及完整代码](https://codesandbox.io/s/virtuallist-3-i3h9v),演示效果如下:
 
-![](./5.gif)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/虚拟列表//5.gif)
 
 ## 面向未来
 
