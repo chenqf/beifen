@@ -76,13 +76,13 @@ document.getElementById('button').addEventListener('click',function(){
 
 假设有1万条记录需要同时渲染，我们屏幕的`可见区域`的高度为`500px`,而列表项的高度为`50px`，则此时我们在屏幕中最多只能看到10个列表项，那么在首次渲染的时候，我们只需加载10条即可。
 
-![首次加载](./virtual-list-1.png)
+![首次加载](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/虚拟列表/virtual-list-1.png)
 
 说完首次加载，再分析一下当滚动发生时，我们可以通过计算当前滚动值得知此时在屏幕`可见区域`应该显示的列表项。
 
 假设滚动发生，滚动条距顶部的位置为`150px`,则我们可得知在`可见区域`内的列表项为`第4项`至`第13项。
 
-![滚动后](./virtual-list-2.png)
+![滚动后](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/虚拟列表/virtual-list-2.png)
 
 ## 实现
 
@@ -93,7 +93,7 @@ document.getElementById('button').addEventListener('click',function(){
 + 计算当前`可视区域的`数据，并渲染到页面中
 + 计算`startIndex`对应的数据在整个列表中的偏移位置`startOffset`并设置到列表上
 
-![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/虚拟列表//virtual-list-3.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/虚拟列表/virtual-list-3.png)
 
 由于只是对`可视区域`内的列表项进行渲染，所以为了保持列表容器的高度并可正常的触发滚动，将Html结构设计成如下结构：
 
