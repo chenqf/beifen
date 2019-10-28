@@ -227,7 +227,7 @@ export default {
 
 比如这种情况：
 
-![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/虚拟列表//3.jpg)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/虚拟列表/3.jpg)
 
 在虚拟列表中应用动态高度的解决方案一般有如下三种：
 
@@ -399,7 +399,7 @@ for (let id = 0; id < 10000; id++) {
 + 可视区域：`screen`
 + 可视区域下方：`below`
 
-![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/虚拟列表//virtual-list-4.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/虚拟列表/virtual-list-4.png)
 
 定义组件属性`bufferScale`,用于接收`缓冲区数据`与`可视区数据`的`比例`
 
@@ -441,7 +441,7 @@ visibleData(){
 
 [点击查看在线DEMO及完整代码](https://codesandbox.io/s/virtuallist-3-i3h9v),演示效果如下:
 
-![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/虚拟列表//5.gif)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/虚拟列表/5.gif)
 
 ## 面向未来
 
