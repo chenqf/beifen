@@ -441,7 +441,7 @@ visibleData(){
 
 [在线演示](https://i3h9v.csb.app/)
 
-> 基于这个方案，个人开发了一个基于Vue2.x的虚拟列表组件：[vue-virtual-listview](https://github.com/chenqf/vue-virtual-listview),可[点击查看完整代码](https://github.com/chenqf/vue-virtual-listview)。
+> 基于这个方案，开发了一个基于Vue2.x的虚拟列表组件：[vue-virtual-listview](https://github.com/chenqf/vue-virtual-listview),可[点击查看完整代码](https://github.com/chenqf/vue-virtual-listview)。
 
 ## 面向未来
 
