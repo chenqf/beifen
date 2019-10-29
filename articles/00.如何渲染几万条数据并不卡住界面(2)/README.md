@@ -441,6 +441,8 @@ visibleData(){
 
 [在线演示](https://i3h9v.csb.app/)
 
+> 基于这个方案，个人开发了一个基于Vue2.x的虚拟列表组件：[vue-virtual-listview](https://github.com/chenqf/vue-virtual-listview),可[点击查看完整代码](https://github.com/chenqf/vue-virtual-listview)。
+
 ## 面向未来
 
 在前文中我们使用监听scroll事件的方式来触发可视区域中数据的更新，当滚动发生后，scroll事件会频繁触发，很多时候会造成重复计算的问题，从性能上来说无疑存在浪费的情况。
