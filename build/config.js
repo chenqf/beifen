@@ -34,11 +34,11 @@ module.exports = {
         16739465448, // 360安全浏览器 X https://www.pdflibr.com/?page=7
         16739465447, // 360极速浏览器
         17128240214, // Chromium
-        17128240224, // Mozilla Firefox
+        17128240224, // Mozilla Firefox X
         17128240042, // Opera 浏览器
         17128240174, // QQ
         17128240043, // UC
-        17128240164, // 傲游5  https://www.pdflibr.com/?page=4
+        16734065668, // 傲游5  https://www.pdflibr.com/?page=4
         17128240154, // 搜狗高速浏览器
         17128240034, // phone qq
         17157721545, // phone wc
@@ -63,7 +63,7 @@ module.exports = {
         16734065683,
         16734065662,
         16734065325,
-        16734065668,
+        ,
         18866674219, // x
         
     ],
