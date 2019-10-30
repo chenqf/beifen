@@ -34,7 +34,7 @@ module.exports = {
         16739465448, // 360安全浏览器 X https://www.pdflibr.com/?page=7
         16739465447, // 360极速浏览器
         17128240214, // Chromium
-        17128240224, // Mozilla Firefox X
+        17128240148, // Mozilla Firefox X
         17128240042, // Opera 浏览器
         17128240174, // QQ
         17128240043, // UC
@@ -42,30 +42,16 @@ module.exports = {
         17128240154, // 搜狗高速浏览器
         17128240034, // phone qq
         17157721545, // phone wc
-         
-        17128240148, // ok
         16739465443, // ok
         17128240241, // ok
         16739465439, // ok https://www.pdflibr.com/?page=7
         16739465440, // ok https://www.pdflibr.com/?page=6
-    
         16739465442, // ok https://www.pdflibr.com/?page=6
         16510985245,//https://sms.bilulanlv.com/message/16510985245.html
-        18866478645, // X
-        
-
-
-        18866674071,//http://www.z-sms.com/ -
-        18866478984,
-        18866674052, 
-        18866478549,
         16734065669,
         16734065683,
         16734065662,
         16734065325,
-        ,
-        18866674219, // x
-        
     ],
     pay: {
         ddd: [
