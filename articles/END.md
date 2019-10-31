@@ -21,11 +21,12 @@
 ## 写在最后
 
 + 如果你觉得这篇文章稍有收获，点个`再看`，让更多的人也能看到这篇文章~
-+ 关注我的`Github`:https://github.com/chenqf/frontEndBlog,查看更多精品原创文章~
++ 关注我的`Github`查看更多精品原创文章~
++ https://github.com/chenqf/frontEndBlog
 
 > 欢迎关注微信公众号`【前端小黑屋】`，每周1-3篇精品优质文章推送，助你走上进阶之旅
 
-![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/gongzhonghao_sou.png)
+![](https://user-gold-cdn.xitu.io/2019/9/10/16d18aa76b8ad582?w=2800&h=800&f=jpeg&s=157942)
 
 > 同时欢迎加我好友，回复`加群`，拉你入群，和我一起学前端~
 
