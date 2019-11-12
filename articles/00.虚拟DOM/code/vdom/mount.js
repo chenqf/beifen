@@ -11,11 +11,11 @@ import {
 
 
 export const mount = function (VNode, container) {
-    // 挂载普通标签
+    // æè½½æ®éæ ç­¾
     if (VNode.tag) {
         mountElement(VNode, container)
     }
-    //挂载纯文本
+    //æè½½çº¯ææ¬
     else if (!VNode.tag && typeof VNode.children === 'string') {
         mountText(VNode, container)
     }
@@ -33,20 +33,20 @@ export const mountElement = function (VNode, container) {
 
     VNode.el = el;
 
-    //处理DOM属性
+    //å¤çDOMå±æ§
     for (let key in data) {
         data.hasOwnProperty(key) && patchData(el,key,null,data[key]);
     }
     
-    //处理子节点
+    //å¤çå­èç¹
 
-    //多子节点
+    //å¤å­èç¹
     if (children && Array.isArray(children)) {
         for (let i = 0; i < children.length; i++) {
             mount(children[i], el)
         }
     }
-    //单节点
+    //åèç¹
     else if(children){
         mount(children, el)
     }
