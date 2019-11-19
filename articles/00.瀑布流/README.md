@@ -62,6 +62,102 @@
 ```html
 ```
 
+### multi-column 多栏布局实现瀑布流
+
+通常`Multi-column`用于文本的分列：
+
+```html
+.container {
+  column-count: 3;
+}
+```
+
+![](./1.png)
+
+`multi-column`布局中子元素的排列顺序是先`从上往下`再`从左至右`。
+
+![](./2.png)
+
+根据这个特性，我们就可以用来实现`瀑布流`。
+
+`multi-column`实现`瀑布流`主要依赖以下几个属性：
+
++ `column-count`: 设置共有几列
++ `column-width`: 设置每列宽度，列数由`总宽度`与`每列宽度`计算得出
++ `column-gap`: 设置列与列之间的间距
+
+`column-count`和`column-width`都可以用来定义分栏的数目，而且并没有明确的优先级之分。优先级的计算取决与具体的场景。
+
+计算方式为：计算`column-count`和`column-width`转换后具体的列数，哪个小就用哪个。
+
+一个图片&文字的例子：
+
+```html
+<div class="masonry">
+    <div class="item">
+        <img src="..."/>
+        <span class="title">...</span>
+    </div>
+    <div class="item">
+        <img src="..."/>
+        <span class="title">...</span>
+    </div>
+    <!-- more items-->
+</div>
+```
+
+```css
+.masonry{
+    column-count: 3;
+    column-gap: 10px;
+}
+.masonry .item{
+    border:1px solid #999;
+    margin-bottom: 10px;
+}
+.masonry .item img{
+    width: 100%;
+}
+```
+
+[点击查看在线DEMO及完整代码](https://codesandbox.io/s/masonry-column-1-ddbhw)
+
+效果如下：
+
+![](./3.png)
+
+我们可以看到，虽然实现了`瀑布流`的效果，但奇怪的是例子中前两列的最后一个元素的`文本内容`被`自动断开`，一部分在当前列尾，一部分在下一列的列头。
+
+我的理解是`multi-column`布局会将其内的元素自动进行流动和平衡，尽可能保证每列的高度趋于相同，所以会将其内的文本阶段分布在两列内。
+
+而这种展示方式无疑是我们不希望看到的，我们希望的是每个元素都是独立的，前后不断开，此时我们需要使用`break-inside`来实现。
+
+break-inside: auto | avoid
+
++ auto: 元素可以中断
++ avoid: 元素不能中断
+
+修改一下之前的例子：
+
+```css
+.masonry .item{
+    break-inside: avoid;
+}
+```
+
+[点击查看在线DEMO及完整代码](https://codesandbox.io/s/masonry-column-2-lekzq)
+
+效果如下：
+
+![](./4.png)
+
+效果实现了，但由于`multi-column`布局中子元素的排列顺序是先`从上往下`再`从左至右`，所以这种方式仅适用于数据固定不变的情况，对于滚动加载更多等可动态添加数据的情况就并不适用了。
+
+> 关于`column`更多的用法，参见[MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/columns)   
+> 关于`column`的兼容性，参见[caniuse](https://www.caniuse.com/#search=columns)
+
+### grid 布局实现瀑布流
+
 ### JS实现瀑布流
 
 
