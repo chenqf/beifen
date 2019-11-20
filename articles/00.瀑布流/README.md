@@ -2,7 +2,7 @@
 # 瀑布流与木桶布局
 
 > 你知道的越多，你不知道的越多  
-> 点赞再看，养成习惯
+> 点赞再看，手留余香，与有荣焉
 
 ## 前言
 
@@ -145,7 +145,7 @@ break-inside: auto | avoid
 }
 ```
 
-[点击查看在线DEMO及完整代码](https://codesandbox.io/s/masonry-column-2-lekzq)
+[点击查看在线DEMO及完整代码](https://codesandbox.io/s/masonry-column-2-nnw63)
 
 效果如下：
 
@@ -157,6 +157,136 @@ break-inside: auto | avoid
 > 关于`column`的兼容性，参见[caniuse](https://www.caniuse.com/#search=columns)
 
 ### grid 布局实现瀑布流
+
+`Grid布局`是最强大的 CSS 布局方案。
+
+它将网页划分成一个个网格，可以任意组合不同的网格，做出各种各样的布局。以前，只能通过复杂的 CSS 框架达到的效果，现在浏览器内置了。
+
+![](./5.png)
+
+上图这样的布局，就是 Grid 布局的拿手好戏，因此，我们就可以用`Grid`来实现`瀑布流`。
+
+为实现`瀑布流`先介绍以下几个属性：
+
++ `display`:设置为`grid`指明当前容器为`Grid布局`
++ `grid-template-columns`: 定义每一列的列宽
++ `grid-template-rows`: 定义每一行的行高
++ `column-gap`：用于设置列间距
+
+`grid-template-columns`和`grid-template-rows`，可以使用绝对单位，也可以使用百分比。并且为了表示比例关系，`Grid`布局提供了`fr`关键字，如果设置`1fr`和`2fr`，表示后者是前者的两倍。
+
+根据以上几个属性，先写一个例子出来，看看效果：
+
+```html
+<div class="masonry">
+    <div class="item"></div>
+    <!-- more items-->
+</div>
+```
+
+```css
+.masonry{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr; // 分为3行
+    grid-template-columns: 1fr 1fr 1fr; // 分为3列
+    column-gap:5px; // 列间距5px
+}
+
+```
+
+[点击查看在线DEMO及完整代码](https://codesandbox.io/s/masonry-grid-1-idjpw)
+
+效果如下：
+
+![](./6.png)
+
+我们看到高度不同的div块分布在每一个单元格内，但还没有实现`瀑布流`的效果。
+
+为实现`瀑布流`再介绍几个属性：
+
++ `grid-row-start`：上边框所在的水平`网格线`
++ `grid-row-end`：下边框所在的水平`网格线`
++ `grid-column-start`：左边框所在的垂直`网格线`
++ `grid-column-end`：右边框所在的垂直`网格线`
+
+那么什么是`网格线`呢?
+
+划分网格的线，称为`网格线`。水平网格线划分出行，垂直网格线划分出列。
+
+正常情况下，`n行`有`n + 1`根水平网格线，`m列`有`m + 1`根垂直网格线，比如三行就有四根水平网格线。
+
+![](./7.png)
+
+上图是一个 4 x 4 的网格，共有5根水平网格线和5根垂直网格线。
+
+这4个属性可接收如下属性：
+
++ `auto`：表示自动放置
++ `自定义名称`：可以给予网格线一个名称，并在此处引用(本文并不涉及)
++ `网格线索引`: 代表第几条网格线(从1开始)
++ `span + 数字` : 表示上下边框或左右边框跨越多少网格
+
+来看看这个`网格线`有什么用处
+
+为方便查看，我们让例子中的每个div块高度修改为100%，并将样式代码修改为：
+
+```css
+.item{
+    height:100%;
+}
+.item:first-child{
+    grid-row-start:1;
+    grid-row-end:span 2;
+}
+```
+
+[点击查看在线DEMO及完整代码](https://codesandbox.io/s/masonry-grid-2-u5h2w)
+
+![](./8.png)
+
+我们对`Grid`布局中的第一项添加了`grid-row-start:1`和`grid-row-end:3`,令其上下边框分为位于1和3水平个网格线。从效果上看来，是不是有点像`瀑布流`了呢！
+
+在之前的例子中，我们分别指定了`grid-template-columns`和`grid-template-rows`用于定义几行几列，由于行列数的确定，其内的每个单元格的宽高也被确定了，而实际的`瀑布流`布局中，宽度是固定的，而高度是动态的，并且具体的行数也是无法在开始时确定的，所以我们需要在`Grid`布局中不指定行高(grid-template-rows)。
+
+介绍另一个属性：
+
++ `grid-auto-rows`：用来设置多余网格的行高
+
+结合刚才说的Grid实现的瀑布流布局中，不设置行高(grid-template-rows),此时设置`grid-auto-rows`后，所有单元格的高度均为`grid-auto-rows`指定的值。
+
+由于`grid-row-start`和`grid-row-end`可以指定单元格的上边距和下边距位置，也就是说可以将单元格的高度拉伸，而原有高度由`grid-auto-rows`决定，我们仅需将`grid-auto-rows`设置一个很小的值，比如`1px`，然后对其进行拉伸将其高度指定为真实高度，每一个单元格都做如下操作，那么瀑布流就实现了~
+
+假设第一个单元格内容真实高度为100px，由于`grid-auto-rows:1px`,那么我们可以这样设置：
+
+```css
+.item1{
+    grid-row-start:'auto';
+    grid-row-end:span 100;
+}
+```
+
+假设第二个单元格内容真实高度为150px，由于`grid-auto-rows:1px`,那么我们可以这样设置：
+
+```css
+.item2{
+    grid-row-start:'auto';
+    grid-row-end:span 150;
+}
+```
+
+当然了，在实际情况中，`瀑布流`更多的是为图片的展示而服务的，并且由于图片是异步请求加载，只有在加载完成后才能获取图片的真实宽高，所以不得不使用JS来动态将单元格高度进行拉伸。
+
+伪代码如下：
+
+```javascript
+
+```
+
+[点击查看在线DEMO及完整代码](https://codesandbox.io/s/masonry-grid-2-u5h2w)
+
+效果如下：
+
+
 
 ### JS实现瀑布流
 
@@ -192,6 +322,8 @@ break-inside: auto | avoid
 ## 参考
 
 + [瀑布流的设计体验真的很好吗？](https://www.zhihu.com/question/20005422/answers/updated)
-+ 
++ [写给自己看的CSS columns分栏布局教程](https://www.zhangxinxu.com/wordpress/2019/01/css-css3-columns-layout/)
++ [Grid布局20行代码快速生成瀑布流](https://www.cnblogs.com/ZweiZhao/p/9783930.html)
++ [Grid 布局教程](http://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html)
 
 
