@@ -300,11 +300,21 @@ break-inside: auto | avoid
 > 关于`column`更多的用法，参见[MDN](https://developer.mozilla.org/zh-CN/docs/Glossary/Grid)   
 > 关于`column`的兼容性，参见[caniuse](https://www.caniuse.com/#search=grid)
 
-
 ## Flexbox 实现瀑布流
 
 `Flexbox`布局到今天已经是使用非常广泛的，也算是很成熟的一个特性。那接下来我们就看`Flexbox`怎么实现瀑布流布局。
 
+此时，我们需要将html结构设计成如下结构：
+
+```html
+<div class="masonry">
+    <div class="colmun">
+        <div class="item" :id="i.id" :key="i.id" v-for="i in data1">
+            <img :src="i.img"/>
+        </div>
+    </div>
+</div>
+```
 
 
 ## 木桶布局
