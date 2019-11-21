@@ -55,14 +55,7 @@
 
 + `用户目的性不强的时候`，瀑布流是更好的选择。如果用户有特定需要查找的信息，分页查找定位更方便，而当目的性较弱的时候，瀑布流可以增加用户停留的时间和意想不到的收获。
 
-### CSS实现瀑布流
-
-为实现瀑布流，我们将DOM结构设计为如下结构
-
-```html
-```
-
-### multi-column 多栏布局实现瀑布流
+## multi-column 多栏布局实现瀑布流
 
 通常`Multi-column`用于文本的分列：
 
@@ -156,7 +149,7 @@ break-inside: auto | avoid
 > 关于`column`更多的用法，参见[MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/columns)   
 > 关于`column`的兼容性，参见[caniuse](https://www.caniuse.com/#search=columns)
 
-### grid 布局实现瀑布流
+## grid 布局实现瀑布流
 
 `Grid布局`是最强大的 CSS 布局方案。
 
@@ -244,7 +237,7 @@ break-inside: auto | avoid
 
 ![](./8.png)
 
-我们对`Grid`布局中的第一项添加了`grid-row-start:1`和`grid-row-end:3`,令其上下边框分为位于1和3水平个网格线。从效果上看来，是不是有点像`瀑布流`了呢！
+我们对`Grid`布局中的第一项添加了`grid-row-start:1`和`grid-row-end:span 2`,令其上边框位于1水平网格线，下边框距上边框跨越2个水平网格线。从效果上看来，是不是有点像`瀑布流`了呢！
 
 在之前的例子中，我们分别指定了`grid-template-columns`和`grid-template-rows`用于定义几行几列，由于行列数的确定，其内的每个单元格的宽高也被确定了，而实际的`瀑布流`布局中，宽度是固定的，而高度是动态的，并且具体的行数也是无法在开始时确定的，所以我们需要在`Grid`布局中不指定行高(grid-template-rows)。
 
@@ -254,23 +247,23 @@ break-inside: auto | avoid
 
 结合刚才说的Grid实现的瀑布流布局中，不设置行高(grid-template-rows),此时设置`grid-auto-rows`后，所有单元格的高度均为`grid-auto-rows`指定的值。
 
-由于`grid-row-start`和`grid-row-end`可以指定单元格的上边距和下边距位置，也就是说可以将单元格的高度拉伸，而原有高度由`grid-auto-rows`决定，我们仅需将`grid-auto-rows`设置一个很小的值，比如`1px`，然后对其进行拉伸将其高度指定为真实高度，每一个单元格都做如下操作，那么瀑布流就实现了~
+由于`grid-row-start`和`grid-row-end`可以指定单元格的上边距和下边距位置，也就是说可以将单元格的高度拉伸，而原有高度由`grid-auto-rows`决定，我们仅需将`grid-auto-rows`设置一个很小的值，比如`10px`，然后对其进行拉伸将其高度指定为真实高度，每一个单元格都做如下操作，那么瀑布流就实现了~
 
-假设第一个单元格内容真实高度为100px，由于`grid-auto-rows:1px`,那么我们可以这样设置：
+假设第一个单元格内容真实高度为100px，由于`grid-auto-rows:10px`,那么我们可以这样设置：
 
 ```css
 .item1{
     grid-row-start:'auto';
-    grid-row-end:span 100;
+    grid-row-end:span 10;
 }
 ```
 
-假设第二个单元格内容真实高度为150px，由于`grid-auto-rows:1px`,那么我们可以这样设置：
+假设第二个单元格内容真实高度为150px，由于`grid-auto-rows:10px`,那么我们可以这样设置：
 
 ```css
 .item2{
     grid-row-start:'auto';
-    grid-row-end:span 150;
+    grid-row-end:span 15;
 }
 ```
 
@@ -279,16 +272,38 @@ break-inside: auto | avoid
 伪代码如下：
 
 ```javascript
-
+    //image-dom
+    let img = document.getElementsByTagName('img')[0];
+    //image-dom 当前宽度
+    let width = img.width;
+    
+    let image = new Image();
+    image.src = 'xxxx.img';
+    image.onload = function(){
+        //图片原宽
+        let w = image.width;
+        //图片原高
+        let h = image.height;
+        //image-dom的真实高度(依据当前宽度及图片真实宽高)
+        let height = Math.round(h * width / w)
+        //设置当前跨越几个网格(每个网格10px)
+        img.style.gridRowEnd = `span ${~~(height/10)}`
+    }
 ```
 
-[点击查看在线DEMO及完整代码](https://codesandbox.io/s/masonry-grid-2-u5h2w)
+[点击查看在线DEMO及完整代码](https://codesandbox.io/s/masonry-grid-3-8smrj)
 
 效果如下：
 
+![](./9.png)
+
+> 关于`column`更多的用法，参见[MDN](https://developer.mozilla.org/zh-CN/docs/Glossary/Grid)   
+> 关于`column`的兼容性，参见[caniuse](https://www.caniuse.com/#search=grid)
 
 
-### JS实现瀑布流
+## Flexbox 实现瀑布流
+
+`Flexbox`布局到今天已经是使用非常广泛的，也算是很成熟的一个特性。那接下来我们就看`Flexbox`怎么实现瀑布流布局。
 
 
 
