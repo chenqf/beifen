@@ -2,7 +2,7 @@
 # 瀑布流与木桶布局
 
 > 你知道的越多，你不知道的越多  
-> 点赞再看，手留余香，与有荣焉
+> `点赞`再看，手留余香，与有荣焉
 
 ## 前言
 
@@ -302,47 +302,62 @@ break-inside: auto | avoid
 
 ## Flexbox 实现瀑布流
 
-`Flexbox`布局到今天已经是使用非常广泛的，也算是很成熟的一个特性。那接下来我们就看`Flexbox`怎么实现瀑布流布局。
+`Flexbox`布局到今天已经是使用非常广泛的，也算是很成熟的一个特性。在此就不再介绍`Flexbox`布局的相关内容，如果还有不是很了解的朋友，可参见阮一峰的[《Flex 布局教程：语法篇》](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
+
+那接下来我们就看`Flexbox`怎么实现瀑布流布局。
 
 此时，我们需要将html结构设计成如下结构：
 
 ```html
 <div class="masonry">
-    <div class="colmun">
-        <div class="item" :id="i.id" :key="i.id" v-for="i in data1">
-            <img :src="i.img"/>
-        </div>
+    <!-- 第一列 -->
+    <div class="column">
+        <div class="item"></div>
+        <!-- more items-->
+    </div>
+    <!-- 第二列 -->
+    <div class="column">
+        <div class="item"></div>
+        <!-- more items-->
+    </div>
+    <!-- 第三列 -->
+    <div class="column">
+        <div class="item"></div>
+        <!-- more items-->
     </div>
 </div>
 ```
 
+上面代码中`div.masonry`代表当前瀑布流容器，`div.column`代表每一列的容器，`div.item`代表每一列中的每一项。
 
-## 木桶布局
+我们需要将`div.masonry`和`div.column`都通过`display:flex`将其设置为`Flex`容器。
 
-什么是木桶布局，我们随便百度一张图片就知道了。如下图。
+不同的是`瀑布流容器`主轴方向设置为水平方向`flex-direction:row`,`列容器`主轴方向设置为垂直方向`flex-direction:column`
 
+```css
+.masonry {
+    display: flex; // 设置为Flex容器
+    flex-direction: row; // 主轴方向设置为水平方向
+}
 
-## 何时应用瀑布流
+.column {
+    display: flex; // 设置为Flex容器
+    flex-direction: row; // 主轴方向设置为垂直方向
+}
+```
 
-做瀑布流需要考虑几方面大因素，图片质量，图片大小，加载速度，如果这些不能同时满足，会大大降低用户体验。
+[点击查看在线DEMO及完整代码](https://codesandbox.io/s/masonry-flex-1-bigeg)
 
-浏览行为缺乏特别明确的目的性，以“逛逛”“扫街”的心态为主
-对复杂的信息索引无依赖性
-用户以图片为首要检索对象，瀑布流页面的配文只是相当次要的辅助信息
-竖图比例较高
-图片平均质量较高
-图片的风格气质趋于相似（也是Pinterest始终采取邀请制的原因）
+效果如下：
 
-
-它们从左到右，然后从上到下排序。第一个块位于每列的顶部，而后面的块位于最短的列中。（即，无论列如何，该块都应尽可能高地放置在页面的上方）
-
-## API 参考
-
-
+![](./10.gif)
 
 ## 总结
 
 做瀑布流需要考虑几方面大因素，图片质量，图片大小，加载速度，如果这些不能同时满足，会大大降低用户体验。个人觉得瀑布流对于触屏终端体验会更好一些。
+
+
+
 
 ## 参考
 
