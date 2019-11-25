@@ -1,5 +1,5 @@
 
-# 瀑布流与木桶布局
+# 彻底弄懂瀑布流布局
 
 > 你知道的越多，你不知道的越多  
 > `点赞`再看，手留余香，与有荣焉
@@ -7,11 +7,6 @@
 ## 前言
 
 2019年终岁尾，最近对布局相关的内容比较有兴趣，在此整理一下和瀑布流相关的使用场景以及多种实现方案。
-
-本文主要分为2部分：
-
-1. 瀑布流布局
-2. 木桶布局
 
 ## 瀑布流布局
 
@@ -356,8 +351,9 @@ break-inside: auto | avoid
 
 做瀑布流需要考虑几方面大因素，图片质量，图片大小，加载速度，如果这些不能同时满足，会大大降低用户体验。个人觉得瀑布流对于触屏终端体验会更好一些。
 
+本文总结了`multi-column`、`grid`、`Flexbox`三种方式实现瀑布流，实现方案各有不同，从兼容性及易用性综合考虑，还是推荐使用`Flexbox`的布局实现方案。
 
-
+本文介绍的`瀑布流`布局方案，本质上可称为`竖向瀑布流`，篇幅有限，并未涉及`横向瀑布流`的内容，关于`横向瀑布流`的内容，会在接下来的文章中继续总结，敬请期待。
 
 ## 参考
 
@@ -365,5 +361,5 @@ break-inside: auto | avoid
 + [写给自己看的CSS columns分栏布局教程](https://www.zhangxinxu.com/wordpress/2019/01/css-css3-columns-layout/)
 + [Grid布局20行代码快速生成瀑布流](https://www.cnblogs.com/ZweiZhao/p/9783930.html)
 + [Grid 布局教程](http://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html)
-
++ [Flex 布局教程：语法篇](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
 
