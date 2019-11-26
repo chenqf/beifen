@@ -341,6 +341,35 @@ break-inside: auto | avoid
 }
 ```
 
+由于当前的html结构分为了`瀑布流容器`和`列容器`，并且常见的需求图片均是`从左至右`再`从上到下`来进行排列，所以需要通过`Javascript`来区分每一列的具体数据：
+
+假设分为三列，伪代码如下：
+
+```javascript
+let data1 = [], //第一列
+    data2 = [], //第二列
+    data3 = [], //第三列
+    i = 0;
+
+while (i < data.length) {
+    data1.push(data[i++]);
+    if (i < data.length) {
+        data2.push(data[i++]);
+    }
+    if (i < data.length) {
+        data3.push(data[i++]);
+    }
+}
+return {
+    //第一列
+    data1,
+    //第二列
+    data2,
+    //第三列
+    data3
+};
+```
+
 [点击查看在线DEMO及完整代码](https://codesandbox.io/s/masonry-flex-1-bigeg)
 
 效果如下：
