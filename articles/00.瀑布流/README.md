@@ -337,7 +337,7 @@ break-inside: auto | avoid
 
 .column {
     display: flex; // 设置为Flex容器
-    flex-direction: row; // 主轴方向设置为垂直方向
+    flex-direction: column; // 主轴方向设置为垂直方向
 }
 ```
 
