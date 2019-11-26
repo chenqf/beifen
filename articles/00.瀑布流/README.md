@@ -14,7 +14,7 @@
 
 无图无真相：
 
-![](./0.jpg)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/瀑布流/0.jpg)
 
 如图所示，网页上呈现`参差不齐`的多栏布局，图片`等宽不等高`，根据图片原比例缩放直至宽度达到固定的要求，每行排满后，后面的元素依次添加到其后，视觉上显得错落有致不拘一格。
 
@@ -60,11 +60,11 @@
 }
 ```
 
-![](./1.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/瀑布流/1.png)
 
 `multi-column`布局中子元素的排列顺序是先`从上往下`再`从左至右`。
 
-![](./2.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/瀑布流/2.png)
 
 根据这个特性，我们就可以用来实现`瀑布流`。
 
@@ -112,7 +112,7 @@
 
 效果如下：
 
-![](./3.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/瀑布流/3.png)
 
 我们可以看到，虽然实现了`瀑布流`的效果，但奇怪的是例子中前两列的最后一个元素的`文本内容`被`自动断开`，一部分在当前列尾，一部分在下一列的列头。
 
@@ -137,7 +137,7 @@ break-inside: auto | avoid
 
 效果如下：
 
-![](./4.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/瀑布流/4.png)
 
 效果实现了，但由于`multi-column`布局中子元素的排列顺序是先`从上往下`再`从左至右`，所以这种方式仅适用于数据固定不变的情况，对于滚动加载更多等可动态添加数据的情况就并不适用了。
 
@@ -150,7 +150,7 @@ break-inside: auto | avoid
 
 它将网页划分成一个个网格，可以任意组合不同的网格，做出各种各样的布局。以前，只能通过复杂的 CSS 框架达到的效果，现在浏览器内置了。
 
-![](./5.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/瀑布流/5.png)
 
 上图这样的布局，就是 Grid 布局的拿手好戏，因此，我们就可以用`Grid`来实现`瀑布流`。
 
@@ -186,7 +186,7 @@ break-inside: auto | avoid
 
 效果如下：
 
-![](./6.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/瀑布流/6.png)
 
 我们看到高度不同的div块分布在每一个单元格内，但还没有实现`瀑布流`的效果。
 
@@ -203,7 +203,7 @@ break-inside: auto | avoid
 
 正常情况下，`n行`有`n + 1`根水平网格线，`m列`有`m + 1`根垂直网格线，比如三行就有四根水平网格线。
 
-![](./7.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/瀑布流/7.png)
 
 上图是一个 4 x 4 的网格，共有5根水平网格线和5根垂直网格线。
 
@@ -230,7 +230,7 @@ break-inside: auto | avoid
 
 [点击查看在线DEMO及完整代码](https://codesandbox.io/s/masonry-grid-2-u5h2w)
 
-![](./8.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/瀑布流/8.png)
 
 我们对`Grid`布局中的第一项添加了`grid-row-start:1`和`grid-row-end:span 2`,令其上边框位于1水平网格线，下边框距上边框跨越2个水平网格线。从效果上看来，是不是有点像`瀑布流`了呢！
 
@@ -290,7 +290,7 @@ break-inside: auto | avoid
 
 效果如下：
 
-![](./9.png)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/瀑布流/9.png)
 
 > 关于`column`更多的用法，参见[MDN](https://developer.mozilla.org/zh-CN/docs/Glossary/Grid)   
 > 关于`column`的兼容性，参见[caniuse](https://www.caniuse.com/#search=grid)
@@ -345,7 +345,7 @@ break-inside: auto | avoid
 
 效果如下：
 
-![](./10.gif)
+![](https://raw.githubusercontent.com/chenqf/frontEndBlog/master/images/瀑布流/10.gif)
 
 ## 总结
 
